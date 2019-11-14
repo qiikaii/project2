@@ -57,12 +57,20 @@ if ($success == true) {
             $row = $result->fetch_assoc();
             $conn->close();
             $result->free_result();
-
             if ($row["acc_verified"] != 'Y') {
                 $errorMsg = "Account not verified yet.<br>";
                 $success = false;
-            } else {
-                $_SESSION['acc_id'] = $row["acc_id"];
+            } 
+            else {
+                 if (empty($_SESSION['user'])) {
+                    session_start();
+                    $_SESSION['user'] = $row['email'];
+                    $_SESSION['acc_id'] = $row['acc_id'];
+                }
+                else {
+                    $success = false;
+                    $errorMsg .= "Error in creating session";
+                }
                 header("location:account.php");
             }
         } else {
@@ -73,18 +81,18 @@ if ($success == true) {
     }
 }
 
+
+else {
+    echo "<section class=\"middle\">
+    <h4>The following input errors were detected:</h4>
+    <p> $errorMsg </p>
+    </section>";
+}
 function sanitize_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
-}
-
-if (!$success) {
-    echo "<section class=\"middle\">
-    <h4>The following input errors were detected:</h4>
-    <p> $errorMsg </p>
-    </section>";
 }
 
 include 'footer.php';
