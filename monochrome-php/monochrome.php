@@ -63,9 +63,9 @@ function getdata($id)
         session_start();
     }
     if (empty($_SESSION['user'])) {
-        include($_SERVER['DOCUMENT_ROOT'] . '/ict1004-project/header.php');
+        include 'header.php';
     } else {
-        include($_SERVER['DOCUMENT_ROOT'] . '/ict1004-project/headerin.php');
+        include 'headerin.php';
         $session = $_SESSION['user'];
         //echo "<script type='text/javascript'>alert('{$_SESSION}'.'<br />');</script>";
         echo ("{$_SESSION['user']}" . "<br />");
@@ -94,7 +94,7 @@ function getdata($id)
     </section>
 
     <?php
-    include($_SERVER['DOCUMENT_ROOT'] . '/ict1004-project/footer.php')
+    include 'footer.php';
     ?>
 </body>
 

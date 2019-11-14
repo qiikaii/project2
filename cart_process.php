@@ -1,35 +1,40 @@
 <?php
-include 'session.php';
 include 'dbcon.php';
+include 'header.php';
+
+//define variables
+$db_error_msg = $submit_error = $product_id = $quantity = $account_id = "";
 
 if ($conn->connect_error) {
     $db_error_msg = "Connection failed: " . $conn->connect_error;
 }
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
-// temp TBD
-$_SESSION['acc_id'] = "67191009";
-// define("ACC_ID", "23572289");
-
-//define variables
-$product_id = $quantity = $account_id = "";
 
 $product_id = $_POST['product_id'];
 $quantity = $_POST['quantity'];
 $size = $_POST['size'];
 
-// add to DB
-$product_id = get_product_id($product_id, $size);
-
-if (!isset($_SESSION['acc_id'])) {
-    header("Location: cartpage.php");
+if (!isset($_POST['add_cart'])) {
+    echo "Add to cart error. Please try again.";
 } else {
-    // add_to_db(ACC_ID, $product_id, $quantity);
-    add_to_db($_SESSION['acc_id'], $product_id, $quantity);
+    // add to DB
+    $product_id = get_product_id($product_id, $size);
 
-    // header("Location:" . $_SERVER['HTTP_REFERER']);
-    header("Location: cartpage.php");
-    die();
+    if (!isset($_SESSION['acc_id'])) {
+        header("Location: cartpage.php");
+    } else {
+        // add_to_db(ACC_ID, $product_id, $quantity);
+        add_to_db($_SESSION['acc_id'], $product_id, $quantity);
+
+        // header("Location:" . $_SERVER['HTTP_REFERER']);
+        header("Location: cartpage.php");
+        die();
+    }
 }
+
 
 
 /** 
@@ -54,9 +59,14 @@ function add_to_db($acc_id, $item_id, $quantity)
         return;
     } // if
 
+    $result->free_result();
+    unset($result, $row);
+
     // if it does not exist in the cart
     $sql = "INSERT INTO cart (acc_id, item_id, quantity) VALUES ($acc_id, $item_id, $quantity);";
     $conn->query($sql);
+
+    $conn->close();
 }
 
 function get_product_id($item_id, $size)
