@@ -104,7 +104,7 @@ if ($conn->connect_error) {
                             <option value='9'>9</option>
                             <option value='10'>10</option>
                         </select>
-                        <input class="cart-button" type="submit" form="cart-form" value="Add To Cart" />
+                        <input class="cart-button" type="submit" form="cart-form" name= "add_cart" value="Add To Cart"/>
                         <input type="hidden" name="product_id" value=<?php echo "$product_id"; ?>>
                     </form>
 

@@ -3,8 +3,8 @@
         <li>
             <p>&copy; DELTA 2019</p>
         </li>
-        <li><a href="index.php">HOME</a></li>
-        <li><a href="aboutus.php">ABOUT US</a></li>
-        <li><a href="cartpage.php">CART</a></li>
+        <li><a href="../index.php">HOME</a></li>
+        <li><a href="../aboutus.php">ABOUT US</a></li>
+        <li><a href="../cartpage.php">CART</a></li>
     </ul>
 </footer>
