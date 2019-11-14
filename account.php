@@ -39,16 +39,17 @@
 
         $acc_id = $_SESSION['acc_id'];
         echo $acc_id;
-        
+        include'dbcon.php';
+
         // Get name of user based on email
         function getName($session) {
-            include 'dbcon.php';
+            $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME); //connect to database
             //Create connection
             //define variables and set to empty values
             $name = $errorMsg = "";
             $success = true;
             if ($conn->connect_error) {
-                $errorMsg = "Connection failed: " . $conn->connect_error;
+                $errorMsg .= "Connection failed: " . $conn->connect_error;
                 $success = false;
             } 
             else {
@@ -109,7 +110,7 @@
                     $order_date = $row['order_date'];
                     $order_total_price = $row['order_total_price'];
                     $shipped = $row['shipped'];
-                    echo "<section class = 'row text-center'>"
+                    echo "<article class='container-fluid ordercontainer'><section class = 'row text-center'>"
                         . "<h3 class = 'accountpageh3'>";
                     if ($shipped == 'Y') {
                         echo "WE'VE SENT IT!! </h3>";
@@ -126,7 +127,7 @@
                         ."<button type='button' class='btn1 btn-submit' data-toggle='modal' data-target='#orderModalPopup'> VIEW ORDER </button>"
                         ."<section class='orderModal fade text-center' id='orderModalPopup' tabindex='-1' role='dialog'>"
                             ."<article class='modal-dialog' role='document'>"
-                                ."<article ckass='orderDetails-content'>"
+                                ."<article class='orderDetails-content'>"
                                     ."<header class='modal-header'>"
                                         ."<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>"
                                         ."<h4 class='modal-title'> ORDER DETAILS </h4>"
@@ -144,7 +145,7 @@
                                         ."<p class='orderdescription orderline'>ORDER DATE: $order_date </p>"
                                         ."<section>";
                                         displayItemDetails($order_id);
-                                    echo "</section> </article> </article> </article> </section> </section>";
+                                    echo "</section> </article> </article> </article> </section> </section> </article>";
 
                 }
             }
@@ -171,8 +172,9 @@
                     $product_name = $row['product_name'];
                     $qty = $row['quantity'];
                     $product_price = $row['product_price'];
+                    echo "<script type='text/javascript'>alert('hello');</script>";
                     echo "<figure class='containter-fluid ordericon' id='wrapper'>"
-                        ."<a href='$product_col-php/$product_col$item_id.php'><img class='ordericon' src='$img_source' alt='$product_name'";
+                        ."<a href='$product_col-php/$product_col$item_id.php'><img class='ordericon' src='$img_source' alt='$product_name'>";
                     echo "<figcaption class='price text-center'>$product_name </figcaption>"
                         ."<h4 class='price text-center'>"
                         ."<span class='visible-xs visible visible-sm visible-md'>$product_price /pc </span>"
@@ -237,7 +239,7 @@
                         <label class="inputtitle">EMAIL :</label>
                         <input type="email" class="accountinfo-form-style" id="email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" value="<?php echo $session ?>" >
                         <label class="inputtitle">NAME : </label>
-                        <input type="text" class="accountinfo-form-style" id="firstname" pattern="[A-Za-z]{3,50}" value="<?php getName($session) ?>" >
+                        <input type="text" class="accountinfo-form-style" id="firstname" pattern="(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,30}" value="<?php getName($session) ?>" >
                         <label class="inputtitle">PASSWORD : </label>
                         <input type="password" class="accountinfo-form-style" id="pw" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$" value="" >
                         <button type="submit" class="btn1 btn-submit">Update Changes</button>
@@ -250,6 +252,7 @@
                 <p class="accountpagecaption text-center">An overall view of your past purchases</p>
 
                 <article class="container-fluid ordercontainer">
+                    <?php displayOrderByAccID($acc_id); ?>
 <!--                    <section class='row text-center '>
                         <h3 class="accountpageh3">WE'VE SENT IT!!</h3>
                         <p class='orderdescription'>ORDER NO.: 00150001300</p>
@@ -318,7 +321,7 @@
                             </article>
                         </article>
                     </section>-->
-                    <?php displayOrderByAccID($acc_id); ?>
+                    
                 </article>
             </section>
 
