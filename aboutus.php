@@ -102,8 +102,6 @@
                 </section>
             </article>
         </section>
-
         <?php include 'footer.php'; ?>  
     </main>
-
 </html>
