@@ -64,14 +64,6 @@ h1 {
         font-weight: 900;
         text-align: center;
     }
-
-    /* MAP */
-    #map {
-        width: 30vw;
-        height: 20vw;
-        margin: auto;
-        margin-bottom: 20px;
-    }
 }
 @media only screen and (min-width: 481px) and (max-width: 770px) {
     .abtusname {
@@ -82,12 +74,6 @@ h1 {
         font-size: 12vw;
         font-weight: 900;
         text-align: center;
-    }
-    #map {
-        width: 50vw;
-        height: 40vw;
-        margin: auto;
-        margin-bottom: 20px;
     }
 }
 
@@ -100,11 +86,5 @@ h1 {
         font-size: 12vw;
         font-weight: 900;
         text-align: center;
-    }
-    #map {
-        width: 50vw;
-        height: 40vw;
-        margin: auto;
-        margin-bottom: 20px;
     }
 }

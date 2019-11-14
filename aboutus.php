@@ -5,7 +5,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 
-<html>
+<html lang="en">
     <head>
         <title>DELTA - ABOUT US</title>
         <meta charset="UTF-8">
@@ -21,41 +21,10 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/index.css">
         <link rel="stylesheet" href="css/aboutus.css">
-        <script src="js/aboutus.js" type="text/javascript"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeNGdz23_rQourk9iBMaHWs879ujMkYuQ&callback=initMap">
-        </script>
     </head>
 
-    <body>
-        <header>
-            <nav class="navbar navbar-expand-lg" id='header' role="navigation">
-                <nav class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
-                        <img class="logo" src="logo.jpeg" alt="logo">
-                    </a>
-
-                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navresponsive">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </nav>
-                <nav class="collapse navbar-collapse pull-right" id="navresponsive">
-                    <ul class="nav navbar-nav mainnavigation">
-                        <li class="nav-item"><a href="aboutus.html">ABOUT US</a></li>
-                        <li class="dropdown wrapper nav-item"><a class ="dropdown-toggle" data-toggle="collapse" data-target="#dropdownlist" href="#">COLLECTIONS</a>
-                            <ul class="dropdown-menu  dropdown-font" id="dropdownlist">
-                                <li class="space"><a href="celestial-html/celestial.html">CELESTIAL</a></li>
-                                <li class="space"><a href="monochrome-html/monochrome.html">MONOCHROME</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"><a href="cartpage.html">CART</a></li>
-                        <li class="nav-item"><a href="loginpage.html"><span class="glyphicon glyphicon-log-in"></span> LOGIN</a></li>
-                    </ul>
-
-                </nav>
-            </nav>
-        </header>      
+    <main>
+        <?php include 'header.php'; ?>    
 
         <!-- TITLE: ABOUT US -->
         <section class="container-fluid">
@@ -126,7 +95,7 @@ and open the template in the editor.
                         <p>172A Ang Mo Kio Ave 8, Singapore 567739</p>
                         <p>(beside Blk Q of NYP campus)</p>
                         <p id="google"></p>
-                        <section id="map"></section>
+                        <img src="googlemap.PNG" alt="">
                     </article>
                 </section>
                 <section class="col-sm-6">
@@ -138,14 +107,7 @@ and open the template in the editor.
             </article>
         </section>
 
-        <footer class="container-fluid panel-footer text-center footer-color">
-            <ul class="list-inline">
-                <li><p>&copy; DELTA 2019</p></li>
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="aboutus.html">ABOUT US</a></li>
-                <li><a href="cartpage.html">CART</a></li>
-            </ul>
-        </footer>
-    </body>
+        <?php include 'footer.php'; ?>  
+    </main>
 
 </html>
