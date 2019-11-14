@@ -37,17 +37,17 @@
                         <h2 class="maintitle">SIGN-IN</h2>
                         <form name="loginform" action="<?php echo htmlspecialchars("processlogin.php");?>" method="post">
                             <label for="email" class="separator">Email:</label>
-                            <input class="separator" name="loginemail" id="loginemail" type="email" placeholder="Log in with your Email" 
+                            <input class="separator" name="loginemail" type="email" placeholder="Log in with your Email" 
                                    size="60" maxlength="100" autocomplete="off"/>
                             <label for="password" class="separator">Password:</label>
-                            <input class="separator" name="loginpass" id="loginpass" type="password" placeholder="Enter your Password" 
+                            <input class="separator" name="loginpass" type="password" placeholder="Enter your Password" 
                                    size="60" maxlength="100" autocomplete="off"
                                    title="Must contain at least 1 uppercase, 1 lowercase and 1 number/special character.">
                             <section class="separator">
                                 <!--<article class="g-recaptcha" data-sitekey="6Ld16RYTAAAAAHYoqPeGafdXADe1ya7vEuXj871m">
                                 </article>-->
                             </section>
-                            <button class="loginbutton">LOGIN</a></button>
+                            <button class="loginbutton" name="loginbutton">LOGIN</a></button>
                             <p class="separatorlink">——————— Already have an account? Sign In! ———————</p>
                         </form>
                     </article>
@@ -60,20 +60,20 @@
                         <h2 class="maintitle">REGISTER</h2>
                         <form name="registerform" action="<?php echo htmlspecialchars("processregister.php");?>" method="post">
                             <label for="reginame" class="separator">Name:</label>
-                            <input class="separator" name="reginame" id="reginame" type="text" 
+                            <input class="separator" name="reginame" type="text" 
                                    placeholder="How do you want us to address you?" size="60" maxlength="100" autocomplete="off"
                                     />
                             <label for="regiemail" class="separator">Email:</label>
-                            <input class="separator" name="regiemail" id="regiemail" type="email" 
+                            <input class="separator" name="regiemail" type="email" 
                                    placeholder="At least 8 alphanumeric characters." size="60" maxlength="100" autocomplete="off"
                                     />
                             <label for="regipass" class="separator">Password:</label>
-                            <input class="separator" name="regipass" id="regipass" type="password" 
+                            <input class="separator" name="regipass" type="password" 
                                    placeholder="Keep your password confidential!" size="60" maxlength="100" autocomplete="off"
                                    title="Must contain at least 1 uppercase, 1 lowercase and 1 number/special character."
                                    />
                             <label for="regiconpass" class="separator">Confirm Password:</label> 
-                            <input class="separator" name="regiconpass" id="regiconpass" type="password" 
+                            <input class="separator" name="regiconpass" type="password" 
                                    placeholder="Key in your password again." size="60" maxlength="100" autocomplete="off"
                                    title="Must contain at least 1 uppercase, 1 lowercase and 1 number/special character." 
                                    />
@@ -81,7 +81,7 @@
                                 <!--<article class="g-recaptcha" data-sitekey="6Ld16RYTAAAAAHYoqPeGafdXADe1ya7vEuXj871m">
                                 </article>-->
                             </section>
-                            <button class="regibutton">REGISTER</button>
+                            <button class="regibutton" value="regibutton">REGISTER</button>
                             <p class="separatorlink">—————————— New to Delta? Join us! ——————————</p>
                         </form>
                     </article>
@@ -93,16 +93,16 @@
                         <h2 class="maintitle">RESET PASSWORD</h2>
                         <form name="resetform" action="<?php echo htmlspecialchars("processreset.php");?>" method="post">
                             <label for="resetname" class="separator">Full Name:</label>
-                            <input class="separator" name="resetname" id="resetname" type="text" 
+                            <input class="separator" name="resetname" type="text" 
                                    placeholder="Enter Full Name" size="60" maxlength="70" autocomplete="off"/>
                             <label for="resetemail" class="separator">Email:</label>
-                            <input class="separator" name="resetemail" id="resetemail" type="email" 
+                            <input class="separator" name="resetemail" type="email" 
                                    placeholder="Enter your Email Address" size="60" maxlength="100" autocomplete="off"/>
                             <section class="separator">
                                 <!--<article class="g-recaptcha" data-sitekey="6Ld16RYTAAAAAHYoqPeGafdXADe1ya7vEuXj871m">
                                 </article>-->
                             </section>
-                            <button class="resetbutton">RESET PASSWORD</button>
+                            <button class="resetbutton" value="resetbutton">RESET PASSWORD</button>
                         </form>
                     </article>
                 </section>
