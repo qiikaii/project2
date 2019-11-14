@@ -8,14 +8,12 @@
         <meta name="keyword" content="fashion, designer platform, Singapore, self-designed clothes, self-designed fashion, trending fashion, trending design, trending in Singapore, Singapore fashion, Singapore home design fashion, online shopping fashion">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="css/bootstrap.css"> 
         <link href="https://fonts.googleapis.com/css?family=Varela&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/bootstrap.css"> 
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/loginpage.css">
         <!-- Insert Google ReCaptcha -->
         <script src='https://www.google.com/recaptcha/api.js'></script>
-        <!-- Prevent ClickJacking -->
-   	<meta http-equiv="X-Frame-Options" content="deny">
     </head>
 
     <main>

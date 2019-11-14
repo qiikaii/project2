@@ -17,8 +17,11 @@
 </html>
 
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 include 'header.php';
+$errorMsg = "";
 $success = true;
 $cartsuccess = true;
 

@@ -8,23 +8,20 @@
         <meta name="keyword" content="fashion, designer platform, Singapore, self-designed clothes, self-designed fashion, trending fashion, trending design, trending in Singapore, Singapore fashion, Singapore home design fashion, online shopping fashion">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-        <script src="js/slideshow.js"></script>
-        <script src="js/main.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Varela&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/bootstrap.css"> 
         <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/index.css">
         <link rel="stylesheet" href="css/aboutus.css">
     </head>
 
     <main>
-        <?php 
-        if (session_status() == PHP_SESSION_NONE){
+        <?php
+        if (session_status() == PHP_SESSION_NONE) {
             session_start();
-        }  
+        }
         include 'header.php';
         ?>    
-        
+
         <!-- TITLE: ABOUT US -->
         <section class="container-fluid">
             <article class="row">
@@ -94,7 +91,7 @@
                         <p>172A Ang Mo Kio Ave 8, Singapore 567739</p>
                         <p>(beside Blk Q of NYP campus)</p>
                         <p id="google"></p>
-                        <img src="googlemap.PNG" alt="">
+                        <img src="googlemap.PNG" id="gmap" alt="">
                     </article>
                 </section>
                 <section class="col-sm-6">
