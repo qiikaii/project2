@@ -27,8 +27,16 @@
                         <li class="space"><a href="/project2/monochrome-php/monochrome.php">MONOCHROME</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a href="/project2/cartpage.php">CART</a></li>
-                <li class="nav-item"><a href="/project2/loginpage.php"><span class="glyphicon glyphicon-log-in"></span> LOGIN</a></li>
+                <?php
+                if (isset($_SESSION['acc_id'])) {
+                echo "<li class=\"nav-item\"><a href=\"/project2/cartpage.php\">CART</a></li>                    
+                <li class=\"nav-item\"><a href=\"/project2/logout.php\"><span class=\"glyphicon glyphicon-log-out\"></span> LOGOUT</a></li>";
+                }
+                else {
+                echo "<li class=\"nav-item\"><a href=\"/project2/loginpage.php\"><span class=\"glyphicon glyphicon-log-in\"></span> LOGIN</a></li>";
+                
+                }
+                ?>
             </ul>
         </nav>
     </nav>

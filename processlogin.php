@@ -60,17 +60,12 @@ if ($success == true) {
             if ($row["acc_verified"] != 'Y') {
                 $errorMsg = "Account not verified yet.<br>";
                 $success = false;
-            } 
-            else {
-                 if (empty($_SESSION['user'])) {
-                    session_start();
-                    $_SESSION['user'] = $row['email'];
-                    $_SESSION['acc_id'] = $row['acc_id'];
-                }
-                else {
-                    $success = false;
-                    $errorMsg .= "Error in creating session";
-                }
+            } else {
+                session_start();
+                $_SESSION['acc_id'] = $row['acc_id'];
+                $_SESSION['email'] = $row['email'];
+                $_SESSION['name'] = $row['name'];
+
                 header("location:account.php");
             }
         } else {
@@ -81,19 +76,19 @@ if ($success == true) {
     }
 }
 
-
-else {
+if (!$success) {
     echo "<section class=\"middle\">
     <h4>The following input errors were detected:</h4>
     <p> $errorMsg </p>
     </section>";
 }
-function sanitize_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
 
-include 'footer.php';
-?>
+    function sanitize_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
+    include 'footer.php';
+    ?>
