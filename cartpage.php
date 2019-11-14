@@ -123,10 +123,10 @@ if (!isset($_SESSION['acc_id'])) {
                 <p> $itemname ($size) </p>
                 <p> Price: $$itemprice</p>
                 <p> Qty: <input type=\"number\" class=\"qtyupdate\" name=\"cartquantity\" placeholder=\"$rowquan[$i]\" value=\"$rowquan[$i]\" min=\"1\" max=\"99\" autocomplete=\"off\" required></p>
-                <input type=\"submit\" name=\"updatecart\" value=\"Update\">
+                <button type=\"submit\" name=\"updatecart\" value=\"Update\"></button>
                 <p class=\"cartreveal\"> Total: $" . $itemprice * $rowquan[$i] . "</p>
                 <input type=\"hidden\" name=\"cartitemid\" value=\"$rowitem[$i]\"</td>
-                <input type=\"submit\" name=\"deletecart\" value=\"Remove\">
+                <button type=\"submit\" name=\"deletecart\" value=\"Remove\"></button>
                 </section>
                 </article>
                 </form>
@@ -151,7 +151,7 @@ if (!isset($_SESSION['acc_id'])) {
                 <section class=\"col-sm-1\">
                 <article class=\"cartitem\">
                 <input type=\"number\" class=\"qtyupdate\" name=\"cartquantity\" placeholder=\"$rowquan[$i]\" value=\"$rowquan[$i]\" size=\"2\" min=\"1\" max=\"99\" autocomplete=\"off\" required>
-                <input type=\"submit\" name=\"updatecart\" value=\"Update\">
+                <input type=\"submit\" name=\"updatecart\" value=\"Update\"></button>
                 </article>
                 </section>
                 <section class=\"col-sm-1\">
@@ -162,7 +162,7 @@ if (!isset($_SESSION['acc_id'])) {
                 <section class=\"col-sm-1\">
                 <article class=\"cartitem\">
                 <input type=\"hidden\" name=\"cartitemid\" value=\"$rowitem[$i]\"</td>
-                <input type=\"submit\" name=\"deletecart\" value=\"Remove\">
+                <input type=\"submit\" name=\"deletecart\" value=\"Remove\"></button>
                 </article>
                 </section>
                 </article>
@@ -175,7 +175,7 @@ if (!isset($_SESSION['acc_id'])) {
             <article class=\"row\">
             <section class=\"bottomcart\">
             <article class=\"col-sm-12\">
-            <a href=\"checkout.php\"><button class=\"cartbutton\"> Proceed to Check Out </button></a>
+            <a href=\"checkout.php\"><button class=\"cartbutton\" value=\"checkout\"> Proceed to Check Out </button></a>
             </article>
             </section>
             </article>
