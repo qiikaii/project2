@@ -1,10 +1,5 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
+<html lang="en">
     <head>
         <title>DELTA - CART</title>
         <meta charset="UTF-8">
@@ -18,8 +13,6 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/cartpage.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/errorstyling.css">
-        <!-- Prevent ClickJacking -->
-   	<meta http-equiv="X-Frame-Options" content="deny">
     </head>
 </html>
 
