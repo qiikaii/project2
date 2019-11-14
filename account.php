@@ -27,33 +27,11 @@
             session_start();
         }        
         include 'header.php';
-
         $acc_id = $_SESSION['acc_id'];
-        echo $acc_id;
+        $email = $_SESSION['email'];
+        $name = $_SESSION['name'];
+        echo "test & acc id: $acc_id";
         
-        // Get name of user based on email
-        function getName($session) {
-            include 'dbcon.php';
-            //Create connection
-            //define variables and set to empty values
-            $name = $errorMsg = "";
-            $success = true;
-            if ($conn->connect_error) {
-                $errorMsg = "Connection failed: " . $conn->connect_error;
-                $success = false;
-            } 
-            else {
-                $sql = "SELECT * FROM account WHERE email = '$session'";
-                $result = $conn->query($sql);
-                $row = $result->fetch_assoc();
-                $result->free_result();
-                $conn->close();
-
-                $name = $row['name'];
-
-                echo $name;
-            }
-        }
         
         // Check if there are any history or pre existing orders for user
         function getOrderByAccID($acc_id){
@@ -84,7 +62,7 @@
         
         // Display the overview modal of Order
         function displayOrderByAccID($acc_id){
-            $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME); //connect to database
+            include 'dbcon.php'; //connect to database
             $errorMsg = "";
             $success = true;
             if ($conn->connect_error) {
@@ -195,12 +173,6 @@
                 }
             }
         }
-
-        
-        
-    
-
-
 ?>
              
 
@@ -215,7 +187,7 @@
             <figure id="default" class="defaulttab ">
                 <img class="accountbackground" id='accountbackground' src="background.jpeg" alt="accountpicture" >
                 <figcaption> 
-                    <h3 class='accountbackgroundfont'>Hello <?php getName($session) ?>, 
+                    <h3 class='accountbackgroundfont'>Hello <?php echo $name ?>, 
                         Welcome to Your Account</h3>
                 </figcaption>       
             </figure>
@@ -226,9 +198,9 @@
                 <form name='accountForm'>
                     <div class="accountinfo-form">
                         <label class="inputtitle">EMAIL :</label>
-                        <input type="email" class="accountinfo-form-style" id="email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" value="<?php echo $session ?>" >
+                        <input type="email" class="accountinfo-form-style" id="email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" value="<?php echo $email ?>" >
                         <label class="inputtitle">NAME : </label>
-                        <input type="text" class="accountinfo-form-style" id="firstname" pattern="[A-Za-z]{3,50}" value="<?php getName($session) ?>" >
+                        <input type="text" class="accountinfo-form-style" id="firstname" pattern="[A-Za-z]{3,50}" value="<?php echo $name ?>" >
                         <label class="inputtitle">PASSWORD : </label>
                         <input type="password" class="accountinfo-form-style" id="pw" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$" value="" >
                         <button type="submit" class="btn1 btn-submit">Update Changes</button>
@@ -239,8 +211,7 @@
             <section id="orders1" class="tabitems ">
                 <h1 class="accountpageh1 text-center"><span class="glyphicon glyphicon-shopping-cart"></span>  MY ORDERS</h1>
                 <p class="accountpagecaption text-center">An overall view of your past purchases</p>
-
-                <article class="container-fluid ordercontainer">
+                    <article class="container-fluid ordercontainer">
 <!--                    <section class='row text-center '>
                         <h3 class="accountpageh3">WE'VE SENT IT!!</h3>
                         <p class='orderdescription'>ORDER NO.: 00150001300</p>
