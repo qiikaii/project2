@@ -26,16 +26,7 @@
         if (session_status() == PHP_SESSION_NONE){
             session_start();
         }        
-        if (empty($_SESSION['user'])) {
-            include 'header.php';
-
-        }
-        else {
-            include 'headerin.php';
-            $session = $_SESSION['user'];
-            //echo "<script type='text/javascript'>alert('{$_SESSION}'.'<br />');</script>";
-            // echo ("{$session}"."<br />");
-        }
+        include 'header.php';
 
         $acc_id = $_SESSION['acc_id'];
         echo $acc_id;

@@ -24,13 +24,13 @@ and open the template in the editor.
 </html>
 
 <?php
+session_start();
 include 'header.php';
 $success = true;
 $cartsuccess = true;
 //TO BE DELETED
-session_start();
 //TO BE DELETED 
-$_SESSION['acc_id'] = 67191009;
+
 if (!isset($_SESSION['acc_id'])) {
     $errorMsg = "Please login to add items to your cart";
     $cartsuccess = false;

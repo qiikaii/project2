@@ -1,8 +1,3 @@
-<?php
-include 'dbcon.php';
-include 'header.php';
-?>
-
 <html>
     <title>DELTA - Verification</title>
     <meta charset="UTF-8">
@@ -20,7 +15,7 @@ include 'header.php';
 </html>
 
 <?php
-
+include 'header.php';
 $success = true;
 $errorMsg = "";
 
@@ -30,7 +25,8 @@ if (!isset($_GET["verify_code"]) || !isset($_GET["email"])) {
 } else {
     $verify_code = $_GET["verify_code"];
     $email = $_GET["email"];
-  
+
+    include 'dbcon.php';
     $checkacc = ("SELECT * FROM account WHERE email = '$email' AND acc_verify_code = '$verify_code'");
     $results = $conn->query($checkacc);
     
@@ -41,11 +37,13 @@ if (!isset($_GET["verify_code"]) || !isset($_GET["email"])) {
         $updateverification = ("UPDATE account SET acc_verified = '$verifiedsuccess' WHERE email = '$email' "
                 . "AND acc_verify_code = '$verify_code'");
         $conn->query($updateverification);
-        
+        $results->free_result();
+        $conn->close();
     } 
     else {
         $errorMsg .= "Invalid Verification.<br>";
         $success = false;
+        $conn->close();
     }
 
     if ($success) {

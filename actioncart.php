@@ -1,6 +1,4 @@
 <?php
-
-
 session_start();
 $item_id = $_POST['cartitemid'];
 $cartquantity = $_POST["cartquantity"];
