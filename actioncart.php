@@ -1,18 +1,29 @@
 <?php
-
 session_start();
 $acc_id = $_SESSION['acc_id'];
 
 if (isset($_POST["updatecart"])) {
-
     if (empty($_POST["cartitemid"])) {
         $errorMsg .= "Invalid item.<br>";
         $success = false;
     } else {
         $item_id = sanitize_input($_POST["cartitemid"]);
+        $existitem = false;
         if (!preg_match('/^[0-9]{0,2}$/', $item_id)) {
             $errorMsg .= "Invalid item.<br>";
             $success = false;
+        }
+        
+        else {
+            include 'dbcon.php';
+            $checkitem = "SELECT item_id FROM item WHERE item_id = '$item_id'";
+            $result = $conn->query($checkitem);
+            $conn->close();
+            if ($results->num_rows != 1) {
+                $errorMsg .= "Invalid item.<br>";
+                $success = false;
+            }
+            $result->free_result();
         }
     }
 
@@ -75,7 +86,19 @@ if (isset($_POST["updatecart"])) {
             $errorMsg .= "Invalid item.<br>";
             $success = false;
         }
+        else {
+            include 'dbcon.php';
+            $checkitem = "SELECT item_id FROM item WHERE item_id = '$item_id'";
+            $result = $conn->query($checkitem);
+            $conn->close();
+            if ($results->num_rows != 1) {
+                $errorMsg .= "Invalid item.<br>";
+                $success = false;
+            }
+            $result->free_result();
+        }
     }
+    
 
     if (empty($_POST["cartquantity"])) {
         $errorMsg .= "Invalid quantity.<br>";
@@ -86,6 +109,7 @@ if (isset($_POST["updatecart"])) {
             $errorMsg .= "Invalid quantity.<br>";
             $success = false;
         }
+        
     }
 
     include 'dbcon.php';
