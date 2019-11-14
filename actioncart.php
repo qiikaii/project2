@@ -1,6 +1,7 @@
 <?php
 session_start();
 $acc_id = $_SESSION['acc_id'];
+$errorMsg = false;
 
 if (isset($_POST["updatecart"])) {
     if (empty($_POST["cartitemid"])) {
@@ -18,10 +19,12 @@ if (isset($_POST["updatecart"])) {
             include 'dbcon.php';
             $checkitem = "SELECT item_id FROM item WHERE item_id = '$item_id'";
             $result = $conn->query($checkitem);
-            $conn->close();
-            if ($results->num_rows != 1) {
+            if ($result->num_rows == 1) {
+            }
+            else {
                 $errorMsg .= "Invalid item.<br>";
                 $success = false;
+                $conn->close();
             }
             $result->free_result();
         }
@@ -39,7 +42,7 @@ if (isset($_POST["updatecart"])) {
     }
 
     // Check stock of item purchased
-    include 'dbcon.php';
+    
     $sql = "SELECT quantity FROM item WHERE item_id = '$item_id'";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
@@ -121,6 +124,14 @@ if (isset($_POST["updatecart"])) {
 } else {
     $errorMsg = "Please submit the form from the cart page.<br>";
     $success = false;
+}
+
+//Helper function that checks input for malicious or unwanted content.
+function sanitize_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
 
 if (!$success) {
