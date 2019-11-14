@@ -1,0 +1,149 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 6 Oct 2019, 3:14:02 PM
+    Author     : Xracius
+*/
+
+/*Title: Cart*/
+.maintitle {
+    font-size: 23px;
+    border-bottom: 1px solid;
+}
+
+/* This is to format the font*/
+.separator {
+    margin: 10px 0px 0px 0px    ;
+    max-width: 100%;
+}
+
+/*Bottom Cart*/
+.bottomcart {
+    float: right;
+    margin-bottom: 20px;
+}
+
+/*Cart button*/
+.cartbutton {
+    background-color: #000;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 259px;
+    float: right;
+}
+
+.qtyupdate {
+    width: 50px;
+    border: none;
+}
+
+
+@media only screen and (min-width: 771px){
+    /*Cart Table Header*/
+    .cartheader{
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .cartitem {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    /*Cart Table*/
+    .row{
+        border-bottom: 1px solid;
+        max-width: 100%;
+        margin: auto;
+        margin-right: 0px;
+    }
+
+    /* ADJUST CART ITEM PICTURE */
+    .container-fluid .col-sm-4 .cartitempic img {
+        width: 150px;
+        height: 150px;
+        display: block;
+        margin: auto;
+    }
+    
+    /* HIDES MOBILE CART ITEMS */
+    #cartreveal {
+        display: none;
+    }
+}
+@media only screen and (min-width: 481px) and (max-width: 770px) {
+    
+    /* HIDES DESKTOP CART TABLE HEADER*/
+    #cartheadhide{
+        display: none;
+    }
+    
+    /* HIDES DESKTOP CART ITEMS */
+    #cartitemhide {
+        display: none;
+    }
+    
+    .cartitem {
+        text-align: center;
+        margin-top: 50px;
+    }
+   
+    /*Cart Table*/
+    .row{
+        border-bottom: 1px solid;
+        max-width: 100%;
+        margin: auto;
+    }
+
+    /* ADJUST CART ITEM PICTURE */
+    .container-fluid .col-sm-4 .cartitempic img {
+        width: 150px;
+        height: 150px;
+        display: block;
+        float: left;
+    }
+
+}
+@media only screen and (max-width: 480px) {
+
+   
+    /* HIDES DESKTOP CART TABLE HEADER*/
+    #cartheadhide{
+        display: none;
+    }
+    
+    /* HIDES DESKTOP CART ITEMS */
+    #cartitemhide {
+        display: none;
+    }
+    
+    .cartitem {
+        text-align: center;
+        margin-top: 50px;
+        display: none;
+    }
+
+    /* STYLE CART ROWS*/
+    .row{
+        border-bottom: 1px solid;
+        width: 100%;
+        margin: auto;
+    }
+    
+    /* ADJUST CART ITEM PICTURE */
+    .container-fluid .col-sm-4 .cartitempic img {
+        width: 150px;
+        height: 150px;
+        display: block;
+        float: left;
+    }
+}

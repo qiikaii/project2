@@ -1,0 +1,50 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 7 Oct 2019, 8:45:58 PM
+    Author     : Kimberly
+*/
+/*Images*/
+.collections-buffer{
+    margin-top: 50px;
+}
+figure img{
+    width:300px;
+    height:400px;
+    margin: 0px;
+}
+figcaption{
+    font-size: 16px;
+    margin-top: 20px; /*to edit: move t-shirt text down to solve zoom issue*/
+}
+/* FOR COLLECTION ZOOM EFFECT */
+.imgzoom {
+    transition: transform .2s;
+    margin: 0 auto;
+}
+/* FOR COLLECTION ZOOM EFFECT */
+.imgzoom:hover {
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.2); 
+}
+/*Mobile version*/
+.product-img{
+    width:100%;
+}
+/*Hover prices*/
+#wrapper .price{
+    visibility: hidden;
+}
+#wrapper:hover .price{
+    visibility: visible;
+    transition: 2s;
+}
+
+.col-sm-3 {
+    padding-bottom: 50px;
+}
+

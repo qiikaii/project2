@@ -1,0 +1,153 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 30, 2019, 10:29:05 PM
+    Author     : immor
+*/
+
+
+/* styling body */
+body {
+    font-family: 'Varela', sans-serif;
+    background-color: #f7f7f7;
+    -webkit-font-smoothing: antialiased;        
+    padding: 0px;
+    height: auto; /*Kim edited this to auto*/
+}
+
+/* styling header, footer and navbar */
+header, .navbar {
+    color: black;
+    background-color: white;
+    font-family: 'Varela', sans-serif;
+    height: 100px;
+    line-height: 1.6;
+}
+
+
+/* all link to be colored black instead of blue */
+a{
+    color:black;
+}
+
+/* style the elements in header */
+#header{
+    font-size: 15px;
+    padding-left:20px;
+    padding-top: 20px;
+    margin-bottom:0px;
+    border-bottom-color: #f7f7f7;
+}
+
+/* add margin between elements of header */
+.space {
+    margin-right: 50px;
+}
+
+/* style downdown list */
+.dropdown-font {
+    font-size: 15px;
+    text-align: justify-all;
+
+}
+
+/* style logo abit to right */
+.navbar-brand {
+    margin-left: 50px;
+}
+
+/* style video position and size */
+#video-background{
+    position:relative;
+    left:0;
+    padding-top:0px;
+    width: 100%;
+    height: auto;
+}
+
+/* style video size */
+.video{
+    margin:0px;
+    padding:0px;
+    left:0;
+}
+
+/* style footer font */
+.footerfont {
+    color: black;
+    font-family: 'Varela', sans-serif;
+
+}
+
+/* fix footer to the bottom */
+.panel-footer {
+    margin-top: 0px;
+    bottom: 0;
+    width:100%;
+    padding-top: 60px;
+    padding-bottom: 30px;
+    background-color: white;
+    border-top: none;
+}
+
+/*Qi kai zoom*/
+/* FOR KIM COLLECTION ZOOM EFFECT */
+.imgzoom {
+    transition: transform .2s;
+    margin: 0 auto;
+}
+
+/* FOR KIM COLLECTION ZOOM EFFECT */
+.imgzoom:hover {
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.2); 
+}
+
+/*Kimberly CSS*/
+/*Collection page*/
+/*Images*/
+.collections-buffer{
+    margin-top: 50px;
+}
+figure img{
+    width:300px;
+    height:400px;
+    margin: 0px;
+}
+figcaption{
+    font-size: 16px;
+    margin-top: 20px; /*to edit: move t-shirt text down to solve zoom issue*/
+}
+/*Mobile version*/
+.product-img{
+    width:100%;
+}
+/*Hover prices*/
+#wrapper .price{
+    visibility: hidden;
+}
+#wrapper:hover .price{
+    visibility: visible;
+    transition: 2s;
+}
+
+/* Single product page*/
+
+/*Kim Checkout*/
+.col-md-7{
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+/*Kim confirmation*/
+.confirmation-container{
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-top: 50px;
+}

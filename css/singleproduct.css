@@ -1,0 +1,194 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 7 Oct 2019, 7:29:44 PM
+    Author     : Kimberly
+*/
+
+/*Image*/
+.single-prod-buffer{
+    margin-top: 50px
+}
+.single-img{
+    width:100%;
+    height:100%;
+    margin: 0px;
+}
+.imgzoom {
+    transition: transform .2s;
+    margin: 0 auto;
+}
+.imgzoom:hover {
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.2); 
+}
+html.magnifying > body {
+    overflow-x: hidden !important;
+}
+.magnify,
+.magnify > .magnify-lens,
+.magnify-mobile,
+.lens-mobile { /* Reset */
+    min-width: 0;
+    min-height: 0;
+    animation: none;
+    border: none;
+    float: none;
+    margin: 0;
+    opacity: 1;
+    outline: none;
+    overflow: visible;
+    padding: 0;
+    text-indent: 0;
+    transform: none;
+    transition: none;
+}
+.magnify {
+    position: relative;
+    width: auto;
+    height: auto;
+    box-shadow: none;
+    display: inline-block;
+    z-index: inherit;
+}
+.magnify > .magnify-lens { /* Magnifying lens */
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border-radius: 40%;
+    /* Multiple box shadows to achieve the glass lens effect */
+    box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.85),
+        0 0 7px 7px rgba(0, 0, 0, 0.25),
+        inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
+    cursor: none;
+    display: none;
+    z-index: 99;
+}
+.magnify > .magnify-lens.loading {
+    background: #333 !important;
+    opacity: 0.8;
+}
+.magnify > .magnify-lens.loading:after { /* Loading text */
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    color: #fff;
+    content: 'Loading...';
+    font: italic normal 16px/1 Calibri, sans-serif;
+    letter-spacing: 1px;
+    margin-top: -8px;
+    text-align: center;
+    text-shadow: 0 0 2px rgba(51, 51, 51, 0.8);
+    text-transform: none;
+}
+
+/*Buffer between rows*/
+.top-buffer{
+    margin-top: 20px;
+}
+.margin-size{
+    margin: auto;
+}
+.form-group{
+    margin-top: 100px;
+}
+
+/*Size form*/
+label{
+    font-size: 16px;
+}
+.size-form-control{
+    display: block;
+    width: 53%;
+    height: 34px;
+    margin: auto;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom: 1px solid black;
+    border-left-style: none;
+    background-color: #f7f7f7;
+}
+
+/*Quantity form*/
+.button-square {
+    background: #000;
+    height: 35px;
+    width: 35px;
+    border-radius: 0px;
+    color: #fff;
+    text-align: center;
+}
+.input-square{
+    background: white;
+    height: 35px;
+    width: 100%;
+    border-radius: 0px;
+    color: black;
+    text-align: center;  
+}
+.quantity-group{
+    position: relative;
+    display: table;
+    width: 50%;
+    border-collapse: separate;
+    margin: 0 auto;
+}
+
+/*Add to cart*/
+.cart-button {
+    background-color: #000;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.cart-button:link {
+    color: white;
+    text-decoration: none;
+}
+.cart-button:visited{
+    color: white;
+    text-decoration: none;
+}
+
+/*Toggle tab*/
+.tablist-detail {
+    width: 60%;
+    height: auto;
+    margin-right: auto;
+    margin-left: auto;
+}
+.nav-tabs > li {
+    float:none;
+    display:inline-block;
+    zoom:1;
+}
+.nav-tabs {
+    text-align:center;
+}
+.table-details{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+td,th{
+    padding: 8px !important;
+}
+.tab-content{
+    margin-top: 20px;
+    text-align: justify;
+}

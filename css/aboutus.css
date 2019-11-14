@@ -1,0 +1,110 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 11 Oct 2019, 2:24:30 AM
+    Author     : Xracius
+*/
+
+h1 {
+    font-size: 50px;
+    font-weight: 900;
+    text-align: center;
+}
+
+#rowphoto {
+    text-align: center;
+}
+
+/* PHOTO NAME*/
+.abtusname {
+    margin-top: 20px;
+    font-size: 30px;
+}
+
+/*MINIMALIST @ HEART*/
+.hugetextcon {
+    border-bottom: 5px solid;
+    text-align: center;
+}
+
+/* MAP */
+#mapcontainer {
+    max-width: 100%;
+    text-align: center;
+}
+
+#telephone {
+    font-size: 30px;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#email {
+    margin-top: 50px;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 100px;
+    
+}
+@media only screen and (min-width: 771px){
+    .abtusimg {
+        max-width: 100%;
+    }
+
+    .photocon {
+        border-bottom: 5px solid;
+    }
+
+    .hugetext {
+        font-size: 9vw;
+        font-weight: 900;
+        text-align: center;
+    }
+
+    /* MAP */
+    #map {
+        width: 30vw;
+        height: 20vw;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+}
+@media only screen and (min-width: 481px) and (max-width: 770px) {
+    .abtusname {
+        border-bottom: 5px solid;
+    }
+
+    .hugetext {
+        font-size: 12vw;
+        font-weight: 900;
+        text-align: center;
+    }
+    #map {
+        width: 50vw;
+        height: 40vw;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .abtusname {
+        border-bottom: 5px solid;
+    }
+
+    .hugetext {
+        font-size: 12vw;
+        font-weight: 900;
+        text-align: center;
+    }
+    #map {
+        width: 50vw;
+        height: 40vw;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+}

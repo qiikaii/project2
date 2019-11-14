@@ -1,0 +1,240 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 30, 2019, 10:29:05 PM
+    Author     : immor
+*/
+
+
+/*************************************************************************************
+
+                                    START OF QI KAI CSS 
+                   
+**************************************************************************************/
+
+/******************** START OF HEADER AND NAVBAR STYLE ******************************/
+html{
+    height: 100%;
+}
+/* styling header and navbar */
+header, .navbar {
+    color: black;
+    background-color: white;
+    font-family: 'Varela', sans-serif;
+    height: 80px;
+    line-height: 1.6;
+    margin-bottom: 0px;
+    z-index: 9999;
+}
+
+/* style the elements in header */
+#header{
+    font-size: 15px;
+
+    margin-bottom: 0px;
+
+}
+
+
+/* add margin between elements of header */
+.space {
+    font-size: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+/* Add border bottom style on hover navigation bar */
+.space:hover{
+    border-bottom: solid 2px black;
+}
+
+.nav-item:hover{
+    border-bottom: solid 2px black;
+    display: block;
+}
+
+
+/*separates naviagtion list from logo */
+.mainnavigation{
+    margin-right:0px;
+    padding-right: 20px; 
+    background-color: white;
+}
+
+/* scales dropdown menu overflow and width */
+.dropdown-menu{
+    position:absolute;
+    left: 0;
+    width: 140px ;
+    overflow: hidden;
+}
+
+.dropdown-menu > li > a {
+  display: block;
+  padding: 3px 10px;
+  clear: both;
+  font-weight: 400;
+  line-height: 1.42857143;
+  color: #333333;
+  white-space: nowrap;
+}
+
+/* scales whole navbar */
+.navbar-collapse{
+    position:absolute;
+    right: 0;
+    padding: 15px;
+    height: 400px;
+    width: auto;
+    overflow-y: auto;
+}
+
+.navbar-header {
+    height: 78px;
+    margin-bottom: 0px;
+}
+
+/* Prevents login button to be too close the end */
+#navresponsive {
+    margin-top: 0px;
+    margin-right: 50px;
+}
+
+
+/* style downdown list */
+.dropdown-font {
+    font-size: 15px;
+    text-align: justify-all;
+
+}
+
+/* style logo abit to right */
+.navbar-brand {
+    margin-left: 10px;
+    padding-bottom: 0px;
+}
+
+.logo {
+    margin-top: 10px;
+    width: auto;
+    height: 40px;
+    margin-left: 30px;
+}
+
+@media only screen and (max-width: 767px){
+    #navresponsive{
+        margin-right: 0px;
+        width: 102%;
+    }
+    
+    .wrapper{
+        margin:0;
+    }
+    
+    .navbar-collapse{
+        margin: 0 auto;
+        right: 0;
+        left: 10%;
+        position:absolute;
+        padding-left: 20px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-right: 0px;
+        height: 400px;
+        width: auto;
+        overflow-y: hidden;
+    }
+    .dropdown-menu{
+        width: auto;
+        left: 0;
+        margin: 0;
+        position:absolute;
+        height: auto;
+        width: inherit;
+        overflow: hidden;
+    }
+    
+    #dropdownlist{
+    }
+    
+    .space {
+        font-size: 15px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    
+    .space:hover{
+        border-bottom: solid 2px black;
+    }
+
+    .nav-item:hover{
+        border-bottom: solid 2px black;
+        display: block;
+    }
+    
+    .mainnavigation{
+        margin-right:0px;
+        padding-right: 0px; 
+        background-color: white;
+    }
+}
+
+/************************ END OF HEADER AND NAVBAR STYLE ******************************/
+
+/******************************* START OF BODY STYLE **********************************/
+
+/* styling body */
+body {
+    font-family: 'Varela', sans-serif;
+    background-color: #f7f7f7;
+    -webkit-font-smoothing: antialiased;        
+    padding: 0px;
+    margin-bottom: 50px;
+    height: auto; /*Kim edited this to auto*/
+    max-height: 1500px;
+    overflow: visible;
+}
+
+/* all link to be colored black instead of blue */
+a{
+    color:black;
+}
+
+lastContent{
+    margin-bottom: 50px;
+}
+
+
+/********************************* END OF BODY STYLE **********************************/
+
+
+/***************************** START OF FOOTER STYLE ******************************/
+/* style footer font */
+.footerfont {
+    color: black;
+    font-family: 'Varela', sans-serif;
+
+}
+
+/* fix footer to the bottom */
+.panel-footer {
+    position: fixed;
+    bottom: 0;
+    width:100%;
+    padding-top: 10px;
+    background-color: #f7f7f7;
+    border-top: none;
+    max-height: 50px;
+}
+
+footer {
+    max-height: 20px;
+}
+
+/******************************* END OF FOOTER STYLE ******************************/
+
+
+/* media query 480, 481 - 770 ,771 > */

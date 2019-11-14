@@ -1,0 +1,23 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10 Oct 2019, 12:09:12 AM
+    Author     : Kimberly
+*/
+/*Add padding to content*/
+.confirmation-container{
+    padding-top: 50px;
+    padding-left: 50px;
+}
+h2{
+    font-weight: bold;
+}
+/*Add spaces between h4*/
+h4{
+    margin-top: 20px;
+    font-weight: bold;
+}
+
