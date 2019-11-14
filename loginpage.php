@@ -91,7 +91,7 @@
                 <section id="resetpass" class="tab-pane fade">
                     <article class="resetbody">
                         <h2 class="maintitle">RESET PASSWORD</h2>
-                        <form action="#" method="post">
+                        <form name="resetform" action="<?php echo htmlspecialchars("processreset.php");?>" method="post">
                             <label for="resetname" class="separator">Full Name:</label>
                             <input class="separator" name="resetname" id="resetname" type="text" 
                                    placeholder="Enter Full Name" size="60" maxlength="70" autocomplete="off"/>
