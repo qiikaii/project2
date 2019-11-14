@@ -1,6 +1,9 @@
 <?php
-include '../session.php';
 include '../dbcon.php';
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 //define variables and set to empty values
 $img_source = $pname = $price = $desc = $db_error_msg = "";
@@ -55,17 +58,7 @@ if ($conn->connect_error) {
 
 <body>
     <?php
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-    if (empty($_SESSION['user'])) {
-        include 'header.php';
-    } else {
-        include 'headerin.php';
-        $session = $_SESSION['user'];
-        //echo "<script type='text/javascript'>alert('{$_SESSION}'.'<br />');</script>";
-        echo ("{$_SESSION['user']}" . "<br />");
-    }
+    include 'header.php';
     ?>
 
 
@@ -104,7 +97,7 @@ if ($conn->connect_error) {
                             <option value='9'>9</option>
                             <option value='10'>10</option>
                         </select>
-                        <input class="cart-button" type="submit" form="cart-form" name= "add_cart" value="Add To Cart"/>
+                        <input class="cart-button" type="submit" form="cart-form" name="add_cart" value="Add To Cart" />
                         <input type="hidden" name="product_id" value=<?php echo "$product_id"; ?>>
                     </form>
 
@@ -180,11 +173,6 @@ if ($conn->connect_error) {
                             </section>
                         </article>
                     </section>
-
-                    <!-- 1 row within row for add to cart button
-            <section class="row">
-                <input class="cart-button" type="submit" form="cart-form" value="Add To Cart" />
-            </section> -->
                 </article>
             </section>
         </section>

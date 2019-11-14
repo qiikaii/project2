@@ -1,6 +1,9 @@
 <?php
-include '../session.php';
 include '../dbcon.php';
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 //define variables and set to empty values
 $img_source = $pname = $price = $desc = $db_error_msg = "";
@@ -55,17 +58,7 @@ if ($conn->connect_error) {
 
 <body>
     <?php
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-    if (empty($_SESSION['user'])) {
-        include 'header.php';
-    } else {
-        include 'headerin.php';
-        $session = $_SESSION['user'];
-        //echo "<script type='text/javascript'>alert('{$_SESSION}'.'<br />');</script>";
-        echo ("{$_SESSION['user']}" . "<br />");
-    }
+    include 'header.php';
     ?>
 
 

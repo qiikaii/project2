@@ -1,6 +1,9 @@
 <?php
-include '../session.php';
 include '../dbcon.php';
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 function getdata($id)
 {
@@ -59,17 +62,8 @@ function getdata($id)
 
 <body>
     <?php
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-    if (empty($_SESSION['user'])) {
-        include 'header.php';
-    } else {
-        include 'headerin.php';
-        $session = $_SESSION['user'];
-        //echo "<script type='text/javascript'>alert('{$_SESSION}'.'<br />');</script>";
-        echo ("{$_SESSION['user']}" . "<br />");
-    }
+    include 'header.php';
+
     ?>
 
     <section class="container">
