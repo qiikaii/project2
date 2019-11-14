@@ -26,18 +26,12 @@
         if (session_status() == PHP_SESSION_NONE){
             session_start();
         }        
-        if (empty($_SESSION['user'])) {
-            include 'header.php';
 
-        }
-        else {
-            include 'headerin.php';
-            $session = $_SESSION['user'];
-            //echo "<script type='text/javascript'>alert('{$_SESSION}'.'<br />');</script>";
-            // echo ("{$session}"."<br />");
-        }
-
-        $acc_id = $_SESSION['acc_id'];
+        include 'header.php';
+        
+        $session = $_SESSION['email']; // Email
+        $acc_id = $_SESSION['acc_id']; // Account_ID
+        
         echo $acc_id;
         include'dbcon.php';
 

@@ -25,16 +25,9 @@ and open the template in the editor.
             if (session_status() == PHP_SESSION_NONE){
                 session_start();
             }        
-            if (empty($_SESSION['user'])) {
-                include 'header.php';
+            
+            include 'header.php';
 
-            }
-            else {
-                include 'headerin.php';
-                $session = $_SESSION['user'];
-                //echo "<script type='text/javascript'>alert('{$_SESSION}'.'<br />');</script>";
-                echo ("{$_SESSION['user']}"."<br />");
-            }
         ?>    
         
         
