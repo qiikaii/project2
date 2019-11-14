@@ -20,7 +20,7 @@
         </nav>
         <nav class="collapse navbar-collapse pull-right" id="navresponsive">
             <ul class="nav navbar-nav mainnavigation">
-                <li class="nav-item"><a href="aboutus.html">ABOUT US</a></li>
+                <li class="nav-item"><a href="aboutus.php">ABOUT US</a></li>
                 <li class="dropdown wrapper nav-item"><a class="dropdown-toggle" data-toggle="collapse" data-target="#dropdownlist" href="#">COLLECTIONS</a>
                     <ul class="dropdown-menu  dropdown-font" id="dropdownlist">
                         <li class="space"><a href="/project2/celestial-php/celestial.php">CELESTIAL</a></li>
