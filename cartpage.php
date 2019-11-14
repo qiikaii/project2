@@ -21,8 +21,6 @@ session_start();
 include 'header.php';
 $success = true;
 $cartsuccess = true;
-//TO BE DELETED
-//TO BE DELETED 
 
 if (!isset($_SESSION['acc_id'])) {
     $errorMsg = "Please login to add items to your cart";
@@ -115,7 +113,8 @@ if (!isset($_SESSION['acc_id'])) {
                 </article>
                 <p> $itemname ($size) </p>
                 <p> Price: $$itemprice</p>
-                <p> Qty: <input type=\"number\" class=\"qtyupdate\" name=\"cartquantity\" placeholder=\"$rowquan[$i]\" value=\"$rowquan[$i]\" min=\"1\" max=\"99\" autocomplete=\"off\" required></p>
+                <p> Qty: <input type=\"number\" class=\"qtyupdate\" name=\"cartquantity\" placeholder=\"$rowquan[$i]\" value=\"$rowquan[$i]\" 
+                    min=\"1\" max=\"99\" autocomplete=\"off\" required></p>
                 <button type=\"submit\" name=\"updatecart\" value=\"Update\"></button>
                 <p class=\"cartreveal\"> Total: $" . $itemprice * $rowquan[$i] . "</p>
                 <input type=\"hidden\" name=\"cartitemid\" value=\"$rowitem[$i]\"</td>
@@ -143,7 +142,8 @@ if (!isset($_SESSION['acc_id'])) {
                 </section>
                 <section class=\"col-sm-1\">
                 <article class=\"cartitem\">
-                <input type=\"number\" class=\"qtyupdate\" name=\"cartquantity\" placeholder=\"$rowquan[$i]\" value=\"$rowquan[$i]\" size=\"2\" min=\"1\" max=\"99\" autocomplete=\"off\" required>
+                <input type=\"number\" class=\"qtyupdate\" name=\"cartquantity\" placeholder=\"$rowquan[$i]\" value=\"$rowquan[$i]\" 
+                    size=\"2\" min=\"1\" max=\"99\" autocomplete=\"off\" required>
                 <input type=\"submit\" name=\"updatecart\" value=\"Update\"></button>
                 </article>
                 </section>
@@ -182,7 +182,7 @@ if (!$success) {
     echo "<section class=\"middle\">
     <h4>The following input errors were detected:</h4>
     <p>" . $errorMsg . "</p>
-    </section>";
+    </section></section>";
 }
 
 if (!$cartsuccess) {
@@ -192,4 +192,5 @@ if (!$cartsuccess) {
 }
 
 include 'footer.php';
+
 ?>

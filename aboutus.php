@@ -18,8 +18,13 @@
     </head>
 
     <main>
-        <?php include 'header.php'; ?>    
-
+        <?php 
+        if (session_status() == PHP_SESSION_NONE){
+            session_start();
+        }  
+        include 'header.php';
+        ?>    
+        
         <!-- TITLE: ABOUT US -->
         <section class="container-fluid">
             <article class="row">
