@@ -23,6 +23,7 @@ and open the template in the editor.
 /*Bottom Cart*/
 .bottomcart {
     float: right;
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 

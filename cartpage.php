@@ -10,8 +10,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Varela&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/cartpage.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/cartpage.css">
         <link rel="stylesheet" href="css/errorstyling.css">
     </head>
 </html>
@@ -115,10 +115,10 @@ if (!isset($_SESSION['acc_id'])) {
                 <p> Price: $$itemprice</p>
                 <p> Qty: <input type=\"number\" class=\"qtyupdate\" name=\"cartquantity\" placeholder=\"$rowquan[$i]\" value=\"$rowquan[$i]\" 
                     min=\"1\" max=\"99\" autocomplete=\"off\" required></p>
-                <button type=\"submit\" name=\"updatecart\" value=\"Update\"></button>
+                <input type=\"submit\" name=\"updatecart\" value=\"Update\"></button>
                 <p class=\"cartreveal\"> Total: $" . $itemprice * $rowquan[$i] . "</p>
                 <input type=\"hidden\" name=\"cartitemid\" value=\"$rowitem[$i]\"</td>
-                <button type=\"submit\" name=\"deletecart\" value=\"Remove\"></button>
+                <input type=\"submit\" name=\"deletecart\" value=\"Remove\">
                 </section>
                 </article>
                 </form>
@@ -155,7 +155,7 @@ if (!isset($_SESSION['acc_id'])) {
                 <section class=\"col-sm-1\">
                 <article class=\"cartitem\">
                 <input type=\"hidden\" name=\"cartitemid\" value=\"$rowitem[$i]\"</td>
-                <input type=\"submit\" name=\"deletecart\" value=\"Remove\"></button>
+                <input type=\"submit\" name=\"deletecart\" value=\"Remove\">
                 </article>
                 </section>
                 </article>

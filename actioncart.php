@@ -17,9 +17,16 @@
 session_start();
 include 'header.php';
 $acc_id = $_SESSION['acc_id'];
-$errorMsg = false;
+$errorMsg = "";
+$success = true;
+
+if (!isset($_POST["updatecart"]) && !isset($_POST["deletecart"])) {
+    $errorMsg = "Please submit the form from the cart page.<br>";
+    $success = false;
+}
 
 if (isset($_POST["updatecart"])) {
+    include 'dbcon.php';
     if (empty($_POST["cartitemid"])) {
         $errorMsg .= "Invalid item.<br>";
         $success = false;
@@ -29,18 +36,12 @@ if (isset($_POST["updatecart"])) {
         if (!preg_match('/^[0-9]{0,2}$/', $item_id)) {
             $errorMsg .= "Invalid item.<br>";
             $success = false;
-        }
-        
-        else {
-            include 'dbcon.php';
+        } else {
             $checkitem = "SELECT item_id FROM item WHERE item_id = '$item_id'";
             $result = $conn->query($checkitem);
-            if ($result->num_rows == 1) {
-            }
-            else {
+            if ($result->num_rows != 1) {
                 $errorMsg .= "Invalid item.<br>";
                 $success = false;
-                $conn->close();
             }
             $result->free_result();
         }
@@ -58,44 +59,49 @@ if (isset($_POST["updatecart"])) {
     }
 
     // Check stock of item purchased
-    
-    $sql = "SELECT quantity FROM item WHERE item_id = '$item_id'";
-    $result = $conn->query($sql);
-    $row = $result->fetch_assoc();
-    $result->free_result();
-    $stock = $row['quantity'];
-
-    // If item requested to place in cart more than stock, you can only request to what the stock avail.
-    if ($cartquantity > $stock) {
-        $cartquantity = $stock;
-    }
-
-    // If cart quantity less than or equal to 0, delete from cart
-    if ($cartquantity <= 0) {
-        $sql = "DELETE FROM cart WHERE acc_id = '$acc_id' AND item_id = '$item_id'";
+    if ($success == true) {
+        $sql = "SELECT quantity FROM item WHERE item_id = '$item_id'";
         $result = $conn->query($sql);
-        $conn->close();
-        header("location:cartpage.php");
-    }
+        $row = $result->fetch_assoc();
+        $result->free_result();
+        $stock = $row['quantity'];
 
-    // Cannot update more than 99 values
-    if ($cartquantity >= 99) {
-        $cartquantity = 99;
-        $sql = "UPDATE cart SET quantity = '$cartquantity' WHERE acc_id = '$acc_id' AND item_id = '$item_id'";
-        $result = $conn->query($sql);
-        $conn->close();
-        header("location:cartpage.php");
-    }
+        // If item requested to place in cart more than stock, you can only request to what the stock avail.
+        if ($cartquantity > $stock) {
+            $cartquantity = $stock;
+        }
 
-    // Update item quantity in cart
-    else {
-        $sql = "UPDATE cart SET quantity = '$cartquantity' WHERE acc_id = '$acc_id' AND item_id = '$item_id'";
-        $result = $conn->query($sql);
-        $conn->close();
-        header("location:cartpage.php");
-    }
-} else if (isset($_POST["deletecart"])) {
+        // If cart quantity less than or equal to 0, delete from cart
+        if ($cartquantity <= 0) {
+            $sql = "DELETE FROM cart WHERE acc_id = '$acc_id' AND item_id = '$item_id'";
+            $result = $conn->query($sql);
+            $conn->close();
+            header("location:cartpage.php");
+        }
 
+        // Cannot update more than 99 values
+        if ($cartquantity >= 99) {
+            $cartquantity = 99;
+            $sql = "UPDATE cart SET quantity = '$cartquantity' WHERE acc_id = '$acc_id' AND item_id = '$item_id'";
+            $result = $conn->query($sql);
+            $conn->close();
+            header("location:cartpage.php");
+        }
+
+        // Update item quantity in cart
+        else {
+            $sql = "UPDATE cart SET quantity = '$cartquantity' WHERE acc_id = '$acc_id' AND item_id = '$item_id'";
+            $result = $conn->query($sql);
+            $conn->close();
+            header("location:cartpage.php");
+        }
+    } else {
+        $conn->close();
+    }
+}
+
+if (isset($_POST["deletecart"])) {
+    include 'dbcon.php';
     if (empty($_POST["cartitemid"])) {
         $errorMsg .= "Invalid item.<br>";
         $success = false;
@@ -104,20 +110,16 @@ if (isset($_POST["updatecart"])) {
         if (!preg_match('/^[0-9]{0,2}$/', $item_id)) {
             $errorMsg .= "Invalid item.<br>";
             $success = false;
-        }
-        else {
-            include 'dbcon.php';
+        } else {
             $checkitem = "SELECT item_id FROM item WHERE item_id = '$item_id'";
             $result = $conn->query($checkitem);
-            $conn->close();
-            if ($results->num_rows != 1) {
+            if ($result->num_rows != 1) {
                 $errorMsg .= "Invalid item.<br>";
                 $success = false;
             }
             $result->free_result();
         }
     }
-    
 
     if (empty($_POST["cartquantity"])) {
         $errorMsg .= "Invalid quantity.<br>";
@@ -128,18 +130,16 @@ if (isset($_POST["updatecart"])) {
             $errorMsg .= "Invalid quantity.<br>";
             $success = false;
         }
-        
     }
 
-    include 'dbcon.php';
-    $sql = "DELETE FROM cart WHERE acc_id = '$acc_id' AND item_id = '$item_id'";
-    $result = $conn->query($sql);
-    $conn->close();
-    header("location:cartpage.php");
-    
-} else {
-    $errorMsg = "Please submit the form from the cart page.<br>";
-    $success = false;
+    if ($success == true) {
+        $sql = "DELETE FROM cart WHERE acc_id = '$acc_id' AND item_id = '$item_id'";
+        $result = $conn->query($sql);
+        $conn->close();
+        header("location:cartpage.php");
+    } else {
+        $conn->close();
+    }
 }
 
 //Helper function that checks input for malicious or unwanted content.
