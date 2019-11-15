@@ -22,6 +22,7 @@
     </head>
 
     <body>
+        
     <?php
         if (session_status() == PHP_SESSION_NONE){
             session_start();
@@ -238,12 +239,12 @@
                         <label for='firstname'class="inputtitle">NAME : </label>
                         <input readonly='readonly' type="text" class="accountinfo-form-style" id="firstname" pattern="(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,30}" value="<?php getName($session) ?>" >
                         <label for='pw' class="inputtitle">PASSWORD : </label>
-                        <input type="password" class="accountinfo-form-style" id="pw" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$" value="" />
+                        <input type="password" class="accountinfo-form-style" id="pwd" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$" value="" />
                         <label for='newpw' class='inputtitle'> NEW PASSWORD : 
-                        <input type='password' class='accountinfo-form-style' id='newpw' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$" value="" /> </label>
+                        <input type='password' class='accountinfo-form-style' id='newpwd' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$" value="" /> </label>
                         <label for='cfmnewpw' class='inputtitle'> CONFIRM NEW PASSWORD : </label>
-                        <input type='password' class='accountinfo-form-style' id='cfmnewpw' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$" value="" />
-                        <button type="submit" class="btn1 btn-submit">Update Changes</button>
+                        <input type='password' class='accountinfo-form-style' id='cfmnewpwd' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$" value="" />
+                        <button type="submit" value="updatepwd" class="btn1 btn-submit">Update Changes</button>
                 </form>
             </section>
 
