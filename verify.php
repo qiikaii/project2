@@ -33,17 +33,15 @@ if (!isset($_GET["verify_code"]) || !isset($_GET["email"])) {
 
     if ($results->num_rows == 1) {
         $verifiedsuccess = 'Y';
-        $row = $results->fetch_assoc();
-        $results->free_result();
         $updateverification = ("UPDATE account SET acc_verified = '$verifiedsuccess' WHERE email = '$email' "
                 . "AND acc_verify_code = '$verify_code'");
         $conn->query($updateverification);
-        $conn->close();
     } else {
         $errorMsg .= "Invalid Verification.<br>";
         $success = false;
-        $conn->close();
     }
+    $results->free_result();
+    $conn->close();
 
     if ($success) {
         echo "<section class=\"middle\">";

@@ -79,7 +79,7 @@
                                 <!--<article class="g-recaptcha" data-sitekey="6Ld16RYTAAAAAHYoqPeGafdXADe1ya7vEuXj871m">
                                 </article>-->
                             </section>
-                            <button class="regibutton" name="regibutton">REGISTER</button>
+                            <button class="regibutton" name="regibutton" id="regibutton">REGISTER</button>
                             <p class="separatorlink">—————————— New to Delta? Join us! ——————————</p>
                         </form>
                     </article>
@@ -100,7 +100,7 @@
                                 <!--<article class="g-recaptcha" data-sitekey="6Ld16RYTAAAAAHYoqPeGafdXADe1ya7vEuXj871m">
                                 </article>-->
                             </section>
-                            <button class="resetbutton" name="resetbutton">RESET PASSWORD</button>
+                            <button class="resetbutton" name="resetbutton" id="resetbutton">RESET PASSWORD</button>
                         </form>
                     </article>
                 </section>
@@ -111,7 +111,6 @@
         <?php
         include 'footer.php';
         ?>
-        <script src="js/validregister.js"></script>
-        <script src="js/validlogin.js"></script>
+        <script src="js/loginpage.js"></script>
     </main>
 </html>
