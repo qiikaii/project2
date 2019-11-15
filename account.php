@@ -22,6 +22,7 @@
     </head>
 
     <body>
+        
     <?php
         if (session_status() == PHP_SESSION_NONE){
             session_start();
@@ -29,11 +30,16 @@
 
         include 'header.php';
         
+        if (empty($_SESSION['email'])) {
+            header("location:loginpage.php");
+        }
+        
         $session = $_SESSION['email']; // Email
         $acc_id = $_SESSION['acc_id']; // Account_ID
         
         echo $acc_id;
         include'dbcon.php';
+        //echo "<script type='text/javascript'>alert('hello');</script>";
 
         // Get name of user based on email
         function getName($session) {
@@ -118,7 +124,7 @@
                         ."<article>";
                         displayOrderImages($order_id);
                     echo "</article>"
-                        ."<button type='button' class='btn1 btn-submit' data-toggle='modal' data-target='#orderModalPopup'> VIEW ORDER </button>"
+                        ."<br> <button type='button' class='btn1 btn-submit' data-toggle='modal' data-target='#orderModalPopup'> VIEW ORDER </button>"
                         ."<section class='orderModal fade text-center' id='orderModalPopup' tabindex='-1' role='dialog'>"
                             ."<article class='modal-dialog' role='document'>"
                                 ."<article class='orderDetails-content'>"
@@ -166,9 +172,8 @@
                     $product_name = $row['product_name'];
                     $qty = $row['quantity'];
                     $product_price = $row['product_price'];
-                    echo "<script type='text/javascript'>alert('hello');</script>";
                     echo "<figure class='containter-fluid ordericon' id='wrapper'>"
-                        ."<a href='$product_col-php/$product_col$item_id.php'><img class='ordericon' src='$img_source' alt='$product_name'>";
+                        ."<a href='$product_col-php/$product_col$item_id.php'><img class='ordericon' src='$img_source' alt='$product_name'> </a>";
                     echo "<figcaption class='price text-center'>$product_name </figcaption>"
                         ."<h4 class='price text-center'>"
                         ."<span class='visible-xs visible visible-sm visible-md'>$product_price /pc </span>"
@@ -228,16 +233,18 @@
                 <h1 class="accountpageh1"><span class="glyphicon glyphicon-user"></span>  MY ACCOUNT INFO</h1>
                 <p class="accountpagecaption">Feel free to edit any of the details so that your account is up to date</p>
 
-                <form name='accountForm'>
-                    <div class="accountinfo-form">
-                        <label class="inputtitle">EMAIL :</label>
-                        <input type="email" class="accountinfo-form-style" id="email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" value="<?php echo $session ?>" >
-                        <label class="inputtitle">NAME : </label>
-                        <input type="text" class="accountinfo-form-style" id="firstname" pattern="(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,30}" value="<?php getName($session) ?>" >
-                        <label class="inputtitle">PASSWORD : </label>
-                        <input type="password" class="accountinfo-form-style" id="pw" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$" value="" >
-                        <button type="submit" class="btn1 btn-submit">Update Changes</button>
-                    </div>                
+                <form name='accountForm' class="accountinfo-form" method="post" action="<?php echo htmlspecialchars('updatepassword.php') ?>">
+                        <label for='email' class="inputtitle">EMAIL : </label>
+                        <input readonly='readonly' type="email" class="accountinfo-form-style" id="email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" value="<?php echo $session ?>">
+                        <label for='firstname'class="inputtitle">NAME : </label>
+                        <input readonly='readonly' type="text" class="accountinfo-form-style" id="firstname" pattern="(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,30}" value="<?php getName($session) ?>" >
+                        <label for='pw' class="inputtitle">PASSWORD : </label>
+                        <input type="password" class="accountinfo-form-style" id="pwd" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$" value="" />
+                        <label for='newpw' class='inputtitle'> NEW PASSWORD : 
+                        <input type='password' class='accountinfo-form-style' id='newpwd' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$" value="" /> </label>
+                        <label for='cfmnewpw' class='inputtitle'> CONFIRM NEW PASSWORD : </label>
+                        <input type='password' class='accountinfo-form-style' id='cfmnewpwd' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$" value="" />
+                        <button type="submit" value="updatepwd" class="btn1 btn-submit">Update Changes</button>
                 </form>
             </section>
 
@@ -322,8 +329,15 @@
             <section id="payment1" class="tabitems text-center">
                 <h1 class="accountpageh1"><span class="glyphicon glyphicon-credit-card"></span>  PAYMENT METHODS</h1>
                 <button type="button" class="btn1 btn-addcard" data-toggle="modal" data-target="#paymentModalPopup">ADD NEW PAYMENT METHOD</button>
-
-
+                
+                
+                <article class="container-fluid ordercontainer">
+                    <section class='row align-left'>
+                        <p align ='left' class="accountpageh3"></h3>
+                        <p align = 'left' class='orderdescription'>ORDER NO.: 00150001300</p>
+                        <p align = 'left' class='orderdescription orderline'>SHIPPED DATE: 07 Oct, 2019</p>
+                    </section>
+                </article>
                 <!-- Popup modal upon clicking ADD NEW PAYMENT METHOD button -->
                 <article class="paymentModal fade text-center" id="paymentModalPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <article class="modal-dialog" role="form">
@@ -338,7 +352,7 @@
                                 <label for="exp-month" class="inputtitle">EXPIRY DATE</label>
                                 <article class="ccForm-row">
 
-                                    <select class="addCardForm ccForm" id="exp-day">
+<!--                                    <select class="addCardForm ccForm" id="exp-month">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -372,7 +386,7 @@
                                         <option value="31">31</option>
 
 
-                                    </select>
+                                    </select>-->
                                     <select class="addCardForm ccForm" id="exp-month">
                                         <option value="1">JANUARY</option>
                                         <option value="2">FEBRUARY</option>
@@ -386,6 +400,21 @@
                                         <option value="10">OCTOBER</option>
                                         <option value="11">NOVEMBER</option>
                                         <option value="12">DECEMBER</option>
+
+                                    </select>
+                                    <select class="addCardForm ccForm" id="exp-year">
+                                        <option value="19">2019</option>
+                                        <option value="20">2020</option>
+                                        <option value="21">2021</option>
+                                        <option value="22">2022</option>
+                                        <option value="23">2023</option>
+                                        <option value="24">2024</option>
+                                        <option value="25">2025</option>
+                                        <option value="26">2026</option>
+                                        <option value="27">2027</option>
+                                        <option value="28">2028</option>
+                                        <option value="29">2029</option>
+                                        <option value="30">2030</option>
 
                                     </select>
                                 </article>
