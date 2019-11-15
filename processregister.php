@@ -102,9 +102,8 @@ if (isset($_POST["regibutton"])) {
                     $existacc_id = true;
                 } else {
                     $acc_verified = 'N';
-                    
-                    
                     $acc_verify_code = substr(md5(uniqid(rand(), true)), 16, 16);
+                    $pwd = password_hash($pwd, PASSWORD_BCRYPT);
                     $sql = "INSERT INTO account (acc_id, email, name, password, acc_verified, acc_verify_code) "
                             . "VALUES ('$acc_id', '$email', '$name', '$pwd', '$acc_verified', '$acc_verify_code')";
                     $conn->query($sql);
@@ -115,18 +114,18 @@ if (isset($_POST["regibutton"])) {
 
                     $mail = new PHPMailer();
                     $mail->SMTPDebug = 1;
-                    $mail->IsSMTP();                 // set mailer to use SMTP
-                    $mail->Host = "smtp.gmail.com";  // specify main and backup server
+                    $mail->IsSMTP();
+                    $mail->Host = "smtp.gmail.com";
                     $mail->Port = 587;
-                    $mail->SMTPAuth = true;     // turn on SMTP authentication
-                    $mail->Username = "XbatbatX@gmail.com";  // SMTP username
-                    $mail->Password = "P@5sword"; // SMTP password
+                    $mail->SMTPAuth = true;
+                    $mail->Username = "XbatbatX@gmail.com";
+                    $mail->Password = "P@5sword";
 
                     $mail->From = "DeltaatSIT@gmail.com";
                     $mail->FromName = "Delta @ SIT";
                     $mail->AddAddress($email);
-                    $mail->WordWrap = 50;                                 // set word wrap to 50 characters
-                    $mail->IsHTML(true);                                  // set email format to HTML
+                    $mail->WordWrap = 50;
+                    $mail->IsHTML(true);
                     $mail->SMTPSecure = 'tls';
 
                     $mail->Subject = "Verification of Delta @ SIT Account";

@@ -52,7 +52,8 @@ if (isset($_POST["loginbutton"])) {
             $errorMsg = "Connection failed: " . $conn->connect_error;
             $success = false;
         } else {
-            $sql = "SELECT * FROM account WHERE email = '$email' AND password = '$pwd'";
+            
+            $sql = "SELECT * FROM account WHERE email = '$email'";
             $result = $conn->query($sql);
 
             if ($result->num_rows == 1) {
@@ -62,7 +63,11 @@ if (isset($_POST["loginbutton"])) {
                 if ($row["acc_verified"] != 'Y') {
                     $errorMsg = "Account not verified yet.<br>";
                     $success = false;
-                } else {
+                } else if (password_verify($pwd, $row['password']) == false) {
+                    $errorMsg = "Email not found or password doesn't match.<br>";
+                    $success = false;
+                }
+                else {
                     session_start();
                     $_SESSION['acc_id'] = $row['acc_id'];
                     $_SESSION['email'] = $row['email'];

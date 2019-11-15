@@ -38,7 +38,6 @@ if (!isset($_GET["verify_code"]) || !isset($_GET["email"])) {
         $updateverification = ("UPDATE account SET acc_verified = '$verifiedsuccess' WHERE email = '$email' "
                 . "AND acc_verify_code = '$verify_code'");
         $conn->query($updateverification);
-        $results->free_result();
         $conn->close();
     } else {
         $errorMsg .= "Invalid Verification.<br>";

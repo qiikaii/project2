@@ -79,7 +79,7 @@
                                 <!--<article class="g-recaptcha" data-sitekey="6Ld16RYTAAAAAHYoqPeGafdXADe1ya7vEuXj871m">
                                 </article>-->
                             </section>
-                            <button class="regibutton" value="regibutton">REGISTER</button>
+                            <button class="regibutton" name="regibutton">REGISTER</button>
                             <p class="separatorlink">—————————— New to Delta? Join us! ——————————</p>
                         </form>
                     </article>
@@ -100,7 +100,7 @@
                                 <!--<article class="g-recaptcha" data-sitekey="6Ld16RYTAAAAAHYoqPeGafdXADe1ya7vEuXj871m">
                                 </article>-->
                             </section>
-                            <button class="resetbutton" value="resetbutton">RESET PASSWORD</button>
+                            <button class="resetbutton" name="resetbutton">RESET PASSWORD</button>
                         </form>
                     </article>
                 </section>
