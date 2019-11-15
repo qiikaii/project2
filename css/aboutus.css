@@ -36,6 +36,10 @@ h1 {
     text-align: center;
 }
 
+#gmap {
+    width: 80%;
+    height: auto;
+}
 #telephone {
     font-size: 30px;
     text-align: center;

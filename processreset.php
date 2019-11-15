@@ -1,17 +1,18 @@
-<html>
-    <title>DELTA</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Top 1 self-designed fashion in Singapore">
-    <meta name="keyword" content="fashion, designer platform, Singapore, self-designed clothes, self-designed fashion, trending fashion, trending design, trending in Singapore, Singapore fashion, Singapore home design fashion, online shopping fashion">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/bootstrap.css"> 
-    <link href="https://fonts.googleapis.com/css?family=Varela&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/errorstyling.css">
-    <!-- Prevent ClickJacking -->
-    <meta http-equiv="X-Frame-Options" content="deny">
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>DELTA</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Top 1 self-designed fashion in Singapore">
+        <meta name="keyword" content="fashion, designer platform, Singapore, self-designed clothes, self-designed fashion, trending fashion, trending design, trending in Singapore, Singapore fashion, Singapore home design fashion, online shopping fashion">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Varela&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/bootstrap.css"> 
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/errorstyling.css">
+    </head>
 </html>
 
 <?php
@@ -60,9 +61,9 @@ if (isset($_POST["resetbutton"])) {
 
                 require 'generatepass.php';
                 $resetpwd = generateStrongPassword($length = 8, $add_dashes = false, $available_sets = 'luds');
-                $resetpwdstring = $resetpwd; // For display of password in email
-                //Store reset password
-                $sql = "UPDATE account SET password = '$resetpwdstring' WHERE name = '$name' AND email = '$email'";
+                $displaypwd = $resetpwd;
+                $resetpwd = password_hash($resetpwd, PASSWORD_BCRYPT);
+                $sql = "UPDATE account SET password = '$displaypwd' WHERE name = '$name' AND email = '$email'";
                 $result = $conn->query($sql);
                 $conn->close();
 
@@ -71,30 +72,30 @@ if (isset($_POST["resetbutton"])) {
 
                 $mail = new PHPMailer();
                 $mail->SMTPDebug = 1;
-                $mail->IsSMTP();                 // set mailer to use SMTP
-                $mail->Host = "smtp.gmail.com";  // specify main and backup server
+                $mail->IsSMTP();      
+                $mail->Host = "smtp.gmail.com"; 
                 $mail->Port = 587;
-                $mail->SMTPAuth = true;     // turn on SMTP authentication
-                $mail->Username = "XbatbatX@gmail.com";  // SMTP username
-                $mail->Password = "P@5sword"; // SMTP password
+                $mail->SMTPAuth = true;
+                $mail->Username = "XbatbatX@gmail.com";
+                $mail->Password = "P@5sword";
 
                 $mail->From = "DeltaatSIT@gmail.com";
                 $mail->FromName = "Delta @ SIT";
                 $mail->AddAddress($email);
-                $mail->WordWrap = 50;                                 // set word wrap to 50 characters
-                $mail->IsHTML(true);                                  // set email format to HTML
+                $mail->WordWrap = 50;
+                $mail->IsHTML(true);
                 $mail->SMTPSecure = 'tls';
 
                 $mail->Subject = "Reset Password of Delta @ SIT Account";
                 $mail->Body = "Dear $name, <br><br>
-		Your password has been changed to: $resetpwdstring<br>
+		Your password has been changed to: $displaypwd<br>
 		Please log in to change your password<br><br>
 		
 		Thank you.<br>
 		Delta @ SIT";
 
                 $mail->AltBody = "Dear $name, <br><br>
-		Your password has been changed to: $resetpwdstring<br>
+		Your password has been changed to: $displaypwd<br>
 		Please log in to change your password<br><br>
 		
 		Thank you.<br>

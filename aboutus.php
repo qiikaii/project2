@@ -1,10 +1,4 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-
 <html lang="en">
     <head>
         <title>DELTA - ABOUT US</title>
@@ -14,17 +8,19 @@ and open the template in the editor.
         <meta name="keyword" content="fashion, designer platform, Singapore, self-designed clothes, self-designed fashion, trending fashion, trending design, trending in Singapore, Singapore fashion, Singapore home design fashion, online shopping fashion">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-        <script src="js/slideshow.js"></script>
-        <script src="js/main.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Varela&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/bootstrap.css"> 
         <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/index.css">
         <link rel="stylesheet" href="css/aboutus.css">
     </head>
 
     <main>
-        <?php include 'header.php'; ?>    
+        <?php
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        include 'header.php';
+        ?>    
 
         <!-- TITLE: ABOUT US -->
         <section class="container-fluid">
@@ -95,7 +91,7 @@ and open the template in the editor.
                         <p>172A Ang Mo Kio Ave 8, Singapore 567739</p>
                         <p>(beside Blk Q of NYP campus)</p>
                         <p id="google"></p>
-                        <img src="googlemap.PNG" alt="">
+                        <img src="googlemap.PNG" id="gmap" alt="">
                     </article>
                 </section>
                 <section class="col-sm-6">
@@ -106,8 +102,6 @@ and open the template in the editor.
                 </section>
             </article>
         </section>
-
         <?php include 'footer.php'; ?>  
     </main>
-
 </html>

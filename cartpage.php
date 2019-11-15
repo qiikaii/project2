@@ -1,10 +1,5 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
+<html lang="en">
     <head>
         <title>DELTA - CART</title>
         <meta charset="UTF-8">
@@ -15,21 +10,20 @@ and open the template in the editor.
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Varela&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/cartpage.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/cartpage.css">
         <link rel="stylesheet" href="css/errorstyling.css">
-        <!-- Prevent ClickJacking -->
-   	<meta http-equiv="X-Frame-Options" content="deny">
     </head>
 </html>
 
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 include 'header.php';
+$errorMsg = "";
 $success = true;
 $cartsuccess = true;
-//TO BE DELETED
-//TO BE DELETED 
 
 if (!isset($_SESSION['acc_id'])) {
     $errorMsg = "Please login to add items to your cart";
@@ -111,7 +105,6 @@ if (!isset($_SESSION['acc_id'])) {
                 $itemprice = $itemrow['product_price'];
                 $size = $itemrow['size'];
                 $imgsrc = $itemrow['img_source'];
-                $quantity = $itemrow['quantity'];
                 $itemname = $itemrow['product_name'];
 
                 echo "<form name=\"cartform\" action=\"htmlspecialchars(\"actioncart.php\")\" method=\"post\">
@@ -122,11 +115,12 @@ if (!isset($_SESSION['acc_id'])) {
                 </article>
                 <p> $itemname ($size) </p>
                 <p> Price: $$itemprice</p>
-                <p> Qty: <input type=\"number\" class=\"qtyupdate\" name=\"cartquantity\" placeholder=\"$rowquan[$i]\" value=\"$rowquan[$i]\" min=\"1\" max=\"99\" autocomplete=\"off\" required></p>
-                <button type=\"submit\" name=\"updatecart\" value=\"Update\"></button>
+                <p> Qty: <input type=\"number\" class=\"qtyupdate\" name=\"cartquantity\" placeholder=\"$rowquan[$i]\" value=\"$rowquan[$i]\" 
+                    min=\"1\" max=\"99\" autocomplete=\"off\" required></p>
+                <input type=\"submit\" name=\"updatecart\" value=\"Update\"></button>
                 <p class=\"cartreveal\"> Total: $" . $itemprice * $rowquan[$i] . "</p>
                 <input type=\"hidden\" name=\"cartitemid\" value=\"$rowitem[$i]\"</td>
-                <button type=\"submit\" name=\"deletecart\" value=\"Remove\"></button>
+                <input type=\"submit\" name=\"deletecart\" value=\"Remove\">
                 </section>
                 </article>
                 </form>
@@ -150,7 +144,8 @@ if (!isset($_SESSION['acc_id'])) {
                 </section>
                 <section class=\"col-sm-1\">
                 <article class=\"cartitem\">
-                <input type=\"number\" class=\"qtyupdate\" name=\"cartquantity\" placeholder=\"$rowquan[$i]\" value=\"$rowquan[$i]\" size=\"2\" min=\"1\" max=\"99\" autocomplete=\"off\" required>
+                <input type=\"number\" class=\"qtyupdate\" name=\"cartquantity\" placeholder=\"$rowquan[$i]\" value=\"$rowquan[$i]\" 
+                    size=\"2\" min=\"1\" max=\"99\" autocomplete=\"off\" required>
                 <input type=\"submit\" name=\"updatecart\" value=\"Update\"></button>
                 </article>
                 </section>
@@ -162,7 +157,7 @@ if (!isset($_SESSION['acc_id'])) {
                 <section class=\"col-sm-1\">
                 <article class=\"cartitem\">
                 <input type=\"hidden\" name=\"cartitemid\" value=\"$rowitem[$i]\"</td>
-                <input type=\"submit\" name=\"deletecart\" value=\"Remove\"></button>
+                <input type=\"submit\" name=\"deletecart\" value=\"Remove\">
                 </article>
                 </section>
                 </article>
@@ -189,7 +184,7 @@ if (!$success) {
     echo "<section class=\"middle\">
     <h4>The following input errors were detected:</h4>
     <p>" . $errorMsg . "</p>
-    </section>";
+    </section></section>";
 }
 
 if (!$cartsuccess) {
@@ -199,4 +194,5 @@ if (!$cartsuccess) {
 }
 
 include 'footer.php';
+
 ?>

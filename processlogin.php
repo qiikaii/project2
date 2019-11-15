@@ -1,17 +1,18 @@
-<html>
-    <title>DELTA - Error Page</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Top 1 self-designed fashion in Singapore">
-    <meta name="keyword" content="fashion, designer platform, Singapore, self-designed clothes, self-designed fashion, trending fashion, trending design, trending in Singapore, Singapore fashion, Singapore home design fashion, online shopping fashion">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/bootstrap.css"> 
-    <link href="https://fonts.googleapis.com/css?family=Varela&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/errorstyling.css">
-    <!-- Prevent ClickJacking -->
-    <meta http-equiv="X-Frame-Options" content="deny">
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>DELTA - Error Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Top 1 self-designed fashion in Singapore">
+        <meta name="keyword" content="fashion, designer platform, Singapore, self-designed clothes, self-designed fashion, trending fashion, trending design, trending in Singapore, Singapore fashion, Singapore home design fashion, online shopping fashion">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Varela&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/bootstrap.css"> 
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/errorstyling.css">
+    </head>
 </html>
 
 <?php
@@ -51,7 +52,8 @@ if (isset($_POST["loginbutton"])) {
             $errorMsg = "Connection failed: " . $conn->connect_error;
             $success = false;
         } else {
-            $sql = "SELECT * FROM account WHERE email = '$email' AND password = '$pwd'";
+            
+            $sql = "SELECT * FROM account WHERE email = '$email'";
             $result = $conn->query($sql);
 
             if ($result->num_rows == 1) {
@@ -61,7 +63,11 @@ if (isset($_POST["loginbutton"])) {
                 if ($row["acc_verified"] != 'Y') {
                     $errorMsg = "Account not verified yet.<br>";
                     $success = false;
-                } else {
+                } else if (password_verify($pwd, $row['password']) == false) {
+                    $errorMsg = "Email not found or password doesn't match.<br>";
+                    $success = false;
+                }
+                else {
                     session_start();
                     $_SESSION['acc_id'] = $row['acc_id'];
                     $_SESSION['email'] = $row['email'];

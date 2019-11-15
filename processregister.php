@@ -1,17 +1,18 @@
-<html>
-    <title>DELTA</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Top 1 self-designed fashion in Singapore">
-    <meta name="keyword" content="fashion, designer platform, Singapore, self-designed clothes, self-designed fashion, trending fashion, trending design, trending in Singapore, Singapore fashion, Singapore home design fashion, online shopping fashion">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/bootstrap.css"> 
-    <link href="https://fonts.googleapis.com/css?family=Varela&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/errorstyling.css">
-    <!-- Prevent ClickJacking -->
-    <meta http-equiv="X-Frame-Options" content="deny">
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>DELTA</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Top 1 self-designed fashion in Singapore">
+        <meta name="keyword" content="fashion, designer platform, Singapore, self-designed clothes, self-designed fashion, trending fashion, trending design, trending in Singapore, Singapore fashion, Singapore home design fashion, online shopping fashion">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Varela&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/bootstrap.css"> 
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/errorstyling.css">
+    </head>
 </html>
 
 <?php
@@ -102,6 +103,7 @@ if (isset($_POST["regibutton"])) {
                 } else {
                     $acc_verified = 'N';
                     $acc_verify_code = substr(md5(uniqid(rand(), true)), 16, 16);
+                    $pwd = password_hash($pwd, PASSWORD_BCRYPT);
                     $sql = "INSERT INTO account (acc_id, email, name, password, acc_verified, acc_verify_code) "
                             . "VALUES ('$acc_id', '$email', '$name', '$pwd', '$acc_verified', '$acc_verify_code')";
                     $conn->query($sql);
@@ -112,18 +114,18 @@ if (isset($_POST["regibutton"])) {
 
                     $mail = new PHPMailer();
                     $mail->SMTPDebug = 1;
-                    $mail->IsSMTP();                 // set mailer to use SMTP
-                    $mail->Host = "smtp.gmail.com";  // specify main and backup server
+                    $mail->IsSMTP();
+                    $mail->Host = "smtp.gmail.com";
                     $mail->Port = 587;
-                    $mail->SMTPAuth = true;     // turn on SMTP authentication
-                    $mail->Username = "XbatbatX@gmail.com";  // SMTP username
-                    $mail->Password = "P@5sword"; // SMTP password
+                    $mail->SMTPAuth = true;
+                    $mail->Username = "XbatbatX@gmail.com";
+                    $mail->Password = "P@5sword";
 
                     $mail->From = "DeltaatSIT@gmail.com";
                     $mail->FromName = "Delta @ SIT";
                     $mail->AddAddress($email);
-                    $mail->WordWrap = 50;                                 // set word wrap to 50 characters
-                    $mail->IsHTML(true);                                  // set email format to HTML
+                    $mail->WordWrap = 50;
+                    $mail->IsHTML(true);
                     $mail->SMTPSecure = 'tls';
 
                     $mail->Subject = "Verification of Delta @ SIT Account";
