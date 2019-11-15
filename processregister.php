@@ -102,6 +102,8 @@ if (isset($_POST["regibutton"])) {
                     $existacc_id = true;
                 } else {
                     $acc_verified = 'N';
+                    
+                    
                     $acc_verify_code = substr(md5(uniqid(rand(), true)), 16, 16);
                     $sql = "INSERT INTO account (acc_id, email, name, password, acc_verified, acc_verify_code) "
                             . "VALUES ('$acc_id', '$email', '$name', '$pwd', '$acc_verified', '$acc_verify_code')";

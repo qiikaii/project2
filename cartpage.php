@@ -105,7 +105,6 @@ if (!isset($_SESSION['acc_id'])) {
                 $itemprice = $itemrow['product_price'];
                 $size = $itemrow['size'];
                 $imgsrc = $itemrow['img_source'];
-                $quantity = $itemrow['quantity'];
                 $itemname = $itemrow['product_name'];
 
                 echo "<form name=\"cartform\" action=\"htmlspecialchars(\"actioncart.php\")\" method=\"post\">
