@@ -233,18 +233,18 @@
                 <h1 class="accountpageh1"><span class="glyphicon glyphicon-user"></span>  MY ACCOUNT INFO</h1>
                 <p class="accountpagecaption">Feel free to edit any of the details so that your account is up to date</p>
 
-                <form name='accountForm' class="accountinfo-form" method="post" action="<?php echo htmlspecialchars('updatepassword.php') ?>">
+                <form name='accountForm' class="accountinfo-form" method="post" action="<?php echo htmlspecialchars('updatepw.php') ?>">
                         <label for='email' class="inputtitle">EMAIL : </label>
                         <input readonly='readonly' type="email" class="accountinfo-form-style" id="email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" value="<?php echo $session ?>">
                         <label for='firstname'class="inputtitle">NAME : </label>
                         <input readonly='readonly' type="text" class="accountinfo-form-style" id="firstname" pattern="(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,30}" value="<?php getName($session) ?>" >
-                        <label for='pw' class="inputtitle">PASSWORD : </label>
-                        <input type="password" class="accountinfo-form-style" id="pwd" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$" value="" />
-                        <label for='newpw' class='inputtitle'> NEW PASSWORD : 
-                        <input type='password' class='accountinfo-form-style' id='newpwd' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$" value="" /> </label>
-                        <label for='cfmnewpw' class='inputtitle'> CONFIRM NEW PASSWORD : </label>
-                        <input type='password' class='accountinfo-form-style' id='cfmnewpwd' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$" value="" />
-                        <button type="submit" value="updatepwd" class="btn1 btn-submit">Update Changes</button>
+                        <label for='pwd' class="inputtitle">PASSWORD : </label>
+                        <input type="password" class="accountinfo-form-style" name="pwd" id="pwd" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$" value="" />
+                        <label for='newpwd' class='inputtitle'> NEW PASSWORD : </label>
+                        <input type='password' class='accountinfo-form-style' name="newpwd" id='newpwd' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$" value="" /> 
+                        <label for='cfmnewpwd' class='inputtitle'> CONFIRM NEW PASSWORD : </label>
+                        <input type='password' class='accountinfo-form-style' name="cfmnewpwd" id='cfmnewpwd' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$" value="" />
+                        <button type="submit" name="updatepwd" id="updatepwd" class="btn1 btn-submit">Update Password</button>
                 </form>
             </section>
 

@@ -5,7 +5,7 @@ session_unset();
 session_destroy();
 unset($_SESSION);
 
- header("location:index.php");
+ header("location:loginpage.php");
     
 
 ?>
