@@ -29,7 +29,7 @@ if (isset($_POST["regibutton"])) {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $errorMsg .= "Invalid email format.<br>";
             $success = false;
-        } else if (!preg_match('/[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$/', $email)) {
+        } else if (!preg_match('/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/', $email)) {
             $errorMsg .= "Invalid email format.<br>";
             $success = false;
         }
@@ -55,7 +55,7 @@ if (isset($_POST["regibutton"])) {
         $success = false;
     } else {
         $name = sanitize_input($_POST["reginame"]);
-        if (!preg_match('/(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,30}/', $name)) {
+        if (!preg_match('/^(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,}$/', $name)) {
             $errorMsg .= "Invalid name format.<br>";
             $success = false;
         }
@@ -66,7 +66,7 @@ if (isset($_POST["regibutton"])) {
         $success = false;
     } else {
         $pwd = sanitize_input($_POST["regipass"]);
-        if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$/', $pwd)) {
+        if (!preg_match('/(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}/', $pwd)) {
             $errorMsg .= "Invalid password format.<br>";
             $success = false;
         }
@@ -77,7 +77,7 @@ if (isset($_POST["regibutton"])) {
         $success = false;
     } else {
         $pwd1 = sanitize_input($_POST["regiconpass"]);
-        if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$/', $pwd)) {
+        if (!preg_match('/(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}/', $pwd)) {
             $errorMsg .= "Invalid confirm password format.<br>";
             $success = false;
         }

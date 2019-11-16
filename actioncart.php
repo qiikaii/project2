@@ -37,7 +37,7 @@ if (isset($_POST["updatecart"])) {
     } else {
         $item_id = sanitize_input($_POST["cartitemid"]);
         $existitem = false;
-        if (!preg_match('/^[0-9]{0,2}$/', $item_id)) {
+        if (!preg_match('/[0-9]{1,2}/', $item_id)) {
             $errorMsg .= "Invalid item.<br>";
             $success = false;
         } else {
@@ -56,7 +56,7 @@ if (isset($_POST["updatecart"])) {
         $success = false;
     } else {
         $cartquantity = sanitize_input($_POST["cartquantity"]);
-        if (!preg_match('/^[0-9]{0,2}$/', $cartquantity)) {
+        if (!preg_match('/[0-9]{1,2}/', $cartquantity)) {
             $errorMsg .= "Invalid quantity.<br>";
             $success = false;
         }
@@ -96,7 +96,7 @@ if (isset($_POST["deletecart"])) {
         $success = false;
     } else {
         $item_id = sanitize_input($_POST["cartitemid"]);
-        if (!preg_match('/^[0-9]{0,2}$/', $item_id)) {
+        if (!preg_match('/^[0-9]{1,2}$/', $item_id)) {
             $errorMsg .= "Invalid item.<br>";
             $success = false;
         } else {
@@ -115,7 +115,7 @@ if (isset($_POST["deletecart"])) {
         $success = false;
     } else {
         $cartquantity = sanitize_input($_POST["cartquantity"]);
-        if (!preg_match('/^[0-9]{0,2}$/', $cartquantity)) {
+        if (!preg_match('/^[0-9]{1,2}$/', $cartquantity)) {
             $errorMsg .= "Invalid quantity.<br>";
             $success = false;
         }
