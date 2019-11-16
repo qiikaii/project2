@@ -163,9 +163,18 @@ if (!isset($_SESSION['acc_id'])) {
                 </section>
                 </article>
                 </form>";
-
+                $totalprice = $itemprice * $rowquan[$i];
                 $i++;
             }
+            
+            echo "<article class=\"row\">
+            <section class=\"bottomcart\">
+            <article class=\"col-sm-12\">
+            <p> Total Price: $$totalprice</p>
+            </article>
+            </section>
+            </article>
+            </section>";
             
             echo "<section class=\"container-fluid\">
             <article class=\"row\">
