@@ -53,7 +53,7 @@ if (!isset($_SESSION['acc_id'])) {
             $cartsql = "SELECT * FROM cart WHERE acc_id = '$acc_id'";
             $cartresult = $conn->query($cartsql);
 
-            $rowitem = array(); // Insert item id in the array
+            $rowitem = array();
             $rowquan = array();
             $i = 0;
 

@@ -18,7 +18,7 @@
 
 <h1></h1>
 <?php
-include "header.inc.php";
+include "header.php";
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }

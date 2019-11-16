@@ -124,6 +124,7 @@ if (isset($_POST["deletecart"])) {
     if ($success == true) {
         $sql = "DELETE FROM cart WHERE acc_id = '$acc_id' AND item_id = '$item_id'";
         $result = $conn->query($sql);
+        $result->free_result();
         $conn->close();
         header("location:cartpage.php");
     } else {
