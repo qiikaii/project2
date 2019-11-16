@@ -29,7 +29,7 @@ if (isset($_POST["loginbutton"])) {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $errorMsg .= "Invalid email format.<br>";
             $success = false;
-        } else if (!preg_match('/[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$/', $email)) {
+        } else if (!preg_match('/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/', $email)) {
             $errorMsg .= "Invalid email format.<br>";
             $success = false;
         }
@@ -40,7 +40,7 @@ if (isset($_POST["loginbutton"])) {
         $success = false;
     } else {
         $pwd = sanitize_input($_POST["loginpass"]);
-        if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$/', $pwd)) {
+        if (!preg_match('/(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}/', $pwd)) {
             $errorMsg .= "Invalid password format.<br>";
             $success = false;
         }

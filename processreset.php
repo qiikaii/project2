@@ -26,7 +26,7 @@ if (isset($_POST["resetbutton"])) {
         $success = false;
     } else {
         $name = sanitize_input($_POST["resetname"]);
-        if (!preg_match('/(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,30}/', $name)) {
+        if (!preg_match('/^(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,}$/', $name)) {
             $errorMsg .= "Invalid name format.<br>";
             $success = false;
         }
@@ -40,7 +40,7 @@ if (isset($_POST["resetbutton"])) {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $errorMsg .= "Invalid email format.<br>";
             $success = false;
-        } else if (!preg_match('/[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$/', $email)) {
+        } else if (!preg_match('/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/', $email)) {
             $errorMsg .= "Invalid email format.<br>";
             $success = false;
         }

@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="css/bootstrap.css"> 
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/loginpage.css">
+        <script src="js/loginpage.js"></script>
         <!-- Insert Google ReCaptcha -->
         <script src='https://www.google.com/recaptcha/api.js'></script>
     </head>
@@ -36,11 +37,13 @@
                         <form name="loginform" action="<?php echo htmlspecialchars("processlogin.php");?>" method="post">
                             <label for="loginemail" class="separator">Email:
                             <input class="separator" name="loginemail" id="loginemail" type="email" placeholder="Log in with your Email" 
-                                   size="60" maxlength="100" autocomplete="off"/></label>
+                                   size="60" maxlength="100" autocomplete="off"
+                                   pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required></label>
                             <label for="loginpass" class="separator">Password:
                             <input class="separator" name="loginpass" id="loginpass" type="password" placeholder="Enter your Password" 
-                                   size="60" maxlength="100" autocomplete="off"
-                                   title="Must contain at least 1 uppercase, 1 lowercase and 1 number/special character."></label>
+                                   size="60" maxlength="100" autocomplete="off" 
+                                   title="Must contain at least 8 characters with 1 uppercase, 1 lowercase and 1 number/special character."
+                                   pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}" required></label>
                             <section class="separator">
                                 <!--<article class="g-recaptcha" data-sitekey="6Ld16RYTAAAAAHYoqPeGafdXADe1ya7vEuXj871m">
                                 </article>-->
@@ -60,21 +63,21 @@
                             <label for="reginame" class="separator">Name:
                             <input class="separator" name="reginame" id="reginame" type="text" 
                                    placeholder="How do you want us to address you?" size="60" maxlength="100" autocomplete="off"
-                                    /></label>
+                                    pattern="(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,}" required></label>
                             <label for="regiemail" class="separator">Email:
                             <input class="separator" name="regiemail" id="regiemail" type="email" 
                                    placeholder="At least 8 alphanumeric characters." size="60" maxlength="100" autocomplete="off"
-                                    /></label>
+                                   pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required></label>
                             <label for="regipass" class="separator">Password:
                             <input class="separator" name="regipass" id="regipass" type="password" 
                                    placeholder="Keep your password confidential!" size="60" maxlength="100" autocomplete="off"
-                                   title="Must contain at least 1 uppercase, 1 lowercase and 1 number/special character."
-                                   /></label>
+                                   title="Must contain at least 8 characters with 1 uppercase, 1 lowercase and 1 number/special character." 
+                                   pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}" required></label>
                             <label for="regiconpass" class="separator">Confirm Password:
                             <input class="separator" name="regiconpass" id="regiconpass" type="password" 
                                    placeholder="Key in your password again." size="60" maxlength="100" autocomplete="off"
-                                   title="Must contain at least 1 uppercase, 1 lowercase and 1 number/special character." 
-                                   /></label> 
+                                   title="Must contain at least 8 characters with 1 uppercase, 1 lowercase and 1 number/special character." 
+                                   pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}" required></label> 
                             <section class="separator">
                                 <!--<article class="g-recaptcha" data-sitekey="6Ld16RYTAAAAAHYoqPeGafdXADe1ya7vEuXj871m">
                                 </article>-->
@@ -92,10 +95,12 @@
                         <form name="resetform" action="<?php echo htmlspecialchars("processreset.php");?>" method="post">
                             <label for="resetname" class="separator">Full Name:
                             <input class="separator" name="resetname" id="resetname" type="text" 
-                                   placeholder="Enter Full Name" size="60" maxlength="70" autocomplete="off"/></label>
+                                   placeholder="Enter Full Name" size="60" maxlength="70" autocomplete="off"
+                                   pattern="(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,}" required</label>
                             <label for="resetemail" class="separator">Email:
                             <input class="separator" name="resetemail" id="resetemail" type="email" 
-                                   placeholder="Enter your Email Address" size="60" maxlength="100" autocomplete="off"/></label>
+                                   placeholder="Enter your Email Address" size="60" maxlength="100" autocomplete="off"
+                                   pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required></label>
                             <section class="separator">
                                 <!--<article class="g-recaptcha" data-sitekey="6Ld16RYTAAAAAHYoqPeGafdXADe1ya7vEuXj871m">
                                 </article>-->
@@ -111,6 +116,5 @@
         <?php
         include 'footer.php';
         ?>
-        <script src="js/loginpage.js"></script>
     </main>
 </html>
