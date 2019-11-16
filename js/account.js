@@ -9,14 +9,6 @@ $(document).ready(function() {
     $('.zoom').magnify();
 });
 
-/*
-$(".carousel").carousel({
-    interval: 200,
-    pause: 'none'
-});
-
-*/
-
 $('#paymentModalPopup').modal({
         backdrop: true
     });

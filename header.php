@@ -1,3 +1,20 @@
+<?php 
+
+// If theres session and last activity is 30 minutes ago, then logout
+if (isset($_SESSION['activity']) && (time() - $_SESSION['activity'] >= 1800)){
+    header("location:logout.php");
+}
+
+// If theres session, echo out session for debugging
+if (isset($_SESSION['activity'])) {
+    echo $_SESSION['activity'];
+}
+
+else if (isset($_SESSION['activity']) && (time() - $_SESSION['activity'] < 1800)){
+    $_SESSION['activity'] = time();
+}
+?>
+
 <script>
     console.log("%cSTOP", "color: red; font-size: 150px");
     console.log("%cThis is a browser feature intended for developers. ", "color= black; font-size=25px");

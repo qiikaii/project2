@@ -72,7 +72,11 @@ if (isset($_POST["loginbutton"])) {
                     $_SESSION['acc_id'] = $row['acc_id'];
                     $_SESSION['email'] = $row['email'];
                     $_SESSION['name'] = $row['name'];
-
+                    
+                    // QK set session activity to time
+                    // It will expire after 30 minutes of inactivity
+                    // Header.php will check for activity status
+                    $_SESSION['activity'] = time();
                     header("location:account.php");
                 }
             } else {

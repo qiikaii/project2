@@ -34,15 +34,14 @@
             header("location:loginpage.php");
         }
         
-        $session = $_SESSION['email']; // Email
+        $email = $_SESSION['email']; // Email
         $acc_id = $_SESSION['acc_id']; // Account_ID
-        
         echo $acc_id;
         include'dbcon.php';
         //echo "<script type='text/javascript'>alert('hello');</script>";
 
         // Get name of user based on email
-        function getName($session) {
+        function getName($email) {
             $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME); //connect to database
             //Create connection
             //define variables and set to empty values
@@ -53,7 +52,7 @@
                 $success = false;
             } 
             else {
-                $sql = "SELECT * FROM account WHERE email = '$session'";
+                $sql = "SELECT * FROM account WHERE email = '$email'";
                 $result = $conn->query($sql);
                 $row = $result->fetch_assoc();
                 $result->free_result();
@@ -225,7 +224,7 @@
             <figure id="default" class="defaulttab ">
                 <img class="accountbackground" id='accountbackground' src="background.jpeg" alt="accountpicture" >
                 <figcaption> 
-                    <h3 class='accountbackgroundfont'>Hello <?php getName($session) ?>, 
+                    <h3 class='accountbackgroundfont'>Hello <?php getName($email) ?>, 
                         Welcome to Your Account</h3>
                 </figcaption>       
             </figure>
@@ -235,9 +234,9 @@
 
                 <form name='accountForm' class="accountinfo-form" method="post" action="<?php echo htmlspecialchars('updatepw.php') ?>">
                         <label for='email' class="inputtitle">EMAIL : </label>
-                        <input readonly='readonly' type="email" class="accountinfo-form-style" id="email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" value="<?php echo $session ?>">
+                        <input readonly='readonly' type="email" class="accountinfo-form-style" id="email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" value="<?php echo $email ?>">
                         <label for='firstname'class="inputtitle">NAME : </label>
-                        <input readonly='readonly' type="text" class="accountinfo-form-style" id="firstname" pattern="(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,30}" value="<?php getName($session) ?>" >
+                        <input readonly='readonly' type="text" class="accountinfo-form-style" id="firstname" pattern="(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,30}" value="<?php getName($email) ?>" >
                         <label for='pwd' class="inputtitle">PASSWORD : </label>
                         <input type="password" class="accountinfo-form-style" name="pwd" id="pwd" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$" value="" />
                         <label for='newpwd' class='inputtitle'> NEW PASSWORD : </label>
