@@ -4,66 +4,51 @@
  * and open the template in the editor.
  */
 
-// Login Validation
-document.getElementById('loginemail').addEventListener('input', validateEmail);
-document.getElementById('loginpass').addEventListener('input', validatePw);
+document.getElementById('loginemail').addEventListener('input', validateLoginEmail);
+document.getElementById('loginpass').addEventListener('input', validateLoginPw);
 
-function validateEmail(event){
-    var email = document.getElementById('loginemail');
+function validateLoginEmail(event){
+    var loginemail = document.getElementById('loginemail');
     var r = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-    email.setCustomValidity('');
-    if (email.value === "") {
-        email.setCustomValidity("Email can't be blank.");
-        email.reportValidity();
+    loginemail.setCustomValidity('');
+    if (loginemail.value === "") {
+        loginemail.setCustomValidity("Email can't be blank.");
+        loginemail.reportValidity();
         event.preventDefault();
         return false;
     }
-    else if (r.test(email.value) === false){
-        email.setCustomValidity('Please enter a valid email address.');
-        event.preventDefault();        
-        email.reportValidity();
+    else if (r.test(loginemail.value) === false){
+        loginemail.setCustomValidity('Please enter a valid email address.');
+        loginemail.reportValidity();
+        event.preventDefault(); 
         return false;
     }
-    else if (r.test(email.value) === true){
+    else if (r.test(loginemail.value) === true){
         return true;
     }
 }
 
-function validatePw(event){
-    var pw = document.getElementById('loginpass');
+function validateLoginPw(event){
+    var loginpw = document.getElementById('loginpass');
     var r=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$/;
-    pw.setCustomValidity('');    
-    if (pw.value === "") {
-        pw.setCustomValidity("Password can't be blank.");
-        pw.reportValidity();
+    loginpw.setCustomValidity('');    
+    if (loginpw.value === "") {
+        loginpw.setCustomValidity("Password can't be blank.");
+        loginpw.reportValidity();
         event.preventDefault();
         return false;
     }
-    else if (r.test(pw.value) === false){
-        pw.setCustomValidity('Ensure password only have 1 uppercase, 1 lowercase, 1 number, 1 special character.');
-        pw.reportValidity();
+    else if (r.test(loginpw.value) === false){
+        loginpw.setCustomValidity('Ensure password only have 1 uppercase, 1 lowercase, 1 number, 1 special character.');
+        loginpw.reportValidity();
         event.preventDefault();   
         return false;
     }
-    else if (r.test(pw.value) === true){
+    else if (r.test(loginpw.value) === true){
         return true;
     }
 }
 
-// Register Validation
-// 
-// 
-// 
-// 
-// 
-// 
-// Register Validation not working for now. Only login validation. For further debugging!!!
-//
-//
-//
-//
-//
-//
 document.getElementById('reginame').addEventListener('input', validateRegiName);
 document.getElementById('regiemail').addEventListener('input', validateRegiEmail);
 document.getElementById('regipass').addEventListener('input', validateRegiPass);
@@ -71,23 +56,23 @@ document.getElementById('regiconpass').addEventListener('input', validateRegiCon
 
 
 function validateRegiName(event){
-    var name = document.getElementById('reginame');
+    var reginame = document.getElementById('reginame');
     var r=/(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,30}/;
-    name.setCustomValidity('');
-    if (name.value === "") {
-        name.setCustomValidity("Name can't be blank.");
-        name.reportValidity();
+    reginame.setCustomValidity('');
+    if (reginame.value === "") {
+        reginame.setCustomValidity("Name can't be blank.");
+        reginame.reportValidity();
         event.preventDefault();
         return false;
     }
         
-    else if (r.test(name.value) === false){
-        name.setCustomValidity('Name can only contain letters, at least 3 characters long and not mroe than 50 characters');
-        name.reportValidity();
+    else if (r.test(reginame.value) === false){
+        reginame.setCustomValidity('Name can only contain letters, at least 3 characters long and not more than 50 characters');
+        reginame.reportValidity();
         event.preventDefault();
         return false;
     }
-    else if (r.test(name.value) === true){
+    else if (r.test(reginame.value) === true){
         return true;
     }
 }
@@ -114,22 +99,22 @@ function validateRegiEmail(event){
 }
 
 function validateRegiPass(event){
-    var pwd = document.getElementById('regipass');
+    var regipwd = document.getElementById('regipass');
     var r = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$/;
-    pwd.setCustomValidity('');
-    if (pwd.value === "") {
-        pwd.setCustomValidity("Password can't be blank.");
-        pwd.reportValidity();
+    regipwd.setCustomValidity('');
+    if (regipwd.value === "") {
+        regipwd.setCustomValidity("Password can't be blank.");
+        regipwd.reportValidity();
         event.preventDefault();
         return false;
     }
-    else if (r.test(pwd.value) === false){
-        pwd.setCustomValidity('Password does not match requirements');
-        pwd.reportValidity();
+    else if (r.test(regipwd.value) === false){
+        regipwd.setCustomValidity('Password does not match requirements');
+        regipwd.reportValidity();
         event.preventDefault();
         return false;
     }
-    else if (r.test(pwd.value) === true){
+    else if (r.test(regipwd.value) === true){
         return true;
     }
 }
@@ -155,17 +140,48 @@ function validateRegiConPass(event){
     }
 }
 
+document.getElementById('resetname').addEventListener('input', validateResetName);
+document.getElementById('resetemail').addEventListener('input', validateResetEmail);
 
+function validateResetName(event){
+    var resetname = document.getElementById('resetname');
+    var r=/(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,30}/;
+    resetname.setCustomValidity('');
+    if (resetname.value === "") {
+        resetname.setCustomValidity("Name can't be blank.");
+        resetname.reportValidity();
+        event.preventDefault();
+        return false;
+    }
+        
+    else if (r.test(resetname.value) === false){
+        resetname.setCustomValidity('Name can only contain letters, at least 3 characters long and not more than 50 characters');
+        resetname.reportValidity();
+        event.preventDefault();
+        return false;
+    }
+    else if (r.test(resetname.value) === true){
+        return true;
+    }
+}
 
-//var loginemail = document.getElementById('loginemail').value;
-//var loginpass = document.getElementById('loginpass').value;
-//function validateLogin(){
-//    alert("Hey");
-//    loginemail.addEventListener('input', validateEmail(loginemail));
-//    validateEmail(loginemail);
-//    validatePw(loginpass);
-//}
-//document.getElementById('loginbutton').addEventListener("click", validateLogin());
-//
-//document.getElementById('regibutton').addEventListener('input', validateRegister);
-//document.getElementById('resetbutton').addEventListener('input', validateReset);
+function validateResetEmail(event){
+    var resetemail = document.getElementById('resetemail');
+    var r = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+    resetemail.setCustomValidity('');
+    if (resetemail.value === "") {
+        resetemail.setCustomValidity("Email can't be blank.");
+        resetemail.reportValidity();
+        event.preventDefault();
+        return false;
+    }
+    else if (r.test(resetemail.value) === false){
+        resetemail.setCustomValidity('Please enter a valid email address.');
+        resetemail.reportValidity();
+        event.preventDefault();
+        return false;
+    }
+    else if (r.test(resetemail.value) === true){
+        return true;
+    }
+}
