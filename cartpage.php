@@ -21,7 +21,7 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-include 'header.php';
+include 'header.inc.php';
 $errorMsg = "";
 $success = true;
 $cartsuccess = true;
@@ -32,7 +32,7 @@ if (!isset($_SESSION['acc_id'])) {
  
 } else {
     $acc_id = $_SESSION['acc_id'];
-    include 'dbcon.php';
+    include 'dbcon.inc.php';
     if ($conn->connect_error) {
         $errorMsg = "Connection failed: " . $conn->connect_error;
         $success = false;
@@ -203,6 +203,6 @@ if (!$cartsuccess) {
     </section>";
 }
 
-include 'footer.php';
+include 'footer.inc.php';
 
 ?>

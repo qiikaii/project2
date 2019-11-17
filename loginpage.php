@@ -19,7 +19,7 @@
 
     <main>
         <?php
-        include 'header.php';
+        include 'header.inc.php';
         ?>    
 
         <!-- Nav Tabs Bar -->
@@ -114,7 +114,7 @@
 
         <!-- FOOTER -->
         <?php
-        include 'footer.php';
+        include 'footer.inc.php';
         ?>
     </main>
 </html>

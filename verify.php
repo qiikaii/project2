@@ -16,7 +16,7 @@
 </html>
 
 <?php
-include 'header.php';
+include 'header.inc.php';
 $errorMsg = "";
 $success = true;
 
@@ -27,7 +27,7 @@ if (!isset($_GET["verify_code"]) || !isset($_GET["email"])) {
     $verify_code = $_GET["verify_code"];
     $email = $_GET["email"];
 
-    include 'dbcon.php';
+    include 'dbcon.inc.php';
     $checkacc = ("SELECT * FROM account WHERE email = '$email' AND acc_verify_code = '$verify_code'");
     $results = $conn->query($checkacc);
 
@@ -43,7 +43,10 @@ if (!isset($_GET["verify_code"]) || !isset($_GET["email"])) {
     $results->free_result();
     $conn->close();
 
-    if ($success) {
+    
+}
+
+if ($success) {
         echo "<section class=\"middle\">";
         echo "<h4>Email: " . $email . " has been verified!</h4>";
         echo "</section>";
@@ -53,8 +56,7 @@ if (!isset($_GET["verify_code"]) || !isset($_GET["email"])) {
         echo "<p>" . $errorMsg . "</p>";
         echo "</section>";
     }
-}
 
-include 'footer.php';
+include 'footer.inc.php';
 ?>
 

@@ -19,7 +19,7 @@
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        include 'header.php';
+        include 'header.inc.php';
         ?>    
 
         <!-- TITLE: ABOUT US -->
@@ -102,6 +102,6 @@
                 </section>
             </article>
         </section>
-        <?php include 'footer.php'; ?>  
+        <?php include 'footer.inc.php'; ?>  
     </main>
 </html>
