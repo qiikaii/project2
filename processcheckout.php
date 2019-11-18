@@ -63,6 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if ($cartresults->num_rows == 0) {
                         $errorMsg = "There is no items in the cart.<br>";
                         $success = false;
+                        $existorder_id = false;
                     } else {
                         $rowitem = array();
                         $rowquan = array();
@@ -99,10 +100,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $conn->query($deletecart);
                         $conn->close();
                         $existorder_id = false;
-                        $success = true;
                     }
                 }
-            } while ($existorder_id == true || $success == true);
+            } while ($existorder_id == true);
         } 
     } else {
         $errorMsg = "Please submit the form from the check out page.<br>";
