@@ -35,7 +35,7 @@ function getdata($id)
         unset($result, $row);
 
         echo "<figure class = 'col-sm-3 wrapper'>";
-        echo "<a href = 'celestial$id.php'><img class = 'imgzoom product-img img-responsive hover' src = '$img_source' alt = 'Product design for $pname'></a>";
+        echo "<a href = 'celestial$id.php' title='Product page for $pname'><img class = 'imgzoom product-img img-responsive hover' src = '$img_source' alt = 'Product design for $pname'></a>";
         echo "<figcaption class = 'price text-center'>$pname<br>";
         echo "&dollar;$price</figcaption>";
         echo "</figure>";
