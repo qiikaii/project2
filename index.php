@@ -23,11 +23,8 @@ and open the template in the editor.
 
 <body>
     <?php
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-
-    include 'header.php';
+    
+    include 'header.inc.php';
 
     ?>
 
@@ -70,7 +67,7 @@ and open the template in the editor.
     </section>
 
     <?php
-    include 'footer.php'
+    include 'footer.inc.php'
     ?>
 </body>
 

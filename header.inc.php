@@ -13,6 +13,9 @@ if (isset($_SESSION['activity'])) {
 else if (isset($_SESSION['activity']) && (time() - $_SESSION['activity'] < 1800)){
     $_SESSION['activity'] = time();
 }
+
+echo session_id();
+
 ?>
 
 <script>

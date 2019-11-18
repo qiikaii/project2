@@ -28,7 +28,7 @@
             session_start();
         }        
 
-        include 'header.php';
+        include 'header.inc.php';
         
         if (empty($_SESSION['email'])) {
             header("location:loginpage.php");
@@ -85,8 +85,7 @@
                     displayOrderByAccID($acc_id);
                 }
                 else {
-                    // TO BE IMPLEMENTED
-                    // ECHO NO ORDER
+                    echo "<h3 class='accountpageh3'> You have no past order history </h3>";
                 }
             }
         }
@@ -434,7 +433,7 @@
 
         </article>
 
-        <?php include 'footer.php';?>
+        <?php include 'footer.inc.php';?>
     </body>
 
 </html>
