@@ -42,8 +42,6 @@ if (!isset($_GET["verify_code"]) || !isset($_GET["email"])) {
     }
     $results->free_result();
     $conn->close();
-
-    
 }
 
 if ($success) {
