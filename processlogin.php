@@ -20,7 +20,7 @@ include 'header.inc.php';
 $errorMsg = $pwd = $email = "";
 $success = true;
 
-if ($_SERVER_REQUEST["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["loginbutton"])) {
         if (empty($_POST["loginemail"])) {
             $errorMsg .= "Email is required.<br>";
