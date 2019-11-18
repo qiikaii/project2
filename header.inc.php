@@ -25,8 +25,8 @@ echo session_id();
 </script>
 
 <header>
-    <nav class="navbar navbar-expand-lg" id='header' role="navigation" aria-label="Primary">
-        <nav class="navbar-header" role="navigation" aria-label="Secondary">
+    <nav class="navbar navbar-expand-lg" id='header' aria-label="Primary">
+        <nav class="navbar-header" aria-label="Secondary">
             <a class="navbar-brand" href="index.php">
                 <img class="logo" src="logo.jpeg" alt="Delta logo">
             </a>
