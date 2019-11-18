@@ -6,13 +6,14 @@ if (isset($_SESSION['activity']) && (time() - $_SESSION['activity'] >= 1800)) {
 }
 
 // If theres session, echo out session for debugging
-if (isset($_SESSION['activity'])) {
-    echo $_SESSION['activity'];
-} else if (isset($_SESSION['activity']) && (time() - $_SESSION['activity'] < 1800)) {
+//if (isset($_SESSION['activity'])) {
+//    echo $_SESSION['activity'];
+//} 
+else if (isset($_SESSION['activity']) && (time() - $_SESSION['activity'] < 1800)) {
     $_SESSION['activity'] = time();
 }
 
-echo session_id();
+//echo session_id();
 
 ?>
 
