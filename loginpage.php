@@ -14,11 +14,11 @@
         <link rel="stylesheet" href="css/loginpage.css">
         <script src="js/loginpage.js"></script>
     </head>
-
-    <main>
         <?php
         include 'header.inc.php';
         ?>    
+    <main>
+        
 
         <!-- Nav Tabs Bar -->
         <section class="containrow">
@@ -97,10 +97,9 @@
                 </section>
             </article>
         </section>
-
-        <!-- FOOTER -->
+    </main>
+    <!-- FOOTER -->
         <?php
         include 'footer.inc.php';
         ?>
-    </main>
 </html>

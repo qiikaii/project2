@@ -21,13 +21,21 @@
         session_start();
         }
         include 'header.inc.php';
-
+        $success = true;
         if (!isset($_SESSION['acc_id'])) {
-        $errorMsg = "Please login to checkout.";
-        echo "<section class=\"middle\">
-        <h4>The following input errors were detected:</h4>
-        <p> Please login to checkout. </p>
-        </section></section>";
+            $errorMsg = "Please login to checkout.";
+            $success = false;
+        }
+        
+        include 'dbcon.inc.php';
+        $checkcartsql = "SELECT COUNT(*) as count FROM cart WHERE acc_id = '$acc_id'";
+        $result = $conn->query($checkcartsql);    
+        $row = $result->fetch_assoc();
+        $result->free_result();
+        $conn->close();
+        if ($row['count'] <= 0) {
+            $errorMsg = "You have no items in cart.";
+            $success = false;
         }
         
         else {
@@ -46,6 +54,13 @@
                 </form>
             </section>
         <?php
+        }
+        
+        if (!$success) {
+            echo "<section class=\"middle\">
+            <h4>The following errors were detected:</h4>
+            <p> $errorMsg </p>
+            </section>";
         }
         include 'footer.inc.php';
         ?>

@@ -12,13 +12,14 @@
         <link rel="stylesheet" href="css/bootstrap.css"> 
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/checkout.css">
+        <link rel="stylesheet" href="css/errorstyling.css">
         <script src="js/checkout.js"></script>
     </head>
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-include "header.php";
+include "header.inc.php";
 $acc_id = $_SESSION['acc_id'];
 $address = $postal = $errorMsg = "";
 $success = true;
@@ -30,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $success = false;
         } else {
             $address = sanitize_input($_POST["address"]);
-            if (!preg_match('(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,}', $address)) {
+            if (!preg_match('/^(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,}$/', $address)) {
                 $errorMsg .= "Invalid address format.<br>";
                 $success = false;
             }
@@ -41,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $success = false;
         } else {
             $postal = sanitize_input($_POST["postal"]);
-            if (!preg_match('^[0-9]{6}$', $postal)) {
+            if (!preg_match('/^[0-9]{6}$/', $postal)) {
                 $errorMsg .= "Invalid postal code format.<br>";
                 $success = false;
             }
@@ -49,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($success == true) {
             $existorder_id = true;
-            include 'dbcon.php';
+            include 'dbcon.inc.php';
             do {
                 $order_id = mt_rand(1000000, 99999999);
                 $checkorder_id = ("SELECT order_id FROM order_info WHERE order_id = '$order_id'");
@@ -69,6 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $i = 0;
                         $count = 0;
                         $totalprice = 0;
+                        $paid = 'N';
                         $shipped = 'N';
 
                         while ($cartrow = $cartresults->fetch_assoc()) {
@@ -85,8 +87,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         }
                         $checkpriceresults->free_result();
                         $current_time = date('Y-m-d H:i:s');
-                        $orderinfosql = "INSERT INTO order_info (order_id, acc_id, order_date, order_totalprice, address, postal_code, shipped)"
-                                . " VALUES ('$order_id', '$acc_id', '$current_time', '$totalprice', '$address', '$postal', '$shipped')";
+                        $orderinfosql = "INSERT INTO order_info (order_id, acc_id, order_date, order_totalprice, address, postal_code, paid, shipped)"
+                                . " VALUES ('$order_id', '$acc_id', '$current_time', '$totalprice', '$address', '$postal', '$paid', '$shipped')";
                         $conn->query($orderinfosql);
 
                         while ($i < $count) {
@@ -113,19 +115,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 if ($success)   
 {
-    echo "<section class=\"container\"><hr>
-          <h1>Your check out is successful!</h1>
-          <h2>Your address is $address S$postal</h2><br>
-          <h2>Please paynow using the following QR code:</h2>
+    echo "<section class=\"middle\">
+          <h2>Your check out is successful!</h2>
+          <p>Your address: $address S$postal</p>
+          <p>Please PayNow a total of $$totalprice using the following QR code:</p>
           <img src=\"qrcode.png\" alt=\"Delta QR Code\">
+          <p> Key in your Order ID: $order_id as shown below for us to process orders</p>
+          <p>——— Please pay within 7 working days for us to process orders ———</p>
+          <img src=\"guide.png\" alt=\"Guide\">
 
 ";}
 else            
 {
-    echo '<section class="container"><hr>';
-    echo '<h1>Oops!</h1>';
-    echo '<h2>The following errors were detected:</h2>';
-    echo '<p>' . $errorMsg . '</p>';
+    echo "<section class=\"middle\">
+    <h4>The following errors were detected:</h4>
+    <p> $errorMsg </p>
+    </section>";
 }
 
 //Helper function that checks input for malicious or unwanted content.
@@ -137,5 +142,5 @@ $data = htmlspecialchars($data);
 return $data;
 }
 
-include "footer.php";
+include "footer.inc.php";
 ?>
