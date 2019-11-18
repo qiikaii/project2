@@ -11,9 +11,54 @@
         <link href="https://fonts.googleapis.com/css?family=Varela&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/bootstrap.css"> 
         <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/errorstyling.css">
+        <link rel="stylesheet" href="css/checkout.css">
         <script src="js/checkout.js"></script>
     </head>
+
+    <main>
+        <?php
+        include 'header.inc.php';
+        ?>    
+
+        <!-- Nav Tabs Bar -->
+        <section class="containrow">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#login">SIGN-IN</a></li>
+                <li><a data-toggle="tab" href="#register">REGISTER</a></li>
+                <li><a data-toggle="tab" href="#resetpass">FORGOT YOUR PASSWORD?</a></li>
+            </ul>
+            <article class="tab-content">
+                <!-- Login Body -->
+                <section id="login" class="tab-pane fade in active">
+                    <article class="loginbody">
+                        <h1 class="maintitle">SIGN-IN</h1>
+                        <form name="loginform" action="<?php echo htmlspecialchars("processlogin.php");?>" method="post">
+                            <label for="loginemail" class="separator">Email:
+                            <input class="separator" name="loginemail" id="loginemail" type="email" placeholder="Log in with your Email" 
+                                   size="60" maxlength="100" autocomplete="off"
+                                   pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required></label>
+                            <label for="loginpass" class="separator">Password:
+                            <input class="separator" name="loginpass" id="loginpass" type="password" placeholder="Enter your Password" 
+                                   size="60" maxlength="100" autocomplete="off" 
+                                   title="Must contain at least 8 characters with 1 uppercase, 1 lowercase and 1 number/special character."
+                                   pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}" required></label>
+                            <button class="loginbutton" name="loginbutton" id="loginbutton">LOGIN</button>
+                            <p class="separatorlink">——————— Already have an account? Sign In! ———————</p>
+                        </form>
+                    </article>
+                </section>
+
+                        </form>
+                    </article>
+                </section>
+            </article>
+        </section>
+
+        <!-- FOOTER -->
+        <?php
+        include 'footer.inc.php';
+        ?>
+    </main>
 </html>
 
 <?php
@@ -66,6 +111,8 @@ include 'footer.inc.php';
 
                 <article class="secondsection">
                     <section class="accountinfo-form">
+                        <label class="inputtitle">PHONE :</label>
+                        <input type="tel" class="accountinfo-form-style" id="handphone" name="handphone" placeholder="Enter Handphone Number " pattern="(8|9)[0-9]{7}" maxlength="8" required>
                         <label class="inputtitle">POSTAL CODE :</label>
                         <input type="tel" class="accountinfo-form-style" id="postal" name="postal" placeholder="Enter Your Postal Code" required>
                         <label class="inputtitle">ADDRESS :</label>

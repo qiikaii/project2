@@ -13,8 +13,6 @@
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/loginpage.css">
         <script src="js/loginpage.js"></script>
-        <!-- Insert Google ReCaptcha -->
-        <script src='https://www.google.com/recaptcha/api.js'></script>
     </head>
 
     <main>
@@ -44,10 +42,6 @@
                                    size="60" maxlength="100" autocomplete="off" 
                                    title="Must contain at least 8 characters with 1 uppercase, 1 lowercase and 1 number/special character."
                                    pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}" required></label>
-                            <section class="separator">
-                                <!--<article class="g-recaptcha" data-sitekey="6Ld16RYTAAAAAHYoqPeGafdXADe1ya7vEuXj871m">
-                                </article>-->
-                            </section>
                             <button class="loginbutton" name="loginbutton" id="loginbutton">LOGIN</button>
                             <p class="separatorlink">——————— Already have an account? Sign In! ———————</p>
                         </form>
@@ -78,10 +72,6 @@
                                    placeholder="Key in your password again." size="60" maxlength="100" autocomplete="off"
                                    title="Must contain at least 8 characters with 1 uppercase, 1 lowercase and 1 number/special character." 
                                    pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}" required></label> 
-                            <section class="separator">
-                                <!--<article class="g-recaptcha" data-sitekey="6Ld16RYTAAAAAHYoqPeGafdXADe1ya7vEuXj871m">
-                                </article>-->
-                            </section>
                             <button class="regibutton" name="regibutton">REGISTER</button>
                             <p class="separatorlink">—————————— New to Delta? Join us! ——————————</p>
                         </form>
@@ -101,10 +91,6 @@
                             <input class="separator" name="resetemail" id="resetemail" type="email" 
                                    placeholder="Enter your Email Address" size="60" maxlength="100" autocomplete="off"
                                    pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required></label>
-                            <section class="separator">
-                                <!--<article class="g-recaptcha" data-sitekey="6Ld16RYTAAAAAHYoqPeGafdXADe1ya7vEuXj871m">
-                                </article>-->
-                            </section>
                             <button class="resetbutton" name="resetbutton">RESET PASSWORD</button>
                         </form>
                     </article>

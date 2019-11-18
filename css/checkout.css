@@ -1,146 +1,83 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 3 Oct 2019, 7:05:54 PM
+    Author     : Xracius
+*/
 
-.body {
-    font-family: 'Varela', sans-serif;
+body {
+    height: 100%;
     background-color: white;
-    -webkit-font-smoothing: antialiased;        
-    padding: 0px;
-    padding-bottom:0;
-    height: auto;
-    width: 100%;
+    overflow-x: hidden;
 }
 
-
-.accountpagecaption{
-    font-size: 15px;
-    font-weight: normal;
-    padding-top: 25px;
+/*Login Body*/
+.loginbody {
+    border: 1px solid;
+    width: 450px;
+    height: 460px;
+    padding: 20px;
+    margin: auto;
+    background-color: white;
 }
 
-.accountinfo-form{
-    margin:0px auto !important;
-    left: auto;
-    right: auto;
-    float: none;
-    
-    
-}
-
-
-            /* Remove margin top of input forms in account page */
-.accountinfo-form{
-    margin:0px auto !important;
-    left: auto;
-    right: auto;
-    float: none;
-    
-    
-}
-
-.inputtitle{
-    padding-left: 20px; 
-    padding-top: 20px;
-}
-
-
-
-/* Style elements within the input forms in account page */
-.accountinfo-form-style {
-  display: block;
-  width: 55%;
-  height: 50px;
-  padding: 20px 15px;
-  font-size: 15px;
-  line-height: 1.42857143;
-  color: #555555;
-  background-color: #fff;
-  background-image: none;
-  border: 1px solid black;
-  border-radius: 0px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  /*box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);*/
-  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-  /*transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;*/
-  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-}
-
-.addCardForm {
-  display: block;
-  width: 55%;
-  height: 50px;
-  padding: 5px 5px !important;
-  font-size: 15px;
-  line-height: 1.42857143;
-  color: #555555;
-  background-color: #fff;
-  /*background-image: none;*/
-  border: 1px solid black;
-  border-radius: 0px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-  transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-}
-
-
-
-.ccForm{
-    width: 27.5%;
-    left: 0;
-    right: 0;
-    margin: 0 !important;
-}
-
-.ccForm-row{
-    display: flex;
-    flex-direction: row;
-}
-
-
-.btn-submit {
-  padding: 6px 12px;
-  margin: 20px;
-  color: #333;
-  background-color: #fff;
-  border-color: black;
-  border-radius: 0px;
-  
-  width: auto;
-}
-
-label{
+/*Login button*/
+.loginbutton {
+    background-color: #000;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
     font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 400px;
+    margin-top: 140px;
 }
 
-.checkoutpage{
-    padding-left: 100px;
+/*Title*/
+.maintitle {
+    font-size: 23px;
+    font-family: 'Varela', sans-serif;
+    border-bottom: 1px solid;
 }
 
-input:invalid {
-    border-color: red;
-}
-namecard,
-input:valid {
-    border-color: #ccc;
-}
-
-input:invalid {
-    border-color: red;
-}
-card,
-input:valid {
-    border-color: black;
+/* This is to format the font*/
+.separator {
+    margin: 10px 0px 0px 0px    ;
+    max-width: 100%;
+    font-family: 'Varela', sans-serif;
+    text-align: center;
 }
 
-.secondsection{
-    padding-bottom: 20px;
+.separatorlink {
+    color: #0066c0;
+    margin: 10px 0px 50px 0px;
+    max-width: 100%;
+    font-family: 'Varela', sans-serif;
+    display: inline-block;
+}
+
+/*Recaptcha*/
+.g-recaptcha {
+    display: inline-block;
+}
+
+/*Tabs*/
+.nav-tabs > li {
+    float:none;
+    display:inline-block;
+    zoom:1;
+}
+
+.nav-tabs {
+    text-align:center;
+    border-bottom: 0px;
 }
 
 
-       
