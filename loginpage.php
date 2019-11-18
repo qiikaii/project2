@@ -60,7 +60,7 @@
                                     pattern="(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,}" required></label>
                             <label for="regiemail" class="separator">Email:
                             <input class="separator" name="regiemail" id="regiemail" type="email" 
-                                   placeholder="At least 8 alphanumeric characters." size="60" maxlength="100" autocomplete="off"
+                                   placeholder="Your email address." size="60" maxlength="100" autocomplete="off"
                                    pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required></label>
                             <label for="regipass" class="separator">Password:
                             <input class="separator" name="regipass" id="regipass" type="password" 
