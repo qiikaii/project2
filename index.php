@@ -23,6 +23,9 @@ and open the template in the editor.
 
 <body>
     <?php
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
     
     include 'header.inc.php';
 

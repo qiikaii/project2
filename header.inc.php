@@ -6,16 +6,15 @@ if (isset($_SESSION['activity']) && (time() - $_SESSION['activity'] >= 1800)){
 }
 
 // If theres session, echo out session for debugging
-if (isset($_SESSION['activity'])) {
-    echo $_SESSION['activity'];
-}
+//if (isset($_SESSION['activity'])) {
+//    echo $_SESSION['activity'];
+//}
 
 else if (isset($_SESSION['activity']) && (time() - $_SESSION['activity'] < 1800)){
     $_SESSION['activity'] = time();
+    echo date('M,d,Y h:i:s A', time());
+
 }
-
-echo session_id();
-
 ?>
 
 <script>
@@ -50,7 +49,9 @@ echo session_id();
                 <?php
                 if (isset($_SESSION['acc_id'])) {
                 echo "<li class=\"nav-item\"><a href=\"/project2/cartpage.php\">CART</a></li>                    
+                <li class=\"nav-item\"><a href=\"/project2/account.php\"><span class=\"glyphicon glyphicon-user\"></span> ACCOUNT</a></li>
                 <li class=\"nav-item\"><a href=\"/project2/logout.php\"><span class=\"glyphicon glyphicon-log-out\"></span> LOGOUT</a></li>";
+
                 }
                 else {
                 echo "<li class=\"nav-item\"><a href=\"/project2/loginpage.php\"><span class=\"glyphicon glyphicon-log-in\"></span> LOGIN</a></li>";
