@@ -1,28 +1,61 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>DELTA - CHECK OUT</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Top 1 self-designed fashion in Singapore">
+        <meta name="keyword" content="fashion, designer platform, Singapore, self-designed clothes, self-designed fashion, trending fashion, trending design, trending in Singapore, Singapore fashion, Singapore home design fashion, online shopping fashion">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Varela&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/bootstrap.css"> 
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/errorstyling.css">
+        <script src="js/checkout.js"></script>
+    </head>
+</html>
 
-<head>
-    <title>DELTA - CHECK OUT</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Top 1 self-designed fashion in Singapore">
-    <meta name="keyword" content="fashion, designer platform, Singapore, self-designed clothes, self-designed fashion, trending fashion, trending design, trending in Singapore, Singapore fashion, Singapore home design fashion, online shopping fashion">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!--<script src="js/main.js"></script>-->
-    <script src="js/checkout.js"></script>
-    <link rel="stylesheet" href="css/checkout.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link href="https://fonts.googleapis.com/css?family=Varela&display=swap" rel="stylesheet">
-
-</head>
-
-<h1></h1>
 <?php
-include "header.php";
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+include 'header.inc.php';
+$acc_id = $_SESSION['acc_id'];
+$errorMsg = "";
+$success = true;
+
+if (!isset($_SESSION['acc_id'])) {
+    $errorMsg = "Please login to checkout.";
+    $cartsuccess = false;
+ 
+} else {
+    $acc_id = $_SESSION['acc_id'];
+    include 'dbcon.inc.php';
+    if ($conn->connect_error) {
+        $errorMsg = "Connection failed: " . $conn->connect_error;
+        $success = false;
+    } else {
+       
+}
+
+if (!$success) {
+    echo "<section class=\"middle\">
+    <h4>The following input errors were detected:</h4>
+    <p>" . $errorMsg . "</p>
+    </section></section>";
+}
+
+if (!$cartsuccess) {
+    echo "<section class=\"middle\">
+    <p>" . $errorMsg . "</p>
+    </section>";
+}
+
+include 'footer.inc.php';
+
 ?>
+
 
 <body>
     <section class="checkoutpage">
@@ -33,8 +66,6 @@ if (session_status() == PHP_SESSION_NONE) {
 
                 <article class="secondsection">
                     <section class="accountinfo-form">
-                        <label class="inputtitle">PHONE :</label>
-                        <input type="tel" class="accountinfo-form-style" id="handphone" name="handphone" placeholder="Enter Handphone Number " pattern="(8|9)[0-9]{7}" maxlength="8" required>
                         <label class="inputtitle">POSTAL CODE :</label>
                         <input type="tel" class="accountinfo-form-style" id="postal" name="postal" placeholder="Enter Your Postal Code" required>
                         <label class="inputtitle">ADDRESS :</label>

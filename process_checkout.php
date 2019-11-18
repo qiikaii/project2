@@ -20,11 +20,8 @@ $handphone = $postal = $address = $card = $expday = $expmonth = $cvv = $namecard
 $success = true;
 // ANDY CODES START HERE
 $acc_id = $_SESSION['acc_id'];
-$address = $_POST['address']; // temporary measure
-$postal = $_POST['postal']; //Temporary measure
-// ANDY CODES END HERE
-   
-            // START OF ANDY CODES
+$address = $_POST['address'];
+$postal = $_POST['postal']; 
             $existorder_id = true;
             include 'dbcon.php';
             do {
