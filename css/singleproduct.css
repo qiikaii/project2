@@ -91,9 +91,6 @@ html.magnifying > body {
 .top-buffer{
     margin-top: 20px;
 }
-.margin-size{
-    margin: auto;
-}
 .form-group{
     margin-top: 100px;
 }
@@ -151,7 +148,7 @@ label{
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
+    margin: 10px 2px;
     cursor: pointer;
 }
 .cart-button:link {
