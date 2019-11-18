@@ -14,7 +14,6 @@
 </html>
 
 <?php
-include 'header.php';
 $errorMsg = "";
 $success = true;
 
@@ -22,99 +21,105 @@ $success = true;
     session_start();
 }        
 
+include 'header.inc.php';
+
 $session = $_SESSION['email']; // Email
 $acc_id = $_SESSION['acc_id']; // Account_ID
 
-if (isset($_POST["updatepwd"])) {
-    if (empty($_POST["pwd"])) {
-        $errorMsg .= "Password is required.<br>";
-        $success = false;
-    } 
-    else {
-        $pwd = sanitize_input($_POST["pwd"]);
-
-         if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$/', $pwd)) {
-            $errorMsg .= "Input: Password has an invalid format<br>";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["updatepwd"])) {
+        if (empty($_POST["pwd"])) {
+            $errorMsg .= "Password is required.<br>";
             $success = false;
-        }
-
-    }
-
-    if (empty($_POST["newpwd"])) {
-        $errorMsg .= "New password is required.<br>";
-        $success = false;
-    }
-    
-    else {
-        $newpwd = sanitize_input($_POST["newpwd"]);
-         if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$/', $newpwd)) {
-            $errorMsg .= "Input: New Password has an invalid format<br>";
-            $success = false;
-        }
-
-    }
-
-    if (empty($_POST["cfmnewpwd"])) {
-        $errorMsg .= "Confirm new password is required.<br>";
-        $success = false;
-    }
-    
-    else {
-        $cfmnewpwd = sanitize_input($_POST["cfmnewpwd"]);
-         if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$/', $cfmnewpwd)) {
-            $errorMsg .= "Input: Confirm new password has an invalid format<br>";
-            $success = false;
-        }
-
-    }
-
-    if ($newpwd != $cfmnewpwd) {
-        $errorMsg .= "New Password and Confirm New Password must be the same.<br>";
-        $success = false;
-    }
-    
-    if ($newpwd == $pwd || $cfmnewpwd == $pwd) {
-        $errorMsg .= "New password must not be same as old password!<br>";
-        $success = false;       
-    }
-    
-
-    if ($success == true){
-        include 'dbcon.php';
-        if ($conn->connect_error) {
-            $errorMsg .= "Connection Failed: " . $conn->connect_error;
-            $success = false;
-        }
-        
+        } 
         else {
-            $sql = ("SELECT * FROM account WHERE acc_id = '$acc_id'");
-            $results = $conn->query($sql);
-            if ($results->num_rows == 1){
-                $row = $results->fetch_assoc();
-                $results->free_result();
-                $conn->close();
-                if (password_verify($pwd, $row['password']) == false){
-                    $errorMsg .= "Wrong Password. Please retype password. " .$conn->connect_error;
-                    $success = false;
-                }
-                else {
-                    updatepw($cfmnewpwd, $session, $acc_id);    
-                }
-                
-            }
-            
-            else {
-                $errorMsg .= "Wrong Password. Please retype password." . $conn->connect_error;
+            $pwd = sanitize_input($_POST["pwd"]);
+
+             if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$/', $pwd)) {
+                $errorMsg .= "Input: Password has an invalid format<br>";
                 $success = false;
             }
+
+        }
+
+        if (empty($_POST["newpwd"])) {
+            $errorMsg .= "New password is required.<br>";
+            $success = false;
+        }
+
+        else {
+            $newpwd = sanitize_input($_POST["newpwd"]);
+             if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$/', $newpwd)) {
+                $errorMsg .= "Input: New Password has an invalid format<br>";
+                $success = false;
+            }
+
+        }
+
+        if (empty($_POST["cfmnewpwd"])) {
+            $errorMsg .= "Confirm new password is required.<br>";
+            $success = false;
+        }
+
+        else {
+            $cfmnewpwd = sanitize_input($_POST["cfmnewpwd"]);
+             if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$/', $cfmnewpwd)) {
+                $errorMsg .= "Input: Confirm new password has an invalid format<br>";
+                $success = false;
+            }
+
+        }
+
+        if ($newpwd != $cfmnewpwd) {
+            $errorMsg .= "New Password and Confirm New Password must be the same.<br>";
+            $success = false;
+        }
+
+        if ($newpwd == $pwd || $cfmnewpwd == $pwd) {
+            $errorMsg .= "New password must not be same as old password!<br>";
+            $success = false;       
+        }
+
+
+        if ($success == true){
+            include 'dbcon.php';
+            if ($conn->connect_error) {
+                $errorMsg .= "Connection Failed: " . $conn->connect_error;
+                $success = false;
+            }
+
+            else {
+                $sql = ("SELECT * FROM account WHERE acc_id = '$acc_id'");
+                $results = $conn->query($sql);
+                if ($results->num_rows == 1){
+                    $row = $results->fetch_assoc();
+                    $results->free_result();
+                    $conn->close();
+                    if (password_verify($pwd, $row['password']) == false){
+                        $errorMsg .= "Wrong Password. Please retype password. " .$conn->connect_error;
+                        $success = false;
+                    }
+                    else {
+                        updatepw($cfmnewpwd, $session, $acc_id);    
+                    }
+
+                }
+
+                else {
+                    $errorMsg .= "Wrong Password. Please retype password." . $conn->connect_error;
+                    $success = false;
+                }
+            }
         }
     }
-}
     
-else {
-    $errorMsg = "Please submit the form from the register page.<br>";
-    $success = false;
+    else {
+        $errorMsg = "Please submit the form from the register page.<br>";
+        $success = false;
+    }
 }
+
+
 
 function updatepw($cfmnewpwd, $session, $acc_id){
     $errorMsg = "";
@@ -154,6 +159,6 @@ if (!$success) {
     </section>";
 }
 
-include 'footer.php';
+include 'footer.inc.php';
 
 ?>

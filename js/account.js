@@ -3,7 +3,82 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+/* Start of Update Password Validation */
+document.getElementById('pwd').addEventListener('input', validateOldPw);
+document.getElementById('newpwd').addEventListener('input', validateNewPw);
+document.getElementById('cfmnewpwd').addEventListener('input', validateCfmNewPw);
 
+function validateOldPw(event){
+    var pwd = document.getElementById('pwd');
+    var r = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}/;
+    pwd.setCustomValidity('');
+    if (pwd.value === ""){
+        pwd.setCustomValidity("Old Password can't be blank");
+        pwd.reportValidity();
+        event.preventDefault();
+    }
+    
+    else if (r.test(pwd.value) === false){
+        pwd.setCustomValidity('Must contain at least 8 characters with 1 uppercase, 1 lowercase and 1 number/special character.');
+        pwd.reportValidity();
+        event.preventDefault();   
+        return false;
+    }
+    else if (r.test(pwd.value) === true){
+        return true;
+    }
+}
+
+function validateNewPw(event){
+    var newpwd = document.getElementById('newpwd');
+    var r = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}/;
+    newpwd.setCustomValidity('');
+    if (newpwd.value === ""){
+        newpwd.setCustomValidity("New Password can't be blank");
+        newpwd.reportValidity();
+        event.preventDefault();
+    }
+    
+    else if (r.test(newpwd.value) === false){
+        newpwd.setCustomValidity('Must contain at least 8 characters with 1 uppercase, 1 lowercase and 1 number/special character.');
+        newpwd.reportValidity();
+        event.preventDefault();   
+        return false;
+    }
+    else if (r.test(newpwd.value) === true){
+        return true;
+    }
+}
+
+function validateCfmNewPw(event){
+    var cfmnewpwd = document.getElementById('cfmnewpwd');
+    var newpwd = document.getElementById('newpwd');
+    var r = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}/;
+    cfmnewpwd.setCustomValidity('');
+    if (cfmnewpwd.value === ""){
+        cfmnewpwd.setCustomValidity("Confirm New Password can't be blank");
+        cfmnewpwd.reportValidity();
+        event.preventDefault();
+    }
+    
+    else if (r.test(cfmnewpwd.value) === false){
+        cfmnewpwd.setCustomValidity('Must contain at least 8 characters with 1 uppercase, 1 lowercase and 1 number/special character.');
+        cfmnewpwd.reportValidity();
+        event.preventDefault();   
+        return false;
+    }
+    
+    else if (cfmnewpwd.value !== newpwd.value){
+        cfmnewpwd.setCustomValidity('Password doesnt match');
+        cfmnewpwd.reportValidity();
+        event.preventDefault();   
+        return false;
+    }
+    else if (r.test(cfmnewpwd.value) === true){
+        return true;
+    }
+    
+}
 
 $(document).ready(function() {
     $('.zoom').magnify();
@@ -71,63 +146,6 @@ function paymenttab(){
     tablinks[0].className = tablinks[2].className.replace(" active", "");
 }
 
-/* Start of Validation */
-document.getElementById('email').addEventListener('input', validateEmail)
-
-$('#email').change(function(){
-    $('#email').validateEmail();
-});    
-    
-function validateEmail(){
-    var emailInput = document.getElementById('email');
-    var r = new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/);
-    if (r.test(emailInput.value) == false){
-        emailInput.setCustomValidity('JS: Please enter a valid email address');
-    }
-    else if (r.test(emailInput.value) == true){
-        return true;
-    }
-}
-
-document.getElementById('firstname').addEventListener('input', validateName)
-
-function validateName(){
-    var name = document.getElementById('firstname').value;
-    var r=/[A-Za-z]{3,50}/;
-    if (r.test(name.value) == false){
-        name.setCustomValidity('JS: Name can only contain letter, at least 3 characters long and not mroe than 50 characters');
-    }
-    else if (r.test(name.value) == true){
-        return true;
-    }
-}
-
-document.getElementById('pw').addEventListener('input', validatePw)
-
-function validatePw(){
-    var pw = document.getElementById('pw');
-    var r=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$/;
-    if (r.test(pw.value) == false){
-        pw.setCustomValidity('JS: 1 uppercase, 1 lowercase, 1 number, 1 special character');
-    }
-    else if (r.test(pw.value) == true){
-        return true;
-    }
-}
-
-
-document.getElementById('card').addEventListener('input', validateCard)
-
-function validateCard(){
-    var card = document.getElementById('card').value;
-    var r=/^\d{16}$/;
-    if (r.test(card) == false){
-        card.setCustomValidity('JS: Please enter a valid 16 digit card numbers');
-    }
-    else if (r.test(card) == true){
-        return true;
-    }
-}
 
 }
 

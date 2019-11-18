@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
     <head>
         <title>DELTA - MY ACCOUNT</title>
         <meta charset="UTF-8">
@@ -9,13 +9,12 @@
         <meta name="keyword" content="fashion, designer platform, Singapore, self-designed clothes, self-designed fashion, trending fashion, trending design, trending in Singapore, Singapore fashion, Singapore home design fashion, online shopping fashion">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-        <script src="js/slideshow.js"></script>
         <script src="js/main.js"></script>
         <script src="js/account.js"></script>
         <link rel="stylesheet" href="css/bootstrap.css"> 
         <link href="https://fonts.googleapis.com/css?family=Varela&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/font-awesome.css">
+        <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
         <link rel="stylesheet" href="css/account.css">
         <link rel="stylesheet" href="css/accountsmall.css" media="screen and (max-width: 700px)">
         <link rel="stylesheet" href="css/accountmedium.css" media="screen and (min-width: 701px) and (max-width: 1200px)">
@@ -24,10 +23,10 @@
     <body>
         
     <?php
-        if (session_status() == PHP_SESSION_NONE){
+        if (session_status() == PHP_SESSION_NONE) {
             session_start();
-        }        
-
+        }
+        
         include 'header.inc.php';
         
         if (empty($_SESSION['email'])) {
@@ -37,8 +36,7 @@
         $email = $_SESSION['email']; // Email
         $acc_id = $_SESSION['acc_id']; // Account_ID
         echo $acc_id;
-        include'dbcon.php';
-        //echo "<script type='text/javascript'>alert('hello');</script>";
+        include'dbcon.inc.php';
 
         // Get name of user based on email
         function getName($email) {
@@ -108,42 +106,42 @@
                     $order_date = $row['order_date'];
                     $order_total_price = $row['order_total_price'];
                     $shipped = $row['shipped'];
-                    echo "<article class='container-fluid ordercontainer'><section class = 'row text-center'>"
-                        . "<h3 class = 'accountpageh3'>";
+                    echo "<article class='container-fluid ordercontainer'><section class = 'row text-center'>";
+                    echo "<h3 class = 'accountpageh3'>";
                     if ($shipped == 'Y') {
-                        echo "WE'VE SENT IT!! </h3>";
+                        echo "WE HAVE SENT IT!!";
                     }
                     else {
-                        echo "WE'RE STILL PROCESSING YOUR ORDER.. </h3>";
+                        echo "WE ARE STILL PROCESSING YOUR ORDER..";
                     }
-                    echo "<p class='orderdescription'>ORDER NO.: $order_id </p>"
-                        ."<p class='orderdescription'>TOTAL PRICE: $order_total_price </p>"
-                        ."<p class='orderdescription orderline'>ORDER DATE: $order_date </p>"
-                        ."<article>";
+                    echo "</h3> <p class='orderdescription'>ORDER NO.: $order_id </p>";
+                    echo "<p class='orderdescription'>TOTAL PRICE: $order_total_price </p>";
+                    echo "<p class='orderdescription orderline'>ORDER DATE: $order_date </p>";
+                    echo "<article>";
                         displayOrderImages($order_id);
-                    echo "</article>"
-                        ."<br> <button type='button' class='btn1 btn-submit' data-toggle='modal' data-target='#orderModalPopup'> VIEW ORDER </button>"
-                        ."<section class='orderModal fade text-center' id='orderModalPopup' tabindex='-1' role='dialog'>"
-                            ."<article class='modal-dialog' role='document'>"
-                                ."<article class='orderDetails-content'>"
-                                    ."<header class='modal-header'>"
-                                        ."<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>"
-                                        ."<h4 class='modal-title'> ORDER DETAILS </h4>"
-                                    ."</header>"
-                                    ."<article class='modal-body>"
-                                        ."<h3 class='accountpageh3'>";
-                                        if ($shipped == 'Y') {
-                                            echo "WE'VE SENT IT!! </h3>";
-                                        }
-                                        else {
-                                            echo "WE'RE STILL PROCESSING YOUR ORDER.. </h3>";
-                                        }
-                                    echo "<p class='orderdescription'>ORDER NO.: $order_id </p>"
-                                        ."<p class='orderdescription'>TOTAL PRICE: $order_total_price </p>"
-                                        ."<p class='orderdescription orderline'>ORDER DATE: $order_date </p>"
-                                        ."<section>";
-                                        displayItemDetails($order_id);
-                                    echo "</section> </article> </article> </article> </section> </section> </article>";
+                    echo "</article>";
+                    echo "<br> <button type='button' class='btn1 btn-submit' data-toggle='modal' data-target='#orderModalPopup'> VIEW ORDER </button>";
+                    echo "<section class='orderModal fade text-center' id='orderModalPopup' tabindex='-1' role='dialog'>";
+                    echo "<article class='modal-dialog' role='document'>";
+                    echo "<article class='orderDetails-content'>";
+                    echo "<header class='modal-header'>";
+                    echo "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
+                    echo "<h4 class='modal-title'> ORDER DETAILS </h4>";
+                    echo "</header>";
+                    echo "<article class='modal-body>";
+                    echo "<h3 class = 'accountpageh3'>";
+                        if ($shipped == 'Y') {
+                            echo " WE HAVE SENT IT!! ";
+                        }
+                        else {
+                            echo " WE ARE STILL PROCESSING YOUR ORDER.. ";
+                        }
+                    echo "</h3> <p class='orderdescription'>ORDER NO.: $order_id </p>";
+                    echo "<p class='orderdescription'>TOTAL PRICE: $order_total_price </p>";
+                    echo "<p class='orderdescription orderline'>ORDER DATE: $order_date </p>";
+                    echo "<section>";
+                        displayItemDetails($order_id);
+                    echo "</section> </article> </article> </article> </section> </section> </article>";
 
                 }
             }
@@ -170,13 +168,12 @@
                     $product_name = $row['product_name'];
                     $qty = $row['quantity'];
                     $product_price = $row['product_price'];
-                    echo "<figure class='containter-fluid ordericon' id='wrapper'>"
-                        ."<a href='$product_col-php/$product_col$item_id.php'><img class='ordericon' src='$img_source' alt='$product_name'> </a>";
-                    echo "<figcaption class='price text-center'>$product_name </figcaption>"
-                        ."<h4 class='price text-center'>"
-                        ."<span class='visible-xs visible visible-sm visible-md'>$product_price /pc </span>"
-                        ."<span class='visible-xs visible visible-sm visible-md'>$size</span>"
-                        ."<span class='visible-xs visible visible-sm visible-md'>$qty pc </span> </h4> </figure>";
+                    echo "<figure class='containter-fluid ordericon'>";
+                    echo "<a href='$product_col-php/$product_col$item_id.php'><img class='ordericon' src='$img_source' alt='$product_name'> </a>";
+                    echo "<figcaption class='price text-center'>$product_name";
+                    echo "<span class='visible-xs visible visible-sm visible-md visible-lg'>$product_price /pc </span>";
+                    echo "<span class='visible-xs visible visible-sm visible-md visible-lg'>$size</span>";
+                    echo "<span class='visible-xs visible visible-sm visible-md visible-lg'>$qty pc </span> </figcaption> </figure>";
                 }
             }
         }
@@ -199,10 +196,47 @@
                     $img_source = $row['img_source'];
                     $size = $row['size'];
                     $product_name = $row['product_name'];
-                    echo "<img class='ordericon' src='$img_source' alt='$product_name $size'";
+                    echo "<img class='ordericon' src='$img_source' alt='$product_name $size'>";
                 }
             }
         }
+
+//        // Display credit cards of user
+//        function displayCreditCard($acc_id){
+//            $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME); // connect to  database
+//            $errorMsg = "";
+//            $sucess = true;
+//            if ($conn->connect_error) {
+//                $errorMsg .= "Connection failed at displayCrediCard: " .$conn->connect_error;
+//                $success = false;
+//            }
+//
+//            else {
+//                $sql = "SELECT card_no, year(exp_date) as year, month(exp_date) as month, card_name FROM credit_card where acc_id = $acc_id";
+//                $result = $conn->query($sql);
+//                $rowcount=mysqli_num_rows($result);
+//
+//                if ($rowcount > 0) {
+//                    while ($row = $result->fetch_assoc()){
+//                        $card_no = $row['card_no'];
+//                        $exp_date_year = $row['year'];
+//                        $exp_date_month = $row['month'];
+//                        $card_name = $row['card_name'];
+//
+//                        echo "<section class='row align-left'>"
+//                            ."<i class='fab fa-cc-visa fa-lg fa-5x'></i>"
+//                            ."<span class='orderdescription'>CARD NO: ($card_no) </span>"
+//                            ."<span class='orderdescription'>CARD NAME: $card_name </span>"
+//                            ."<span class='orderdescription'>EXP: $exp_date_month/$exp_date_year</span>"
+//                            ."<button type='submit' name='deletecard' id='deletecard' class='btn btn-delete orderline' value=$card_no> DELETE CARD </button> </section>";
+//                    }
+//                }
+//                else {
+//                    echo "<h3 class='accountpageh3'> You have no credit card </h3>";
+//                }
+//                
+//            }
+//        }
 
         
         
@@ -217,7 +251,7 @@
             <nav class="tab d-flex justify-content-center">
                 <button class="tablinks" id='accountinfo'><span class="glyphicon glyphicon-user"></span>  Account Info</button>
                 <button class="tablinks" id='orders'><span class="glyphicon glyphicon-shopping-cart"></span>  My Orders</button>
-                <button class="tablinks" id='payment'><span class="glyphicon glyphicon-credit-card"></span>  Payment Methods</button>
+<!--                <button class="tablinks" id='payment'><span class="glyphicon glyphicon-credit-card"></span>  Payment Methods</button>-->
             </nav>
 
             <figure id="default" class="defaulttab ">
@@ -234,14 +268,14 @@
                 <form name='accountForm' class="accountinfo-form" method="post" action="<?php echo htmlspecialchars('updatepw.php') ?>">
                         <label for='email' class="inputtitle">EMAIL : </label>
                         <input readonly='readonly' type="email" class="accountinfo-form-style" id="email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" value="<?php echo $email ?>">
-                        <label for='firstname'class="inputtitle">NAME : </label>
+                        <label for='firstname' class="inputtitle">NAME : </label>
                         <input readonly='readonly' type="text" class="accountinfo-form-style" id="firstname" pattern="(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,30}" value="<?php getName($email) ?>" >
                         <label for='pwd' class="inputtitle">PASSWORD : </label>
-                        <input type="password" class="accountinfo-form-style" name="pwd" id="pwd" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$" value="" />
+                        <input type="password" class="accountinfo-form-style" name="pwd" id="pwd" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,60}$" value="" />
                         <label for='newpwd' class='inputtitle'> NEW PASSWORD : </label>
-                        <input type='password' class='accountinfo-form-style' name="newpwd" id='newpwd' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$" value="" /> 
+                        <input type='password' class='accountinfo-form-style' name="newpwd" id='newpwd' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,60}$" value="" /> 
                         <label for='cfmnewpwd' class='inputtitle'> CONFIRM NEW PASSWORD : </label>
-                        <input type='password' class='accountinfo-form-style' name="cfmnewpwd" id='cfmnewpwd' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$" value="" />
+                        <input type='password' class='accountinfo-form-style' name="cfmnewpwd" id='cfmnewpwd' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,60}$" value="" />
                         <button type="submit" name="updatepwd" id="updatepwd" class="btn1 btn-submit">Update Password</button>
                 </form>
             </section>
@@ -324,19 +358,25 @@
                 </article>
             </section>
 
-            <section id="payment1" class="tabitems text-center">
+<!--            <section id="payment1" class="tabitems text-center">
                 <h1 class="accountpageh1"><span class="glyphicon glyphicon-credit-card"></span>  PAYMENT METHODS</h1>
+                <p class="accountpagecaption text-center">We only accept MasterCard with a limit of 2 cards per account</p>
                 <button type="button" class="btn1 btn-addcard" data-toggle="modal" data-target="#paymentModalPopup">ADD NEW PAYMENT METHOD</button>
                 
                 
                 <article class="container-fluid ordercontainer">
-                    <section class='row align-left'>
-                        <p align ='left' class="accountpageh3"></h3>
-                        <p align = 'left' class='orderdescription'>ORDER NO.: 00150001300</p>
-                        <p align = 'left' class='orderdescription orderline'>SHIPPED DATE: 07 Oct, 2019</p>
-                    </section>
+                    <?php echo displayCreditCard($acc_id); ?>
+                     <section class='row align-left'>
+                        <i class="fab fa-cc-visa fa-lg fa-5x"></i>
+                        <span class='orderdescription'>CARD NO.: (XXXX)</span>
+                        <span class='orderdescription'>KEITH FOO QI KAI</span>
+                        <span class='orderdescription'>EXP: XX/XX </span>
+                        <button type="submit"  name="updatepwd" id="updatepwd" class="btn btn-delete orderline">Delete Card</button>
+
+                    </section> 
+
                 </article>
-                <!-- Popup modal upon clicking ADD NEW PAYMENT METHOD button -->
+                 Popup modal upon clicking ADD NEW PAYMENT METHOD button 
                 <article class="paymentModal fade text-center" id="paymentModalPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <article class="modal-dialog" role="form">
                         <form name='addPaymentForm' class="addpayment-content">
@@ -350,69 +390,34 @@
                                 <label for="exp-month" class="inputtitle">EXPIRY DATE</label>
                                 <article class="ccForm-row">
 
-<!--                                    <select class="addCardForm ccForm" id="exp-month">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>
-                                        <option value="23">23</option>
-                                        <option value="24">24</option>
-                                        <option value="25">25</option>
-                                        <option value="26">26</option>
-                                        <option value="27">27</option>
-                                        <option value="28">29</option>
-                                        <option value="29">29</option>
-                                        <option value="30">30</option>
-                                        <option value="31">31</option>
-
-
-                                    </select>-->
                                     <select class="addCardForm ccForm" id="exp-month">
-                                        <option value="1">JANUARY</option>
-                                        <option value="2">FEBRUARY</option>
-                                        <option value="3">MARCH</option>
-                                        <option value="4">APRIL</option>
-                                        <option value="5">MAY</option>
-                                        <option value="6">JUNE</option>
-                                        <option value="7">JULY</option>
-                                        <option value="8">AUGUST</option>
-                                        <option value="90">SEPTEMBER</option>
-                                        <option value="10">OCTOBER</option>
-                                        <option value="11">NOVEMBER</option>
-                                        <option value="12">DECEMBER</option>
+                                        <option value=1>JANUARY</option>
+                                        <option value=2>FEBRUARY</option>
+                                        <option value=3>MARCH</option>
+                                        <option value=4>APRIL</option>
+                                        <option value=5>MAY</option>
+                                        <option value=6>JUNE</option>
+                                        <option value=7>JULY</option>
+                                        <option value=8>AUGUST</option>
+                                        <option value=9>SEPTEMBER</option>
+                                        <option value=10>OCTOBER</option>
+                                        <option value=11>NOVEMBER</option>
+                                        <option value=12>DECEMBER</option>
 
                                     </select>
                                     <select class="addCardForm ccForm" id="exp-year">
-                                        <option value="19">2019</option>
-                                        <option value="20">2020</option>
-                                        <option value="21">2021</option>
-                                        <option value="22">2022</option>
-                                        <option value="23">2023</option>
-                                        <option value="24">2024</option>
-                                        <option value="25">2025</option>
-                                        <option value="26">2026</option>
-                                        <option value="27">2027</option>
-                                        <option value="28">2028</option>
-                                        <option value="29">2029</option>
-                                        <option value="30">2030</option>
+                                        <option value=19>2019</option>
+                                        <option value=20>2020</option>
+                                        <option value=21>2021</option>
+                                        <option value=22>2022</option>
+                                        <option value=23>2023</option>
+                                        <option value=24>2024</option>
+                                        <option value=25>2025</option>
+                                        <option value=26>2026</option>
+                                        <option value=27>2027</option>
+                                        <option value=28>2028</option>
+                                        <option value=29>2029</option>
+                                        <option value=30>2030</option>
 
                                     </select>
                                 </article>
@@ -429,7 +434,7 @@
                 </article>
 
 
-            </section>
+            </section>-->
 
         </article>
 
