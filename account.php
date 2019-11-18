@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
     <head>
         <title>DELTA - MY ACCOUNT</title>
         <meta charset="UTF-8">
@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="css/bootstrap.css"> 
         <link href="https://fonts.googleapis.com/css?family=Varela&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/main.css">
-        <link href=“https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+        <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
         <link rel="stylesheet" href="css/account.css">
         <link rel="stylesheet" href="css/accountsmall.css" media="screen and (max-width: 700px)">
         <link rel="stylesheet" href="css/accountmedium.css" media="screen and (min-width: 701px) and (max-width: 1200px)">
@@ -37,7 +37,6 @@
         $acc_id = $_SESSION['acc_id']; // Account_ID
         echo $acc_id;
         include'dbcon.inc.php';
-        //echo "<script type='text/javascript'>alert('hello');</script>";
 
         // Get name of user based on email
         function getName($email) {
@@ -107,42 +106,42 @@
                     $order_date = $row['order_date'];
                     $order_total_price = $row['order_total_price'];
                     $shipped = $row['shipped'];
-                    echo "<article class='container-fluid ordercontainer'><section class = 'row text-center'>"
-                        . "<h3 class = 'accountpageh3'>";
+                    echo "<article class='container-fluid ordercontainer'><section class = 'row text-center'>";
+                    echo "<h3 class = 'accountpageh3'>";
                     if ($shipped == 'Y') {
-                        echo "WE'VE SENT IT!! </h3>";
+                        echo "WE HAVE SENT IT!!";
                     }
                     else {
-                        echo "WE'RE STILL PROCESSING YOUR ORDER.. </h3>";
+                        echo "WE ARE STILL PROCESSING YOUR ORDER..";
                     }
-                    echo "<p class='orderdescription'>ORDER NO.: $order_id </p>"
-                        ."<p class='orderdescription'>TOTAL PRICE: $order_total_price </p>"
-                        ."<p class='orderdescription orderline'>ORDER DATE: $order_date </p>"
-                        ."<article>";
+                    echo "</h3> <p class='orderdescription'>ORDER NO.: $order_id </p>";
+                    echo "<p class='orderdescription'>TOTAL PRICE: $order_total_price </p>";
+                    echo "<p class='orderdescription orderline'>ORDER DATE: $order_date </p>";
+                    echo "<article>";
                         displayOrderImages($order_id);
-                    echo "</article>"
-                        ."<br> <button type='button' class='btn1 btn-submit' data-toggle='modal' data-target='#orderModalPopup'> VIEW ORDER </button>"
-                        ."<section class='orderModal fade text-center' id='orderModalPopup' tabindex='-1' role='dialog'>"
-                            ."<article class='modal-dialog' role='document'>"
-                                ."<article class='orderDetails-content'>"
-                                    ."<header class='modal-header'>"
-                                        ."<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>"
-                                        ."<h4 class='modal-title'> ORDER DETAILS </h4>"
-                                    ."</header>"
-                                    ."<article class='modal-body>"
-                                        ."<h3 class='accountpageh3'>";
-                                        if ($shipped == 'Y') {
-                                            echo "WE'VE SENT IT!! </h3>";
-                                        }
-                                        else {
-                                            echo "WE'RE STILL PROCESSING YOUR ORDER.. </h3>";
-                                        }
-                                    echo "<p class='orderdescription'>ORDER NO.: $order_id </p>"
-                                        ."<p class='orderdescription'>TOTAL PRICE: $order_total_price </p>"
-                                        ."<p class='orderdescription orderline'>ORDER DATE: $order_date </p>"
-                                        ."<section>";
-                                        displayItemDetails($order_id);
-                                    echo "</section> </article> </article> </article> </section> </section> </article>";
+                    echo "</article>";
+                    echo "<br> <button type='button' class='btn1 btn-submit' data-toggle='modal' data-target='#orderModalPopup'> VIEW ORDER </button>";
+                    echo "<section class='orderModal fade text-center' id='orderModalPopup' tabindex='-1' role='dialog'>";
+                    echo "<article class='modal-dialog' role='document'>";
+                    echo "<article class='orderDetails-content'>";
+                    echo "<header class='modal-header'>";
+                    echo "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
+                    echo "<h4 class='modal-title'> ORDER DETAILS </h4>";
+                    echo "</header>";
+                    echo "<article class='modal-body>";
+                    echo "<h3 class = 'accountpageh3'>";
+                        if ($shipped == 'Y') {
+                            echo " WE HAVE SENT IT!! ";
+                        }
+                        else {
+                            echo " WE ARE STILL PROCESSING YOUR ORDER.. ";
+                        }
+                    echo "</h3> <p class='orderdescription'>ORDER NO.: $order_id </p>";
+                    echo "<p class='orderdescription'>TOTAL PRICE: $order_total_price </p>";
+                    echo "<p class='orderdescription orderline'>ORDER DATE: $order_date </p>";
+                    echo "<section>";
+                        displayItemDetails($order_id);
+                    echo "</section> </article> </article> </article> </section> </section> </article>";
 
                 }
             }
@@ -169,12 +168,12 @@
                     $product_name = $row['product_name'];
                     $qty = $row['quantity'];
                     $product_price = $row['product_price'];
-                    echo "<figure class='containter-fluid ordericon' id='wrapper'>"
-                        ."<a href='$product_col-php/$product_col$item_id.php'><img class='ordericon' src='$img_source' alt='$product_name'> </a>";
-                    echo "<figcaption class='price text-center'>$product_name "
-                        ."<span class='visible-xs visible visible-sm visible-md visible-lg'>$product_price /pc </span>"
-                        ."<span class='visible-xs visible visible-sm visible-md visible-lg'>$size</span>"
-                        ."<span class='visible-xs visible visible-sm visible-md visible-lg'>$qty pc </span> </figcaption> </figure>";
+                    echo "<figure class='containter-fluid ordericon'>";
+                    echo "<a href='$product_col-php/$product_col$item_id.php'><img class='ordericon' src='$img_source' alt='$product_name'> </a>";
+                    echo "<figcaption class='price text-center'>$product_name";
+                    echo "<span class='visible-xs visible visible-sm visible-md visible-lg'>$product_price /pc </span>";
+                    echo "<span class='visible-xs visible visible-sm visible-md visible-lg'>$size</span>";
+                    echo "<span class='visible-xs visible visible-sm visible-md visible-lg'>$qty pc </span> </figcaption> </figure>";
                 }
             }
         }
@@ -197,7 +196,7 @@
                     $img_source = $row['img_source'];
                     $size = $row['size'];
                     $product_name = $row['product_name'];
-                    echo "<img class='ordericon' src='$img_source' alt='$product_name $size'";
+                    echo "<img class='ordericon' src='$img_source' alt='$product_name $size'>";
                 }
             }
         }
@@ -269,7 +268,7 @@
                 <form name='accountForm' class="accountinfo-form" method="post" action="<?php echo htmlspecialchars('updatepw.php') ?>">
                         <label for='email' class="inputtitle">EMAIL : </label>
                         <input readonly='readonly' type="email" class="accountinfo-form-style" id="email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" value="<?php echo $email ?>">
-                        <label for='firstname'class="inputtitle">NAME : </label>
+                        <label for='firstname' class="inputtitle">NAME : </label>
                         <input readonly='readonly' type="text" class="accountinfo-form-style" id="firstname" pattern="(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,30}" value="<?php getName($email) ?>" >
                         <label for='pwd' class="inputtitle">PASSWORD : </label>
                         <input type="password" class="accountinfo-form-style" name="pwd" id="pwd" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,60}$" value="" />
