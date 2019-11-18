@@ -13,7 +13,6 @@
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/checkout.css">
         <link rel="stylesheet" href="css/errorstyling.css">
-        <script src="js/checkout.js"></script>
     </head>
 <?php
 if (session_status() == PHP_SESSION_NONE) {
@@ -49,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         if ($success == true) {
-            $existorder_id = true;
+            $existorder_id = false;
             include 'dbcon.inc.php';
             do {
                 $order_id = mt_rand(1000000, 99999999);
@@ -87,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         }
                         $checkpriceresults->free_result();
                         $current_time = date('Y-m-d H:i:s');
-                        $orderinfosql = "INSERT INTO order_info (order_id, acc_id, order_date, order_totalprice, address, postal_code, paid, shipped)"
+                        $orderinfosql = "INSERT INTO order_info (order_id, acc_id, order_date, order_total_price, address, postal_code, paid, shipped)"
                                 . " VALUES ('$order_id', '$acc_id', '$current_time', '$totalprice', '$address', '$postal', '$paid', '$shipped')";
                         $conn->query($orderinfosql);
 
@@ -100,9 +99,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $conn->query($deletecart);
                         $conn->close();
                         $existorder_id = false;
+                        $success = true;
                     }
                 }
-            } while ($existorder_id == true);
+            } while ($existorder_id == true || $success == true);
         } 
     } else {
         $errorMsg = "Please submit the form from the check out page.<br>";
@@ -122,9 +122,9 @@ if ($success)
           <img src=\"qrcode.png\" alt=\"Delta QR Code\">
           <p> Key in your Order ID: $order_id as shown below for us to process orders</p>
           <p>——— Please pay within 7 working days for us to process orders ———</p>
-          <img src=\"guide.png\" alt=\"Guide\">
-
-";}
+          <img src=\"guide.png\" alt=\"Guide\">";
+    
+}
 else            
 {
     echo "<section class=\"middle\">

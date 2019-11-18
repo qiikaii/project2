@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="css/bootstrap.css"> 
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/checkout.css">
+        <link rel="stylesheet" href="css/errorstyling.css">
         <script src="js/checkout.js"></script>
     </head>
 
@@ -23,18 +24,19 @@
         include 'header.inc.php';
         $success = true;
         if (!isset($_SESSION['acc_id'])) {
-            $errorMsg = "Please login to checkout.";
+            $errorMsg = "Please login to checkout.<br>";
             $success = false;
         }
         
         include 'dbcon.inc.php';
+        $acc_id = $_SESSION['acc_id'];
         $checkcartsql = "SELECT COUNT(*) as count FROM cart WHERE acc_id = '$acc_id'";
         $result = $conn->query($checkcartsql);    
         $row = $result->fetch_assoc();
         $result->free_result();
         $conn->close();
         if ($row['count'] <= 0) {
-            $errorMsg = "You have no items in cart.";
+            $errorMsg = "There is no items in the cart.<br>";
             $success = false;
         }
         
