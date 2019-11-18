@@ -24,7 +24,7 @@ $acc_id = $_SESSION['acc_id'];
 $errorMsg = "";
 $success = true;
 
-if ($_SERVER_REQUEST["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!isset($_POST["updatecart"]) && !isset($_POST["deletecart"])) {
         $errorMsg = "Please submit the form from the cart page.<br>";
         $success = false;

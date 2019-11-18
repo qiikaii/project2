@@ -20,7 +20,7 @@ include 'header.inc.php';
 $errorMsg = $name = $email = $pwd = $pwd1 = "";
 $success = true;
 
-if ($_SERVER_REQUEST["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["regibutton"])) {
         if (empty($_POST["regiemail"])) {
             $errorMsg .= "Email is required.<br>";

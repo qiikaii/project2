@@ -20,7 +20,7 @@ include 'header.inc.php';
 $errorMsg = $name = $email = "";
 $success = true;
 
-if ($_SERVER_REQUEST["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["resetbutton"])) {
         if (empty($_POST["resetname"])) {
             $errorMsg .= "Name is required.<br>";
