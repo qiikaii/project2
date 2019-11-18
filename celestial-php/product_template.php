@@ -76,7 +76,7 @@ if ($conn->connect_error) {
                         <h1><?php echo "$pname"; ?></h1>
                         <h2>&dollar;<?php echo "$price"; ?></h2>
                         <!-- form for size and quantity-->
-                        <form action="../cart_process.php" id="cart-form" method="post">
+                        <form action="../process_cart.php" id="cart-form" method="post">
                             <label class="top-buffer" for="size_options">SIZE</label>
                             <select name="size" class="size-form-control" id="size_options">
                                 <option value='S'>SMALL</option>
@@ -84,8 +84,8 @@ if ($conn->connect_error) {
                                 <option value='L'>LARGE</option>
                             </select>
 
-                            <label class="top-buffer" for="quantity">QUANTITY</label>
-                            <select name="quantity" class="size-form-control" id="quantity">
+                            <label class="top-buffer" for="quantity_options">QUANTITY</label>
+                            <select name="quantity" class="size-form-control" id="quantity_options">
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>
                                 <option value='3'>3</option>

@@ -1,9 +1,9 @@
 <?php
-include 'dbcon.php';
-include 'header.php';
+include 'dbcon.inc.php';
+include 'header.inc.php';
 
 //define variables
-$db_error_msg = $submit_error = $success = $product_id = $quantity = $account_id = "";
+$db_error_msg = $submit_error = $success = $product_id = $quantity = "";
 
 if ($conn->connect_error) {
     $db_error_msg = "Connection failed: " . $conn->connect_error;
@@ -13,38 +13,40 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+
 //obtaining add to cart values
 $product_id = $_POST['product_id'];
 $quantity = $_POST['quantity'];
 $size = $_POST['size'];
 
-
-if (!isset($_POST['add_cart'])) {
-    header("Location: error.php");
-} else {
-    //validating input
-    if ($size != 'S' || $size != 'M' || $size != 'L') {
-        $success = false;
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (!isset($_POST['add_cart'])) {
         header("Location: error.php");
-    }
-
-    //obtaining the right product id
-    $product_id = get_product_id($product_id, $size);
-
-    if (!isset($_SESSION['acc_id'])) {
-        header("Location: cartpage.php");
     } else {
         //validating input
-        if ($quantity > 10 || $quantity < 1) {
+        if ($size != 'S' || $size != 'M' || $size != 'L') {
             $success = false;
             header("Location: error.php");
-        } else {
-            // add_to_db(ACC_ID, $product_id, $quantity);
-            add_to_db($_SESSION['acc_id'], $product_id, $quantity);
+        }
 
-            // header("Location:" . $_SERVER['HTTP_REFERER']);
+        //obtaining the right product id
+        $product_id = get_product_id($product_id, $size);
+
+        if (!isset($_SESSION['acc_id'])) {
             header("Location: cartpage.php");
-            die();
+        } else {
+            //validating input
+            if ($quantity > 10 || $quantity < 1) {
+                $success = false;
+                header("Location: error.php");
+            } else {
+                // add_to_db(ACC_ID, $product_id, $quantity);
+                add_to_db($_SESSION['acc_id'], $product_id, $quantity);
+
+                // header("Location:" . $_SERVER['HTTP_REFERER']);
+                header("Location: cartpage.php");
+                die();
+            }
         }
     }
 }
