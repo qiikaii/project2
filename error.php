@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Varela&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/errorstyling.css">
 </head>
 
 <body>
@@ -19,15 +20,15 @@
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-    include 'header.php';
+    include 'header.inc.php';
     ?>
     <main>
-        <section class="container">
+        <section class="middle">
             <h1>ERROR 404.</h1>
         </section>
     </main>
     <?php
-    include 'footer.php';
+    include 'footer.inc.php';
     ?>
 </body>
 

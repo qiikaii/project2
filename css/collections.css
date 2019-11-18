@@ -36,10 +36,10 @@ figcaption{
     width:100%;
 }
 /*Hover prices*/
-#wrapper .price{
+.wrapper.price{
     visibility: hidden;
 }
-#wrapper:hover .price{
+.wrapper:hover.price{
     visibility: visible;
     transition: 2s;
 }

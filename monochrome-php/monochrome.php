@@ -1,9 +1,9 @@
 <?php
-include '../dbcon.php';
-
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+include '../dbcon.inc.php';
+
 
 function getdata($id)
 {
@@ -34,16 +34,17 @@ function getdata($id)
 
         unset($result, $row);
 
-        echo "<figure class = 'col-sm-3' id = 'wrapper'>";
-        echo "<a href = 'monochrome$id.php'><img class = 'imgzoom product-img img-responsive hover' src = '$img_source' alt = '$pname'></a>";
-        echo "<figcaption class = 'text-center'>$pname</figcaption>";
-        echo "<figcaption class = 'price text-center'>&dollar;$price</figcaption><!--hover for hidden price-->";
+        echo "<figure class = 'col-sm-3 wrapper'>";
+        echo "<a href = 'monochrome$id.php' title='Product page for $pname'><img class = 'imgzoom product-img img-responsive hover' src = '$img_source' alt = 'Product design for $pname'></a>";
+        echo "<figcaption class = 'price text-center'>$pname<br>";
+        echo "&dollar;$price</figcaption>";
         echo "</figure>";
     }
 }
 ?>
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <title>DELTA - MONOCHROME</title>
@@ -61,35 +62,37 @@ function getdata($id)
 </head>
 
 <body>
-    <?php
-    include 'header.php';
+    <main>
+        <?php
+        include 'header.inc.php';
 
-    ?>
+        ?>
 
-    <section class="container">
-        <!-- 1 row for 1st 4 items-->
-        <article class="row">
-            <!--must text center-->
-            <h1 class="text-center">MONOCHROME</h1>
-            <!-- column for each item, to wrap the price inside-->
-            <?php getdata(25); ?>
-            <?php getdata(28); ?>
-            <?php getdata(31); ?>
-            <?php getdata(34); ?>
-        </article>
+        <section class="container">
+            <!-- 1 row for 1st 4 items-->
+            <article class="row">
+                <!--must text center-->
+                <h1 class="text-center">MONOCHROME</h1>
+                <!-- column for each item, to wrap the price inside-->
+                <?php getdata(25); ?>
+                <?php getdata(28); ?>
+                <?php getdata(31); ?>
+                <?php getdata(34); ?>
+            </article>
 
-        <!-- 1 row for next 4 items, top-buffer to create space in between-->
-        <article class="row top-buffer">
-            <?php getdata(37); ?>
-            <?php getdata(40); ?>
-            <?php getdata(43); ?>
-            <?php getdata(46); ?>
-        </article>
-    </section>
+            <!-- 1 row for next 4 items, top-buffer to create space in between-->
+            <article class="row top-buffer">
+                <?php getdata(37); ?>
+                <?php getdata(40); ?>
+                <?php getdata(43); ?>
+                <?php getdata(46); ?>
+            </article>
+        </section>
 
-    <?php
-    include 'footer.php';
-    ?>
+        <?php
+        include 'footer.inc.php';
+        ?>
+    </main>
 </body>
 
 </html>

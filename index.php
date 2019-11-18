@@ -4,7 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html lang="en">
 
 <head>
     <title>DELTA - HOME PAGE</title>
@@ -23,52 +23,45 @@ and open the template in the editor.
 
 <body>
     <?php
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-    
     include 'header.inc.php';
-
     ?>
+    <main>
+        <section id="carousel" class="carousel carousel-fade slide lastContent" data-ride="carousel" data-interval="2500">
 
+            <!-- Wrapper for slides -->
+            <article class="carousel-inner">
+                <figure class="item active">
+                    <a href="monochrome-php/monochrome.php" title="Monochrome Collection Page"><img class="img-responsive" src="carousel/slideshow1.jpg" alt="Monochrome collection"></a>
+                    <figcaption class="carousel-caption">
 
-    <section id="carousel" class="carousel carousel-fade slide lastContent" data-ride="carousel" data-interval="2500">
+                    </figcaption>
+                </figure>
+                <figure class="item">
+                    <a href="celestial-php/celestial.php" title="Celestial Collection Page"><img class="img-responsive" src="carousel/slideshow2.jpg" alt="Celestial collection"></a>
+                    <figcaption class="carousel-caption">
 
+                    </figcaption>
+                </figure>
+            </article>
 
-        <!-- Wrapper for slides -->
-        <article class="carousel-inner" role="listbox">
-            <figure class="item active">
-                <a href="monochrome-html/monochrome.html"><img class="img-responsive" src="carousel/slideshow1.jpg" alt="..."></a>
-                <figcaption class="carousel-caption">
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </section>
 
-                </figcaption>
-            </figure>
-            <figure class="item">
-                <a href="celestial-html/celestial.html"><img class="img-responsive" src="carousel/slideshow2.jpg" alt="..."></a>
-                <figcaption class="carousel-caption">
-
-                </figcaption>
-            </figure>
-        </article>
-
-        <!-- Controls -->
-        <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </section>
-
-    <section id="carouselMobile" class="lastContent">
-        <a href="monochrome-html/monochrome.html"><img class="img-responsive" src="carousel/slideshow1.jpg" alt="..."></a>
-        <a href="monochrome-html/monochrome.html"><img class="img-responsive" src="carousel/carousel2.jpeg" alt="..."></a>
-        <a href="celestial-html/celestial.html"><img class="img-responsive" src="carousel/slideshow2.jpg" alt="..."></a>
-        <a href="celestial-html/celestial.html"><img class="img-responsive" src="carousel/carousel1.jpeg" alt="..."></a>
-    </section>
-
+        <section id="carouselMobile" class="lastContent">
+            <a href="monochrome-php/monochrome.php" title="Monochrome Collection Page"><img class="img-responsive" src="carousel/slideshow1.jpg" alt="Monochrome collection"></a>
+            <a href="monochrome-php/monochrome.php" title="Monochrome Collection Page"><img class="img-responsive" src="carousel/carousel2.jpeg" alt="Monochrome collection"></a>
+            <a href="celestial-php/celestial.php" title="Celestial Collection Page"><img class="img-responsive" src="carousel/slideshow2.jpg" alt="Celestial collection"></a>
+            <a href="celestial-php/celestial.php" title="Celestial Collection Page"><img class="img-responsive" src="carousel/carousel1.jpeg" alt="Celestial collection"></a>
+        </section>
+    </main>
     <?php
     include 'footer.inc.php'
     ?>

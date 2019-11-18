@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     if (isset($_POST["deletecart"])) {
-        include 'dbcon.php';
+        include 'dbcon.inc.php';
         if (empty($_POST["cartitemid"])) {
             $errorMsg .= "Invalid item.<br>";
             $success = false;

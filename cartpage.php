@@ -116,8 +116,8 @@ if (!isset($_SESSION['acc_id'])) {
                 </article>
                 <p> $itemname ($size) </p>
                 <p> Price: $$itemprice</p>
-                <p> Qty: <input type=\"number\" class=\"qtyupdate\" name=\"cartquantity\" placeholder=\"$rowquan[$i]\" value=\"$rowquan[$i]\" 
-                    min=\"1\" max=\"99\" autocomplete=\"off\" required pattern=\"[0-9]{1,2}\"></p>
+                <label for=\"cartquantity\"><input type=\"number\" class=\"qtyupdate\" name=\"cartquantity\" id=\"cartquantity\" 
+                placeholder=\"$rowquan[$i]\" value=\"$rowquan[$i]\" min=\"1\" max=\"99\" autocomplete=\"off\" required pattern=\"[0-9]{1,2}\"></label>
                 <input type=\"submit\" name=\"updatecart\" value=\"Update\"></button>
                 <p class=\"cartreveal\"> Total: $" . $itemprice * $rowquan[$i] . "</p>
                 <input type=\"hidden\" name=\"cartitemid\" value=\"$rowitem[$i]\" required pattern=\"[0-9]{1,2}\"</td>
@@ -145,8 +145,8 @@ if (!isset($_SESSION['acc_id'])) {
                 </section>
                 <section class=\"col-sm-1\">
                 <article class=\"cartitem\">
-                <input type=\"number\" class=\"qtyupdate\" name=\"cartquantity\" placeholder=\"$rowquan[$i]\" value=\"$rowquan[$i]\" 
-                    size=\"2\" min=\"1\" max=\"99\" autocomplete=\"off\" required pattern=\"[0-9]{1,2}\">
+                <label for=\"cartquantity\"><input type=\"number\" class=\"qtyupdate\" name=\"cartquantity\" id=\"cartquantity\" 
+                placeholder=\"$rowquan[$i]\" value=\"$rowquan[$i]\" min=\"1\" max=\"99\" autocomplete=\"off\" required pattern=\"[0-9]{1,2}\"></label>
                 <input type=\"submit\" name=\"updatecart\" value=\"Update\"></button>
                 </article>
                 </section>
