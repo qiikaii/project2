@@ -41,8 +41,8 @@ echo session_id();
                 <li class="nav-item"><a href="aboutus.php">ABOUT US</a></li>
                 <li class="dropdown wrapper nav-item"><a class="dropdown-toggle" data-toggle="collapse" data-target="#dropdownlist" href="#">COLLECTIONS</a>
                     <ul class="dropdown-menu  dropdown-font" id="dropdownlist">
-                        <li class="space"><a href="../celestial-php/celestial.php">CELESTIAL</a></li>
-                        <li class="space"><a href="../monochrome-php/monochrome.php">MONOCHROME</a></li>
+                        <li class="space"><a href="celestial-php/celestial.php">CELESTIAL</a></li>
+                        <li class="space"><a href="monochrome-php/monochrome.php">MONOCHROME</a></li>
                     </ul>
                 </li>
                 <?php
