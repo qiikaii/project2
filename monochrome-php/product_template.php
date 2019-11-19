@@ -74,7 +74,7 @@ if ($conn->connect_error) {
                         <h1><?php echo "$pname"; ?></h1>
                         <h2>&dollar;<?php echo "$price"; ?></h2>
                         <!-- form for size and quantity-->
-                        <form action="../process_cart.php" id="cart-form" method="post">
+                        <form action="<?php echo htmlspecialchars('../process_cart.php') ?>" id="cart-form" name="cart-form" method="post" onsubmit="validateInput()">
                             <label class="top-buffer" for="size_options">SIZE</label>
                             <select name="size" class="size-form-control" id="size_options">
                                 <option value='S'>SMALL</option>
