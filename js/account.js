@@ -3,6 +3,60 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+$(function() {
+var accountinfo = document.getElementById('accountinfo');
+var orders = document.getElementById('orders');
+//var payment = document.getElementById('payment');
+var background = document.getElementById('default');
+var tablinks = document.getElementsByClassName('tablinks');
+var tabitems = document.getElementsByClassName("tabitems");
+var accountinfo1 = document.getElementById('accountinfo1');
+var orders1 = document.getElementById('orders1');
+//var payment1 = document.getElementById('payment1');
+for (var i = 0; i < tabitems.length; i++) {
+    tabitems[i].style.display = 'none';
+}
+ for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+accountinfo.addEventListener('click', accounttab);
+orders.addEventListener('click', orderstab);
+//payment.addEventListener('click', paymenttab);
+
+
+function accounttab(){  
+    background.style.display = "none";
+    accountinfo1.style.display = "block";
+    orders1.style.display = "none";
+    payment1.style.display = "none";
+    tablinks[0].className += ' active';
+    tablinks[1].className = tablinks[1].className.replace(" active", "");
+    tablinks[2].className = tablinks[2].className.replace(" active", "");
+}
+
+function orderstab(){
+    background.style.display = "none";
+    accountinfo1.style.display = "none";
+    orders1.style.display = "block";
+    payment1.style.display = "none";
+    tablinks[1].className += ' active';
+    tablinks[0].className = tablinks[1].className.replace(" active", "");
+    tablinks[2].className = tablinks[2].className.replace(" active", "");
+}
+
+//function paymenttab(){
+//    background.style.display = "none";
+//    accountinfo1.style.display = "none";
+//    orders1.style.display = "none";
+//    payment1.style.display = "block";
+//    tablinks[2].className += ' active';
+//    tablinks[1].className = tablinks[1].className.replace(" active", "");
+//    tablinks[0].className = tablinks[2].className.replace(" active", "");
+//}
+
+
 /* Start of Update Password Validation */
 document.getElementById('pwd').addEventListener('input', validateOldPw);
 document.getElementById('newpwd').addEventListener('input', validateNewPw);
@@ -79,6 +133,7 @@ function validateCfmNewPw(event){
     }
     
 }
+});
 
 $(document).ready(function() {
     $('.zoom').magnify();
@@ -94,58 +149,5 @@ $(function () {
     });
 });
 
-window.onload = function(){
-var accountinfo = document.getElementById('accountinfo');
-var orders = document.getElementById('orders');
-var payment = document.getElementById('payment');
-var background = document.getElementById('default');
-var tablinks = document.getElementsByClassName('tablinks');
-var tabitems = document.getElementsByClassName("tabitems");
-var accountinfo1 = document.getElementById('accountinfo1');
-var orders1 = document.getElementById('orders1');
-var payment1 = document.getElementById('payment1');
-for (var i = 0; i < tabitems.length; i++) {
-    tabitems[i].style.display = 'none';
-}
- for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
 
-accountinfo.addEventListener('click', accounttab);
-orders.addEventListener('click', orderstab);
-payment.addEventListener('click', paymenttab);
-
-
-function accounttab(){  
-    background.style.display = "none";
-    accountinfo1.style.display = "block";
-    orders1.style.display = "none";
-    payment1.style.display = "none";
-    tablinks[0].className += ' active';
-    tablinks[1].className = tablinks[1].className.replace(" active", "");
-    tablinks[2].className = tablinks[2].className.replace(" active", "");
-}
-
-function orderstab(){
-    background.style.display = "none";
-    accountinfo1.style.display = "none";
-    orders1.style.display = "block";
-    payment1.style.display = "none";
-    tablinks[1].className += ' active';
-    tablinks[0].className = tablinks[1].className.replace(" active", "");
-    tablinks[2].className = tablinks[2].className.replace(" active", "");
-}
-
-function paymenttab(){
-    background.style.display = "none";
-    accountinfo1.style.display = "none";
-    orders1.style.display = "none";
-    payment1.style.display = "block";
-    tablinks[2].className += ' active';
-    tablinks[1].className = tablinks[1].className.replace(" active", "");
-    tablinks[0].className = tablinks[2].className.replace(" active", "");
-}
-
-
-}
 
