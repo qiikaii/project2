@@ -1,34 +1,34 @@
 <?php
+
 function verifyFunc() {
-   include 'header.inc.php';
-$errorMsg = "";
-$success = true;
+    $errorMsg = "";
+    $success = true;
 
-if (!isset($_GET["verify_code"]) || !isset($_GET["email"])) {
-    $errorMsg .= "Invalid Verification.<br>";
-    $success = false;
-} else {
-    $verify_code = $_GET["verify_code"];
-    $email = $_GET["email"];
-
-    include 'dbcon.inc.php';
-    $checkacc = ("SELECT * FROM account WHERE email = '$email' AND acc_verify_code = '$verify_code'");
-    $results = $conn->query($checkacc);
-
-    if ($results->num_rows == 1) {
-        $verifiedsuccess = 'Y';
-        $updateverification = ("UPDATE account SET acc_verified = '$verifiedsuccess' WHERE email = '$email' "
-                . "AND acc_verify_code = '$verify_code'");
-        $conn->query($updateverification);
-    } else {
+    if (!isset($_GET["verify_code"]) || !isset($_GET["email"])) {
         $errorMsg .= "Invalid Verification.<br>";
         $success = false;
-    }
-    $results->free_result();
-    $conn->close();
-}
+    } else {
+        $verify_code = $_GET["verify_code"];
+        $email = $_GET["email"];
 
-if ($success) {
+        include 'dbcon.inc.php';
+        $checkacc = ("SELECT * FROM account WHERE email = '$email' AND acc_verify_code = '$verify_code'");
+        $results = $conn->query($checkacc);
+
+        if ($results->num_rows == 1) {
+            $verifiedsuccess = 'Y';
+            $updateverification = ("UPDATE account SET acc_verified = '$verifiedsuccess' WHERE email = '$email' "
+                    . "AND acc_verify_code = '$verify_code'");
+            $conn->query($updateverification);
+        } else {
+            $errorMsg .= "Invalid Verification.<br>";
+            $success = false;
+        }
+        $results->free_result();
+        $conn->close();
+    }
+
+    if ($success) {
         echo "<section class=\"middle\">";
         echo "<h1>Email: " . $email . " has been verified!</h1>";
         echo "</section>";
@@ -38,8 +38,6 @@ if ($success) {
         echo "<p>" . $errorMsg . "</p>";
         echo "</section>";
     }
-
-include 'footer.inc.php'; 
 }
 ?>
 
@@ -58,10 +56,16 @@ include 'footer.inc.php';
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/errorstyling.css">
     </head>
-    
-    <main>
-        <?php verifyFunc();?>
-    </main>
+
+    <body>
+        <main>
+            <?php
+            include 'header.inc.php';
+            verifyFunc();
+            include 'footer.inc.php';
+            ?>
+        </main>
+    </body>
 </html>
 
 

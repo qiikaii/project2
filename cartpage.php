@@ -1,69 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>DELTA - CART</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Top 1 self-designed fashion in Singapore">
-        <meta name="keyword" content="fashion, designer platform, Singapore, self-designed clothes, self-designed fashion, trending fashion, trending design, trending in Singapore, Singapore fashion, Singapore home design fashion, online shopping fashion">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Varela&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/cartpage.css">
-        <link rel="stylesheet" href="css/errorstyling.css">
-        <script src="js/cartpage.js"></script>
-    </head>
-</html>
-
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-include 'header.inc.php';
-$errorMsg = "";
-$success = true;
-$cartsuccess = true;
 
-if (!isset($_SESSION['acc_id'])) {
-    $errorMsg = "Please login to add items to your cart";
-    $cartsuccess = false;
- 
-} else {
-    $acc_id = $_SESSION['acc_id'];
-    include 'dbcon.inc.php';
-    if ($conn->connect_error) {
-        $errorMsg = "Connection failed: " . $conn->connect_error;
-        $success = false;
+function cartPageFunc() {
+    $errorMsg = "";
+    $success = true;
+    $cartsuccess = true;
+
+    if (!isset($_SESSION['acc_id'])) {
+        $errorMsg = "Please login to add items to your cart";
+        $cartsuccess = false;
     } else {
-        $sql = "SELECT COUNT(*) AS count FROM cart WHERE acc_id = '$acc_id'";
-        $result = $conn->query($sql);
-        $row = $result->fetch_assoc();
-        $result->free_result();
-        $count = $row['count'];
-        if ($count < 1) {
-            $errorMsg = "You don't have any items in your cart";
-            $cartsuccess = false;
-            $conn->close();
+        $acc_id = $_SESSION['acc_id'];
+        include 'dbcon.inc.php';
+        if ($conn->connect_error) {
+            $errorMsg = "Connection failed: " . $conn->connect_error;
+            $success = false;
         } else {
-            $item_id = 0;
-            $quantity = 0;
+            $sql = "SELECT COUNT(*) AS count FROM cart WHERE acc_id = '$acc_id'";
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            $result->free_result();
+            $count = $row['count'];
+            if ($count < 1) {
+                $errorMsg = "You don't have any items in your cart";
+                $cartsuccess = false;
+                $conn->close();
+            } else {
+                $item_id = 0;
+                $quantity = 0;
 
-            $cartsql = "SELECT * FROM cart WHERE acc_id = '$acc_id'";
-            $cartresult = $conn->query($cartsql);
+                $cartsql = "SELECT * FROM cart WHERE acc_id = '$acc_id'";
+                $cartresult = $conn->query($cartsql);
 
-            $rowitem = array();
-            $rowquan = array();
-            $i = 0;
+                $rowitem = array();
+                $rowquan = array();
+                $i = 0;
 
-            while ($cartrow = $cartresult->fetch_assoc()) {
-                $rowitem[] = $cartrow['item_id'];
-                $rowquan[] = $cartrow['quantity'];
-            }
-            $cartresult->free_result();
-            
-            echo "<section class=\"container-fluid\">
+                while ($cartrow = $cartresult->fetch_assoc()) {
+                    $rowitem[] = $cartrow['item_id'];
+                    $rowquan[] = $cartrow['quantity'];
+                }
+                $cartresult->free_result();
+
+                echo "<section class=\"container-fluid\">
                 <article class=\"row\" id=\"cartheadhide\">
                 <section class=\"col-sm-4\">
                 <article class=\"cartheader\">
@@ -97,18 +75,18 @@ if (!isset($_SESSION['acc_id'])) {
                 </section>
                 </article>";
 
-            while ($i != $count) {
-                $itemsql = "SELECT * FROM item WHERE item_id = '$rowitem[$i]'";
-                $itemresult = $conn->query($itemsql);
-                $itemrow = $itemresult->fetch_assoc();
-                $itemresult->free_result();
+                while ($i != $count) {
+                    $itemsql = "SELECT * FROM item WHERE item_id = '$rowitem[$i]'";
+                    $itemresult = $conn->query($itemsql);
+                    $itemrow = $itemresult->fetch_assoc();
+                    $itemresult->free_result();
 
-                $itemprice = $itemrow['product_price'];
-                $size = $itemrow['size'];
-                $imgsrc = $itemrow['img_source'];
-                $itemname = $itemrow['product_name'];
+                    $itemprice = $itemrow['product_price'];
+                    $size = $itemrow['size'];
+                    $imgsrc = $itemrow['img_source'];
+                    $itemname = $itemrow['product_name'];
 
-                echo "<form name=\"cartform\" action=\"htmlspecialchars(\"actioncart.php\")\" method=\"post\">
+                    echo "<form name=\"cartform\" action=\"htmlspecialchars(\"actioncart.php\")\" method=\"post\">
                 <article class=\"row justify-content-center align-self-center\" id=\"cartreveal\">
                 <section class=\"col-sm-4\">
                 <article class=\"cartitempic\">
@@ -163,11 +141,11 @@ if (!isset($_SESSION['acc_id'])) {
                 </section>
                 </article>
                 </form>";
-                $totalprice = $itemprice * $rowquan[$i];
-                $i++;
-            }
-            
-            echo "<article class=\"row\">
+                    $totalprice = $itemprice * $rowquan[$i];
+                    $i++;
+                }
+
+                echo "<article class=\"row\">
             <section class=\"bottomcart\">
             <article class=\"col-sm-12\">
             <p> Total Price: $$totalprice</p>
@@ -175,8 +153,8 @@ if (!isset($_SESSION['acc_id'])) {
             </section>
             </article>
             </section>";
-            
-            echo "<section class=\"container-fluid\">
+
+                echo "<section class=\"container-fluid\">
             <article class=\"row\">
             <section class=\"bottomcart\">
             <article class=\"col-sm-12\">
@@ -185,24 +163,53 @@ if (!isset($_SESSION['acc_id'])) {
             </section>
             </article>
             </section>";
-            $conn->close();
+                $conn->close();
+            }
         }
     }
-}
 
-if (!$success) {
-    echo "<section class=\"middle\">
-    <h4>The following input errors were detected:</h4>
+    if (!$success) {
+        echo "<section class=\"middle\">
+    <h1>The following input errors were detected:</h1>
     <p>" . $errorMsg . "</p>
     </section></section>";
-}
+    }
 
-if (!$cartsuccess) {
-    echo "<section class=\"middle\">
+    if (!$cartsuccess) {
+        echo "<section class=\"middle\">
     <p>" . $errorMsg . "</p>
     </section>";
-}
+    }
+    ?>
 
-include 'footer.inc.php';
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>DELTA - CART</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="description" content="Top 1 self-designed fashion in Singapore">
+            <meta name="keyword" content="fashion, designer platform, Singapore, self-designed clothes, self-designed fashion, trending fashion, trending design, trending in Singapore, Singapore fashion, Singapore home design fashion, online shopping fashion">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+            <link href="https://fonts.googleapis.com/css?family=Varela&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="css/bootstrap.css">
+            <link rel="stylesheet" href="css/main.css">
+            <link rel="stylesheet" href="css/cartpage.css">
+            <link rel="stylesheet" href="css/errorstyling.css">
+            <script src="js/cartpage.js"></script>
+        </head>
 
-?>
+        <body>
+            <main>
+                <?php
+                if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
+                include 'header.inc.php';
+                actionCartFunc();
+                include 'footer.inc.php';
+                ?>
+        </main>
+    </body>
+</html>

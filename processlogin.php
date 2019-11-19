@@ -60,6 +60,7 @@ function processLoginFunc() {
                             $success = false;
                         } else {
                             session_start();
+                            $_SESSION['auth'] = true;
                             $_SESSION['acc_id'] = $row['acc_id'];
                             $_SESSION['email'] = $row['email'];
                             $_SESSION['name'] = $row['name'];
