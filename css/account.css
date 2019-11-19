@@ -20,6 +20,7 @@ and open the template in the editor.
 /* Set accountpage height to push footer to the bottom */
 .accountcontainer{
     height: 650px;
+    margin-bottom: 250px;
 }
 
 /* Style the tab */
@@ -176,7 +177,6 @@ and open the template in the editor.
     margin: auto;
     width: 50%;
     background-color:#f7f7f7;
-    
 }
 
 #orders1{
@@ -199,6 +199,7 @@ and open the template in the editor.
 input:disabled {
     background: #dddddd;
 }
+
 
 /* Style elements within the input forms in account page */
 .accountinfo-form-style {
@@ -233,7 +234,7 @@ input:disabled {
 /* Style button submission */
 .btn-submit {
   padding: 6px 12px;
-  margin: 10px;
+  margin: 10px 10px 100px 10px;
   color: #333;
   background-color: #fff;
   border-color: black;
