@@ -106,9 +106,11 @@
                     $order_date = $row['order_date'];
                     $order_total_price = $row['order_total_price'];
                     $shipped = $row['shipped'];
+                    $paid = $row['paid'];
+                    $address = $row['address'];
                     echo "<article class='container-fluid ordercontainer'><section class = 'row text-center'>";
                     echo "<h3 class = 'accountpageh3'>";
-                    if ($shipped == 'Y') {
+                    if ($shipped == 'Y' ) {
                         echo "WE HAVE SENT IT!!";
                     }
                     else {
@@ -116,33 +118,36 @@
                     }
                     echo "</h3> <p class='orderdescription'>ORDER NO.: $order_id </p>";
                     echo "<p class='orderdescription'>TOTAL PRICE: $order_total_price </p>";
-                    echo "<p class='orderdescription orderline'>ORDER DATE: $order_date </p>";
+                    echo "<p class='orderdescription'>ORDER DATE: $order_date </p>";
+                    echo "<p class='orderdescription orderline'> PAID: $paid </p>";
                     echo "<article>";
-                        displayOrderImages($order_id);
-                    echo "</article>";
-                    echo "<br> <button type='button' class='btn1 btn-submit' data-toggle='modal' data-target='#orderModalPopup'> VIEW ORDER </button>";
-                    echo "<section class='orderModal fade text-center' id='orderModalPopup' tabindex='-1' role='dialog'>";
-                    echo "<article class='modal-dialog' role='document'>";
-                    echo "<article class='orderDetails-content'>";
-                    echo "<header class='modal-header'>";
-                    echo "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
-                    echo "<h4 class='modal-title'> ORDER DETAILS </h4>";
-                    echo "</header>";
-                    echo "<article class='modal-body>";
-                    echo "<h3 class = 'accountpageh3'>";
-                        if ($shipped == 'Y') {
-                            echo " WE HAVE SENT IT!! ";
-                        }
-                        else {
-                            echo " WE ARE STILL PROCESSING YOUR ORDER.. ";
-                        }
-                    echo "</h3> <p class='orderdescription'>ORDER NO.: $order_id </p>";
-                    echo "<p class='orderdescription'>TOTAL PRICE: $order_total_price </p>";
-                    echo "<p class='orderdescription orderline'>ORDER DATE: $order_date </p>";
-                    echo "<section>";
                         displayItemDetails($order_id);
-                    echo "</section> </article> </article> </article> </section> </section> </article>";
+                    echo "</article> </article>";
 
+                }
+            }
+        }
+        
+        
+        // Display the images of order
+        function displayOrderImages($order_id){
+            echo $order_id;
+            $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME); //connect to database
+            $errorMsg = "";
+            $success = true;
+            if ($conn->connect_error) {
+                $errorMsg .= "Connection failed at displayOrderImagesByAccID: " .$conn->connect_error;
+                $success = false;
+            }
+            
+            else {
+                $sql = "SELECT item.img_source, item.size, item.product_name from item, order_item, order_info where item.item_id = order_item.item_id and order_item.order_id = $order_id AND order_info.order_id = $order_id";
+                $result = $conn->query($sql);
+                while ($row = $result->fetch_assoc()) {
+                    $img_source = $row['img_source'];
+                    $size = $row['size'];
+                    $product_name = $row['product_name'];
+                    echo "<img class='ordericon' src='$img_source' alt='$product_name $size'>";
                 }
             }
         }
@@ -158,7 +163,7 @@
             }
             
             else {
-                $sql = "SELECT order_item.quantity, item.item_id, item.img_source, item.product_price, item.size, item.product_name, item.product_col from item, order_item, order_info where item.item_id = order_item.item_id and order_info.order_id = $order_id";
+                $sql = "SELECT order_item.quantity, item.item_id, item.img_source, item.product_price, item.size, item.product_name, item.product_col from item, order_item, order_info where item.item_id = order_item.item_id and order_item.order_id = $order_id AND order_info.order_id = $order_id";
                 $result = $conn->query($sql);
                 while ($row = $result->fetch_assoc()) {
                     $item_id = $row['item_id'];
@@ -179,27 +184,6 @@
         }
         
 
-        // Display the images of order
-        function displayOrderImages($order_id){
-            $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME); //connect to database
-            $errorMsg = "";
-            $success = true;
-            if ($conn->connect_error) {
-                $errorMsg .= "Connection failed at displayOrderImagesByAccID: " .$conn->connect_error;
-                $success = false;
-            }
-            
-            else {
-                $sql = "SELECT item.img_source, item.size, item.product_name from item, order_item, order_info where item.item_id = order_item.item_id and order_info.order_id = $order_id";
-                $result = $conn->query($sql);
-                while ($row = $result->fetch_assoc()) {
-                    $img_source = $row['img_source'];
-                    $size = $row['size'];
-                    $product_name = $row['product_name'];
-                    echo "<img class='ordericon' src='$img_source' alt='$product_name $size'>";
-                }
-            }
-        }
 
 //        // Display credit cards of user
 //        function displayCreditCard($acc_id){
@@ -263,7 +247,7 @@
             </figure>
             <section id="accountinfo1" class="tabitems text-center">
                 <h1 class="accountpageh1"><span class="glyphicon glyphicon-user"></span>  MY ACCOUNT INFO</h1>
-                <p class="accountpagecaption">Feel free to edit any of the details so that your account is up to date</p>
+                <p class="accountpagecaption">You may change your password here</p>
 
                 <form name='accountForm' class="accountinfo-form" method="post" action="<?php echo htmlspecialchars('updatepw.php') ?>">
                         <label for='email' class="inputtitle">EMAIL : </label>
@@ -278,6 +262,9 @@
                         <input type='password' class='accountinfo-form-style' name="cfmnewpwd" id='cfmnewpwd' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,60}$" value="" />
                         <button type="submit" name="updatepwd" id="updatepwd" class="btn1 btn-submit">Update Password</button>
                 </form>
+                
+                <div class="progress">
+
             </section>
 
             <section id="orders1" class="tabitems ">
