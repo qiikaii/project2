@@ -99,9 +99,11 @@ function processRegisterFunc() {
                             $acc_verified = 'N';
                             $acc_verify_code = substr(md5(uniqid(rand(), true)), 16, 16);
                             $pwd = password_hash($pwd, PASSWORD_BCRYPT);
-                            $sql = $conn->prepare("INSERT INTO account (acc_id, email, name, password, acc_verified, acc_verify_code) "
-                                    . "VALUES (?, ?, ?, ?, ?, ?)");
-                            $sql->bind_param('isssss', $acc_id, $email, $name, $pwd, $acc_verified, $acc_verify_code);
+                            $attempts = 0;
+                            $unlock_time = null;
+                            $sql = $conn->prepare("INSERT INTO account (acc_id, email, name, password, acc_verified, acc_verify_code, attempts, unlock_time) "
+                                    . "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                            $sql->bind_param('isssssis', $acc_id, $email, $name, $pwd, $acc_verified, $acc_verify_code, $attempts, $unlock_time);
                             $sql->execute();
                             $conn->close();
 

@@ -56,17 +56,48 @@ function processLoginFunc() {
                         if ($row["acc_verified"] != 'Y') {
                             $errorMsg = "Account not verified yet.<br>";
                             $success = false;
-                        } else if (password_verify($pwd, $row['password']) == false) {
+                        } 
+                        if (password_verify($pwd, $row['password']) == false) {
                             $errorMsg = "Email not found or password doesn't match.<br>";
+                            $attempts = $row['attempts'];
+                            $attempts += 1;
+                            $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
+                            $sql = $conn->prepare("UPDATE account SET attempts = ? where email = ?");
+                            $sql->bind_param('is', $attempts, $email);
+                            $sql->execute();
+                            $conn->close();
                             $success = false;
-                        } else {
+                        } 
+                        if ($row['attempts'] >= 2){
+                            $errorMsg .= "Account locked out";
+                            $current_time = date('Y-m-d H:i:s');
+                            
+                            $unlock_time = date('Y-m-d H:i:s', strtotime($current_time. '+ 1 days'));
+                            $attempts = 0;
+                            $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
+                            $sql = $conn->prepare("UPDATE account SET unlock_time = ?, attempts = ? where email = ?");
+                            $sql->bind_param('sds', $unlock_time, $attempts, $email);
+                            $sql->execute();
+                            $conn->close();
+                            $success = false;
+                        }
+                        if ($row['unlock_time'] > date('Y-m-d H:i:s')){
+                            $errorMsg .= "Account locked out";
+                            $success = false;
+                        }
+                        else if (password_verify($pwd, $row['password']) == true && $row['unlock_time'] <= date('Y-m-d H:i:s')){
                             session_start();
                             session_regenerate_id();
                             $_SESSION['auth'] = true;
                             $_SESSION['acc_id'] = $row['acc_id'];
                             $_SESSION['email'] = $row['email'];
                             $_SESSION['name'] = $row['name'];
-
+                            $attempts = 0;
+                            $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
+                            $sql = $conn->prepare("UPDATE account SET attempts = ? where email = ?");
+                            $sql->bind_param('is', $attempts, $email);
+                            $sql->execute();
+                            $conn->close();
                             // QK set session activity to time
                             // It will expire after 30 minutes of inactivity
                             // Header.php will check for activity status
@@ -75,6 +106,7 @@ function processLoginFunc() {
                         }
                     } else {
                         $errorMsg = "Email not found or password doesn't match.<br>";
+
                         $success = false;
                         $conn->close();
                     }
