@@ -128,7 +128,7 @@
                     echo "<p class='orderdescription orderline'> PAID: $paid </p>";
                     echo "<article>";
                         displayItemDetails($order_id);
-                    echo "</article> </article>";
+                    echo "</article> </section> </article>";
 
                 }
                 
@@ -257,12 +257,12 @@
             <figure id="default" class="defaulttab ">
                 <img class="accountbackground" id='accountbackground' src="background.jpeg" alt="" >
                 <figcaption> 
-                    <h3 class='accountbackgroundfont'>Hello <?php getName($email) ?>, 
-                        Welcome to Your Account</h3>
+                    <h1 class='accountbackgroundfont'>Hello <?php getName($email) ?>, 
+                        Welcome to Your Account</h1>
                 </figcaption>       
             </figure>
             <section id="accountinfo1" class="tabitems text-center">
-                <h1 class="accountpageh1"><span class="glyphicon glyphicon-user"></span>  MY ACCOUNT INFO</h1>
+                <h2 class="accountpageh1"><span class="glyphicon glyphicon-user"></span>  MY ACCOUNT INFO</h2>
                 <p class="accountpagecaption">You may change your password here</p>
 
                 <form name='accountForm' class="accountinfo-form" method="post" action="<?php echo htmlspecialchars('updatepw.php') ?>">
@@ -283,160 +283,16 @@
             </section>
 
             <section id="orders1" class="tabitems ">
-                <h1 class="accountpageh1 text-center"><span class="glyphicon glyphicon-shopping-cart"></span>  MY ORDERS</h1>
+                <h2 class="accountpageh1 text-center"><span class="glyphicon glyphicon-shopping-cart"></span>  MY ORDERS</h2>
                 <p class="accountpagecaption text-center">An overall view of your past purchases</p>
 
                 <article class="container-fluid ordercontainer">
                     <?php displayOrderByAccID($acc_id); ?>
-<!--                    <section class='row text-center '>
-                        <h3 class="accountpageh3">WE'VE SENT IT!!</h3>
-                        <p class='orderdescription'>ORDER NO.: 00150001300</p>
-                        <p class='orderdescription orderline'>SHIPPED DATE: 07 Oct, 2019</p>
 
-                        <div>
-                            <img class='ordericon' src='celestial-php/celestial-img/c1.png' alt='celestial1'>
-                            <img class='ordericon' src='celestial-php/celestial-img/c2.png' alt='celestial2'>
-                            <img class='ordericon' src='celestial-php/celestial-img/c3.png' alt='celestial3'>
-                            <img class='ordericon' src='celestial-php/celestial-img/c4.png' alt='celestial4'>                    
-                        </div>
-                        <button type="button" class="btn1 btn-submit" data-toggle='modal' data-target="#orderModalPopup">VIEW ORDER</button>
-
-                         Popup modal upon clicking VIEW ORDER 
-                        <article class="orderModal fade text-center" id="orderModalPopup" tabindex="-1" role="dialog">
-                            <article class="modal-dialog" role="document">
-                                <article class="orderDetails-content">
-                                    <header class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title"> ORDER DETAILS </h4>
-                                    </header>
-                                    <article class="modal-body">
-                                        <h3 class="accountpageh3">WE'VE SENT IT!!</h3>
-                                        <p class='orderdescription'>ORDER NO.: 00150001300</p>
-                                        <p class="orderdescription">ORDER DATE: 05 Oct, 2019</p>
-                                        <p class='orderdescription orderline'>SHIPPED DATE: 07 Oct, 2019</p>
-
-                                        <section>
-                                            <figure class="container-fluid ordericon" id='wrapper'>  column for each item, to wrap the price inside
-                                                <a href="celestial-html/celestial1.html"><img class="ordericon" src="celestial-html/celestial-img/c1.png" alt="mew"></a>
-                                                <figcaption class="text-center">MEW</figcaption> 
-                                                <figcaption class="price text-center">
-                                                    <span class="visible-xs visible visible-sm visible-md">$29.00</span>
-                                                    <span class="visible-xs visible visible-sm visible-md">XS</span>
-                                                    <span class="visible-xs visible visible-sm visible-md">2 pc</span>
-                                                </figcaption>  hover for hidden price
-                                            </figure>
-
-                                            <figure class="container-fluid ordericon" id='wrapper'>  column for each item, to wrap the price inside
-                                                <a href="celestial-html/celestial2.html"><img class="ordericon" src="celestial-html/celestial-img/c2.png" alt="faceless ralts"></a>
-                                                <figcaption class="text-center">FACELESS RALTS</figcaption> 
-                                                <figcaption class="price text-center">
-                                                    <span class="visible-xs visible visible-sm visible-md">$29.00</span>
-                                                    <span class="visible-xs visible visible-sm visible-md">XS</span>
-                                                    <span class="visible-xs visible visible-sm ">1 pc</span>                                            </figcaption>  hover for hidden price
-                                            </figure>
-                                            <figure class="container-fluid ordericon" id='wrapper'>  column for each item, to wrap the price inside
-                                                <a href="celestial-html/celestial3.html"><img class="ordericon" src="celestial-html/celestial-img/c3.png" alt="manaphu"></a>
-                                                <figcaption class="text-center">MANAPHY</figcaption> 
-                                                <figcaption class="price text-center">
-                                                    <span class="visible-xs visible visible-sm visible-md">$29.00</span>
-                                                    <span class="visible-xs visible visible-sm visible-md">XS</span>
-                                                    <span class="visible-xs visible visible-sm visible-md">1 pc</span>                                            </figcaption>  hover for hidden price
-                                            </figure>
-                                            <figure class="container-fluid ordericon" id='wrapper'>  column for each item, to wrap the price inside
-                                                <a href="celestial-html/celestial4.html"><img class="ordericon" src="celestial-html/celestial-img/c4.png" alt="jirachi"></a>
-                                                <figcaption class="text-center">MANAPHY</figcaption> 
-                                                <figcaption class="price text-center">
-                                                    <span class="visible-xs visible visible-sm visible-md">$29.00</span>
-                                                    <span class="visible-xs visible visible-sm visible-md">XS</span>
-                                                    <span class="visible-xs visible visible-sm visible-md">1 pc</span>                                            </figcaption>  hover for hidden price
-                                            </figure>                                                                       
-                                        </section>
-                                    </article>
-                                </article>
-                            </article>
-                        </article>
-                    </section>-->
                     
                 </article>
             </section>
 
-<!--            <section id="payment1" class="tabitems text-center">
-                <h1 class="accountpageh1"><span class="glyphicon glyphicon-credit-card"></span>  PAYMENT METHODS</h1>
-                <p class="accountpagecaption text-center">We only accept MasterCard with a limit of 2 cards per account</p>
-                <button type="button" class="btn1 btn-addcard" data-toggle="modal" data-target="#paymentModalPopup">ADD NEW PAYMENT METHOD</button>
-                
-                
-                <article class="container-fluid ordercontainer">
-                    <?php echo displayCreditCard($acc_id); ?>
-                     <section class='row align-left'>
-                        <i class="fab fa-cc-visa fa-lg fa-5x"></i>
-                        <span class='orderdescription'>CARD NO.: (XXXX)</span>
-                        <span class='orderdescription'>KEITH FOO QI KAI</span>
-                        <span class='orderdescription'>EXP: XX/XX </span>
-                        <button type="submit"  name="updatepwd" id="updatepwd" class="btn btn-delete orderline">Delete Card</button>
-
-                    </section> 
-
-                </article>
-                 Popup modal upon clicking ADD NEW PAYMENT METHOD button 
-                <article class="paymentModal fade text-center" id="paymentModalPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <article class="modal-dialog" role="form">
-                        <form name='addPaymentForm' class="addpayment-content">
-                            <header class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">ADD CARD</h4>
-                            </header>
-                            <section class="modal-body">
-                                <label class="inputtitle">CARD NUMBER :</label>
-                                <input type="text" class="addCardForm" id="card" pattern='^\d{16}$' value="" placeholder="Enter your Card No.">
-                                <label for="exp-month" class="inputtitle">EXPIRY DATE</label>
-                                <article class="ccForm-row">
-
-                                    <select class="addCardForm ccForm" id="exp-month">
-                                        <option value=1>JANUARY</option>
-                                        <option value=2>FEBRUARY</option>
-                                        <option value=3>MARCH</option>
-                                        <option value=4>APRIL</option>
-                                        <option value=5>MAY</option>
-                                        <option value=6>JUNE</option>
-                                        <option value=7>JULY</option>
-                                        <option value=8>AUGUST</option>
-                                        <option value=9>SEPTEMBER</option>
-                                        <option value=10>OCTOBER</option>
-                                        <option value=11>NOVEMBER</option>
-                                        <option value=12>DECEMBER</option>
-
-                                    </select>
-                                    <select class="addCardForm ccForm" id="exp-year">
-                                        <option value=19>2019</option>
-                                        <option value=20>2020</option>
-                                        <option value=21>2021</option>
-                                        <option value=22>2022</option>
-                                        <option value=23>2023</option>
-                                        <option value=24>2024</option>
-                                        <option value=25>2025</option>
-                                        <option value=26>2026</option>
-                                        <option value=27>2027</option>
-                                        <option value=28>2028</option>
-                                        <option value=29>2029</option>
-                                        <option value=30>2030</option>
-
-                                    </select>
-                                </article>
-
-                                <label class="inputtitle">NAME ON CARD :</label>
-                                <input type="text" class="addCardForm" id="namecard" value="" placeholder="Enter your name on your card">
-
-                            </section>
-                            <footer class="modal-footer">
-                                <button type="submit" class="btn1 btn-submit">Add Card</button>
-                            </footer>
-                        </form>
-                    </article>
-                </article>
-
-
-            </section>-->
 
         </article>
         </main>

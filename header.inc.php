@@ -5,17 +5,10 @@ if (isset($_SESSION['activity']) && (time() - $_SESSION['activity'] >= 1800)) {
     header("location:logout.php");
 }
 
-// If theres session, echo out session for debugging
-//if (isset($_SESSION['activity'])) {
-//    echo $_SESSION['activity'];
-//} 
 else if (isset($_SESSION['activity']) && (time() - $_SESSION['activity'] < 1800)) {
     $_SESSION['activity'] = time();
 }
 
-//echo session_id();
-print_r($_COOKIE);
-echo session_id();
 ?>
 
 <script>
@@ -40,8 +33,8 @@ echo session_id();
         </nav>
         <nav class="collapse navbar-collapse pull-right" id="navresponsive">
             <ul class="nav navbar-nav mainnavigation">
-                <li class="nav-item"><a href="aboutus.php">ABOUT US</a></li>
-                <li class="dropdown wrapper nav-item"><a class="dropdown-toggle" data-toggle="collapse" data-target="#dropdownlist" href="#">COLLECTIONS</a>
+                <li class="nav-item"><a href="aboutus.php"><span class="glyphicon glyphicon-phone-alt"></span>ABOUT US</a></li>
+                <li class="dropdown wrapper nav-item"><a class="dropdown-toggle" data-toggle="collapse" data-target="#dropdownlist" href="#"><span class="glyphicon glyphicon-book"></span>COLLECTIONS</a>
                     <ul class="dropdown-menu  dropdown-font" id="dropdownlist">
                         <li class="space"><a href="celestial-php/celestial.php">CELESTIAL</a></li>
                         <li class="space"><a href="monochrome-php/monochrome.php">MONOCHROME</a></li>
@@ -49,7 +42,7 @@ echo session_id();
                 </li>
                 <?php
                 if (isset($_SESSION['acc_id'])) {
-                    echo "<li class=\"nav-item\"><a href=\"cartpage.php\">CART</a></li>       
+                    echo "<li class=\"nav-item\"><a href=\"cartpage.php\"><span class=\"glyphicon glyphicon-shopping-cart\"></span>CART</a></li>       
                 <li class=\"nav-item\"><a href=\"account.php\"><span class=\"glyphicon glyphicon-user\"></span> ACCOUNT</a></li>
                 <li class=\"nav-item\"><a href=\"logout.php\"><span class=\"glyphicon glyphicon-log-out\"></span> LOGOUT</a></li>";
                 } else {
