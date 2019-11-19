@@ -120,7 +120,7 @@ if (!isset($_SESSION['acc_id'])) {
                 placeholder=\"$rowquan[$i]\" value=\"$rowquan[$i]\" min=\"1\" max=\"99\" autocomplete=\"off\" required pattern=\"[0-9]{1,2}\"></label>
                 <input type=\"submit\" name=\"updatecart\" value=\"Update\">
                 <p class=\"cartreveal\"> Total: $" . $itemprice * $rowquan[$i] . "</p>
-                <input type=\"hidden\" name=\"cartitemid\" value=\"$rowitem[$i]\" required pattern=\"[0-9]{1,2}\"</td>
+                <input type=\"hidden\" name=\"cartitemid\" value=\"$rowitem[$i]\" required pattern=\"^[0-9]{1,2}$\">
                 <input type=\"submit\" name=\"deletecart\" value=\"Remove\">
                 </section>
                 </article>
@@ -157,7 +157,7 @@ if (!isset($_SESSION['acc_id'])) {
                 </section>
                 <section class=\"col-sm-1\">
                 <article class=\"cartitem\">
-                <input type=\"hidden\" name=\"cartitemid\" value=\"$rowitem[$i] required pattern=\"[0-9]{1,2}\"</td>
+                <input type=\"hidden\" name=\"cartitemid\" value=\"$rowitem[$i]\" required pattern=\"^[0-9]{1,2}$\">
                 <input type=\"submit\" name=\"deletecart\" value=\"Remove\">
                 </article>
                 </section>

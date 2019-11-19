@@ -9,7 +9,7 @@ document.getElementById('cartquantity').addEventListener('input', validateCartQt
 
 function validateCartID(event){
     var cartitemid = document.getElementById('cartitemid');
-    var r = /[0-9]{1,2}/;
+    var r = /^[0-9]{1,2}$/;
     cartitemid.setCustomValidity('');
     if (cartitemid.value === "") {
         cartitemid.setCustomValidity("Item can't be blank.");
@@ -30,7 +30,7 @@ function validateCartID(event){
 
 function validateCartQty(event){
     var cartquantity = document.getElementById('cartquantity');
-    var r = /[0-9]{1,2}/;
+    var r = /^[0-9]{1,2}$/;
     cartquantity.setCustomValidity('');
     if (cartquantity.value === "") {
         cartquantity.setCustomValidity("Item quantity can't be blank.");

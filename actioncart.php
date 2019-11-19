@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             $item_id = sanitize_input($_POST["cartitemid"]);
             $existitem = false;
-            if (!preg_match('/[0-9]{1,2}/', $item_id)) {
+            if (!preg_match('/^[0-9]{1,2}$/', $item_id)) {
                 $errorMsg .= "Invalid item.<br>";
                 $success = false;
             } else {
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $success = false;
         } else {
             $cartquantity = sanitize_input($_POST["cartquantity"]);
-            if (!preg_match('/[0-9]{1,2}/', $cartquantity)) {
+            if (!preg_match('/^[0-9]{1,2}$/', $cartquantity)) {
                 $errorMsg .= "Invalid quantity.<br>";
                 $success = false;
             }

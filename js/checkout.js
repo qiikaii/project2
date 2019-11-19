@@ -4,7 +4,7 @@ document.getElementById('postal').addEventListener('input', validatePostal);
 
 function validateAddress(event){
     var address = document.getElementById('address');
-    var r=/(?=^[0-9A-Za-z]+\s?[0-9A-Za-z]+$).{3,}/;
+    var r=/^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$/;
     address.setCustomValidity('');
     if (address.value === "") {
         address.setCustomValidity("Address can't be blank.");

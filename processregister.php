@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $success = false;
         } else {
             $name = sanitize_input($_POST["reginame"]);
-            if (!preg_match('/^(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,}$/', $name)) {
+            if (!preg_match('/^[a-zA-Z]+( [a-zA-Z]+)*$/', $name)) {
                 $errorMsg .= "Invalid name format.<br>";
                 $success = false;
             }
