@@ -31,7 +31,8 @@ function cartPageFunc() {
                 $quantity = 0;
                 $totalprice = 0;
                 $cartsql = $conn->prepare("SELECT * FROM cart WHERE acc_id = ?");
-                $cartsql->bind_param($acc_id);
+                $cartsql->bind_param('i', $acc_id);
+                $cartsql->execute();
                 $cartresult = $cartsql->get_result();
 
                 $rowitem = array();
