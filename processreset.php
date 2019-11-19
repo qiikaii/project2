@@ -44,23 +44,25 @@ function processResetFunc() {
                     $errorMsg = "Connection failed: " . $conn->connect_error;
                     $success = false;
                 } else {
-                    $sql = "SELECT * FROM account WHERE name='$name' AND email = '$email'";
-                    $result = $conn->query($sql);
-
+                    $sql = $conn->prepare("SELECT * FROM account WHERE name= ? AND email = ?");
+                    $sql->bind_param('ss', $name, $email);
+                    $sql->execute();
+                    $result = $sql->get_result();
+                    
                     if ($result->num_rows == 1) {
                         $row = $result->fetch_assoc();
                         $result->free_result();
 
-                        require 'generatepass.php';
+                        require 'generatepass.inc.php';
                         $resetpwd = generateStrongPassword($length = 8, $add_dashes = false, $available_sets = 'luds');
                         $displaypwd = $resetpwd;
                         $resetpwd = password_hash($resetpwd, PASSWORD_BCRYPT);
-                        $sql = "UPDATE account SET password = '$displaypwd' WHERE name = '$name' AND email = '$email'";
-                        $result = $conn->query($sql);
-                        $conn->close();
+                        $sql = $conn->prepare("UPDATE account SET password = ? WHERE name = ? AND email = ?");
+                        $sql->bind_param('sss', $resetpwd, $name, $email);
+                        $sql->execute();
 
-                        require("class.phpmailer.php");
-                        require("class.smtp.php");
+                        require("class.phpmailer.inc.php");
+                        require("class.smtp.inc.php");
 
                         $mail = new PHPMailer();
                         $mail->SMTPDebug = 1;

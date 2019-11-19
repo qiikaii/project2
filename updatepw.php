@@ -23,7 +23,7 @@
     }        
 
 
-    $session = $_SESSION['email']; // Email
+    $email = $_SESSION['email']; // Email
     $acc_id = $_SESSION['acc_id']; // Account_ID
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -100,7 +100,8 @@
                             $success = false;
                         }
                         else {
-                            updatepw($cfmnewpwd, $session, $acc_id);    
+                            echo $cfmnewpwd;
+                            updatepw($cfmnewpwd, $email, $acc_id, $success);    
                         }
 
                     }
@@ -126,7 +127,7 @@
 
 
 
-    function updatepw($cfmnewpwd, $session, $acc_id){
+    function updatepw($cfmnewpwd, $email, $acc_id, $success){
         $errorMsg = "";
         $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME); //connect to database
         if ($conn->connect_error) {
@@ -135,14 +136,15 @@
         }
         else {
             $cfmnewpwd = password_hash($cfmnewpwd, PASSWORD_BCRYPT);
-            $sql = ("UPDATE account SET password = '$cfmnewpwd' WHERE email = '$session' and acc_id = '$acc_id' ");
-            $result = $conn->query($sql);
+            $sql = $conn->prepare("UPDATE account SET password = ? WHERE email = ? and acc_id = ? ");
+            $sql->bind_param('ssd', $cfmnewpwd, $email, $acc_id);
+            $sql->execute();
             $conn->close();
 
             echo "<section class=\"middle\">
             <h1>Update password successful!</h1>
             <p>Please relogin your account</p>
-            <p> Redirecting you to login page in.. ); 
+            <p> Redirecting you to login page in.. </p>
             </section>";
              header( 'refresh:3; url=logout.php');
         }

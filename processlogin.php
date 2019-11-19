@@ -45,8 +45,10 @@ function processLoginFunc() {
                     $success = false;
                 } else {
 
-                    $sql = "SELECT * FROM account WHERE email = '$email'";
-                    $result = $conn->query($sql);
+                    $sql = $conn->prepare("SELECT * FROM account WHERE email = ?");
+                    $sql->bind_param('s', $email);
+                    $sql->execute();
+                    $result = $sql->get_result();
 
                     if ($result->num_rows == 1) {
                         $row = $result->fetch_assoc();

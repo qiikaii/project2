@@ -88,17 +88,21 @@ function processRegisterFunc() {
                     $existacc_id = true;
                     do {
                         $acc_id = mt_rand(1, 99999999);
-                        $checkacc_id = ("SELECT acc_id FROM account WHERE acc_id = '$acc_id'");
-                        $results = $conn->query($checkacc_id);
+                        $checkacc_id = $conn->prepare("SELECT acc_id FROM account WHERE acc_id = ?");
+                        $checkacc_id->bind_param('d', $acc_id);
+                        $checkacc_id->execute();
+                        $results = $checkacc_id->get_result();
+                        
                         if ($results->num_rows == 1) {
                             $existacc_id = true;
                         } else {
                             $acc_verified = 'N';
                             $acc_verify_code = substr(md5(uniqid(rand(), true)), 16, 16);
                             $pwd = password_hash($pwd, PASSWORD_BCRYPT);
-                            $sql = "INSERT INTO account (acc_id, email, name, password, acc_verified, acc_verify_code) "
-                                    . "VALUES ('$acc_id', '$email', '$name', '$pwd', '$acc_verified', '$acc_verify_code')";
-                            $conn->query($sql);
+                            $sql = $conn->prepare("INSERT INTO account (acc_id, email, name, password, acc_verified, acc_verify_code) "
+                                    . "VALUES (?, ?, ?, ?, ?, ?)");
+                            $sql->bind_param('dssssd', $acc_id, $email, $name, $pwd, $acc_verified, $acc_verify_code);
+                            $sql->execute();
                             $conn->close();
 
                             require("class.phpmailer.inc.php");
