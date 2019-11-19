@@ -100,7 +100,7 @@ and open the template in the editor.
     margin-top: 20px;
 }
 .orderModal {
-  position: absolute;
+  position: fixed;
   height: 500px;
   width: 1500px;
   margin: 0 auto;
@@ -122,8 +122,8 @@ and open the template in the editor.
 }
 .ordercontainer{
     width: 100%;
-    padding: 25px;
-    margin-bottom: 200px;
+    padding: 10px;
+    margin-bottom: 0;
 }
 
 .orderModal {
