@@ -58,13 +58,17 @@ function verifyFunc() {
     </head>
 
     <body>
+        <?php
+        include 'header.inc.php';
+        ?>
         <main>
             <?php
-            include 'header.inc.php';
             verifyFunc();
-            include 'footer.inc.php';
             ?>
         </main>
+        <?php
+        include 'footer.inc.php';
+        ?>
     </body>
 </html>
 

@@ -148,12 +148,16 @@ function actionCartFunc() {
     </head>
 
     <body>
+        <?php
+        include 'header.inc.php';
+        ?>
         <main>
             <?php
-            include 'header.inc.php';
             actionCartFunc();
-            include 'footer.inc.php';
             ?>
         </main>
+        <?php
+        include 'footer.inc.php';
+        ?>
     </body>
 </html>
