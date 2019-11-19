@@ -41,8 +41,6 @@
         // Get name of user based on email
         function getName($email) {
             $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME); //connect to database
-            //Create connection
-            //define variables and set to empty values
             $name = $errorMsg = "";
             $success = true;
             if ($conn->connect_error) {
@@ -50,12 +48,14 @@
                 $success = false;
             } 
             else {
-                $sql = "SELECT * FROM account WHERE email = '$email'";
-                $result = $conn->query($sql);
+                // Modified sql paramaters to prevent SQL injections
+                $sql = $conn->prepare("SELECT * FROM account WHERE email = ?");
+                $sql->bind_param('s', $email);
+                $sql->execute();
+                $result = $sql->get_result();
                 $row = $result->fetch_assoc();
-                $result->free_result();
-                $conn->close();
-
+                $result->free_result();  // Free result so that data will not be held up
+                $conn->close();         // Close connection
                 $name = $row['name'];
 
                 echo $name;
@@ -73,11 +73,14 @@
             }
 
             else {
-                $sql = "SELECT count(*) as FROM order_info where acc_id = $acc_id";
-                $result = $conn->query($sql);
+                $sql = $conn->prepare("SELECT count(*) as FROM order_info where acc_id = ?");
+                $sql->bind_param('d', $acc_id);
+                $sql->execute();
+                $result = $sql->get_result();
                 $row = $result->fetch_assoc();
                 $result->free_result();
                 $conn->close();
+                
                 $count = $row['count'];
                 if ($count > 0){
                     displayOrderByAccID($acc_id);
@@ -99,8 +102,11 @@
             }
 
             else {
-                $sql = "SELECT * FROM order_info where acc_id = $acc_id";
-                $result = $conn->query($sql);
+                $sql = $conn->prepare("SELECT * FROM order_info where acc_id = ?");
+                $sql->bind_param('d', $acc_id);
+                $sql->execute();
+                $result = $sql->get_result();
+                
                 while ($row = $result->fetch_assoc()) {
                     $order_id = $row['order_id'];
                     $order_date = $row['order_date'];
@@ -125,6 +131,44 @@
                     echo "</article> </article>";
 
                 }
+                
+                $result->free_result();
+                $conn->close();
+            }
+        }
+        
+        function displayItemDetails($order_id) {
+            $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME); //connect to database
+            $errorMsg = "";
+            $success = true;
+            if ($conn->connect_error) {
+                $errorMsg .= "Connection failed at displayItemDetails: " .$conn->connect_error;
+                $success = false;
+            }
+            
+            else {
+                $sql = $conn->prepare("SELECT order_item.quantity, item.item_id, item.img_source, item.product_price, item.size, item.product_name, item.product_col from item, order_item, order_info where item.item_id = order_item.item_id and order_item.order_id = ? AND order_info.order_id = ?");
+                $sql->bind_param('dd', $order_id, $order_id);
+                $sql->execute();
+                $result = $sql->get_result();
+                
+                while ($row = $result->fetch_assoc()) {
+                    $item_id = $row['item_id'];
+                    $img_source = $row['img_source'];
+                    $product_col = $row['product_col'];
+                    $size = $row['size'];
+                    $product_name = $row['product_name'];
+                    $qty = $row['quantity'];
+                    $product_price = $row['product_price'];
+                    echo "<figure class='containter-fluid ordericon'>";
+                    echo "<a href='$product_col-php/$product_col$item_id.php'><img class='ordericon' src='$img_source' alt='$product_name'> </a>";
+                    echo "<figcaption class='price text-center'>$product_name";
+                    echo "<span class='visible-xs visible visible-sm visible-md visible-lg'>$product_price /pc </span>";
+                    echo "<span class='visible-xs visible visible-sm visible-md visible-lg'>$size</span>";
+                    echo "<span class='visible-xs visible visible-sm visible-md visible-lg'>$qty pc </span> </figcaption> </figure>";
+                }
+                $result->free_result();
+                $conn->close();
             }
         }
         
@@ -153,35 +197,7 @@
         }
         
 
-        function displayItemDetails($order_id) {
-            $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME); //connect to database
-            $errorMsg = "";
-            $success = true;
-            if ($conn->connect_error) {
-                $errorMsg .= "Connection failed at displayItemDetails: " .$conn->connect_error;
-                $success = false;
-            }
-            
-            else {
-                $sql = "SELECT order_item.quantity, item.item_id, item.img_source, item.product_price, item.size, item.product_name, item.product_col from item, order_item, order_info where item.item_id = order_item.item_id and order_item.order_id = $order_id AND order_info.order_id = $order_id";
-                $result = $conn->query($sql);
-                while ($row = $result->fetch_assoc()) {
-                    $item_id = $row['item_id'];
-                    $img_source = $row['img_source'];
-                    $product_col = $row['product_col'];
-                    $size = $row['size'];
-                    $product_name = $row['product_name'];
-                    $qty = $row['quantity'];
-                    $product_price = $row['product_price'];
-                    echo "<figure class='containter-fluid ordericon'>";
-                    echo "<a href='$product_col-php/$product_col$item_id.php'><img class='ordericon' src='$img_source' alt='$product_name'> </a>";
-                    echo "<figcaption class='price text-center'>$product_name";
-                    echo "<span class='visible-xs visible visible-sm visible-md visible-lg'>$product_price /pc </span>";
-                    echo "<span class='visible-xs visible visible-sm visible-md visible-lg'>$size</span>";
-                    echo "<span class='visible-xs visible visible-sm visible-md visible-lg'>$qty pc </span> </figcaption> </figure>";
-                }
-            }
-        }
+
         
 
 
