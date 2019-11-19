@@ -65,13 +65,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($success == true) {
             if ($cartquantity <= 0) {
-                $sql = "DELETE FROM cart WHERE acc_id = '$acc_id' AND item_id = '$item_id'";
-                $result = $conn->query($sql);
-                $conn->close();
-                header("location:cartpage.php");
+                $errorMsg .= "Invalid quantity.<br>";
+                $success = false;
             }
-
-            if ($cartquantity >= 99) {
+            else if ($cartquantity >= 99) {
                 $cartquantity = 99;
                 $sql = "UPDATE cart SET quantity = '$cartquantity' WHERE acc_id = '$acc_id' AND item_id = '$item_id'";
                 $result = $conn->query($sql);
@@ -123,8 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($success == true) {
             $sql = "DELETE FROM cart WHERE acc_id = '$acc_id' AND item_id = '$item_id'";
-            $result = $conn->query($sql);
-            $result->free_result();
+            $conn->query($sql);
             $conn->close();
             header("location:cartpage.php");
         } else {
