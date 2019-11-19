@@ -194,6 +194,7 @@ and open the template in the editor.
 .ordercontainer{
     width: 85%;
     padding: 25px;
+    margin-bottom: 100px;
 }
 
 input:disabled {
