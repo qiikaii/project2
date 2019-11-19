@@ -4,20 +4,17 @@
  * and open the template in the editor.
  */
 
-function increase(){
-                var textBox = document.getElementById("quantity");
-                if (textBox.value >= 20){
-                textBox.value = 1;
-            } else{                
-                textBox.value++;
-            }   
-        }
+function validateInput() {
+    var size = document.forms["cart-form"]["size"].value;
+    var qty = document.forms["cart-form"]["quantity"].value;
 
-function decrease(){
-              var textBox = document.getElementById("quantity");
-              if (textBox.value > 1){
-                textBox.value--;
-            } else{                
-                textBox.value = 1;
-            }
-            }    
+    if (qty > 10 || qty < 1) {
+        alert("Please choose a valid quantity.");
+        return false;
+    }
+
+    if (size != 'S' || $size != 'M' || $size != 'L') {
+        alert("Please choose a valid size.");
+        return false;
+    }
+}

@@ -62,12 +62,10 @@ function getdata($id)
 </head>
 
 <body>
+    <?php
+    include 'header.inc.php';
+    ?>
     <main>
-        <?php
-        include 'header.inc.php';
-
-        ?>
-
         <section class="container">
             <!-- 1 row for 1st 4 items-->
             <article class="row">
@@ -88,11 +86,10 @@ function getdata($id)
                 <?php getdata(46); ?>
             </article>
         </section>
-
-        <?php
-        include 'footer.inc.php';
-        ?>
     </main>
+    <?php
+    include 'footer.inc.php';
+    ?>
 </body>
 
 </html>
