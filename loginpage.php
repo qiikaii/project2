@@ -36,12 +36,12 @@
                             <label for="loginemail" class="separator">Email:
                             <input class="separator" name="loginemail" id="loginemail" type="email" placeholder="Log in with your Email" 
                                    size="60" maxlength="100" autocomplete="off"
-                                   pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required></label>
+                                   pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required></label>
                             <label for="loginpass" class="separator">Password:
                             <input class="separator" name="loginpass" id="loginpass" type="password" placeholder="Enter your Password" 
                                    size="60" maxlength="100" autocomplete="off" 
                                    title="Must contain at least 8 characters with 1 uppercase, 1 lowercase and 1 number/special character."
-                                   pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}" required></label>
+                                   pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,60}$" required></label>
                             <button class="loginbutton" name="loginbutton" id="loginbutton">LOGIN</button>
                             <p class="separatorlink">——————— Already have an account? Sign In! ———————</p>
                         </form>

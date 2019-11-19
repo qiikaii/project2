@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
         if ($success == true){
-            include 'dbcon.php';
+            include 'dbcon.inc.php';
             if ($conn->connect_error) {
                 $errorMsg .= "Connection Failed: " . $conn->connect_error;
                 $success = false;
