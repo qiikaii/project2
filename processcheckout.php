@@ -14,6 +14,9 @@
         <link rel="stylesheet" href="css/checkout.css">
         <link rel="stylesheet" href="css/errorstyling.css">
     </head>
+    <main>
+        </main>
+</html>
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -144,3 +147,5 @@ return $data;
 
 include "footer.inc.php";
 ?>
+
+    
