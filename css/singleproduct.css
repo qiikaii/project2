@@ -88,11 +88,11 @@ html.magnifying > body {
 }
 
 /*Buffer between rows*/
+.h1-top-buffer{
+    margin-top: 50px;
+}
 .top-buffer{
     margin-top: 20px;
-}
-.form-group{
-    margin-top: 100px;
 }
 
 /*Size form*/

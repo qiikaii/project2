@@ -156,10 +156,7 @@ header, .navbar {
         width: inherit;
         overflow: hidden;
     }
-    
-    #dropdownlist{
-    }
-    
+
     .space {
         font-size: 15px;
         padding-top: 15px;
@@ -229,10 +226,12 @@ lastContent{
     background-color: #f7f7f7;
     border-top: none;
     max-height: 50px;
+    margin-top: -200px;
 }
 
 footer {
     max-height: 20px;
+    margin-top: -200px;
 }
 
 /******************************* END OF FOOTER STYLE ******************************/

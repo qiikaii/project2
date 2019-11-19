@@ -70,7 +70,7 @@ if ($conn->connect_error) {
             <section class="col-md-6">
                 <!--1 row within text column for heading and dropdown forms-->
                 <section class="row">
-                    <article class="form-group text-center">
+                    <article class="h1-top-buffer text-center">
                         <h1><?php echo "$pname"; ?></h1>
                         <h2>&dollar;<?php echo "$price"; ?></h2>
                         <!-- form for size and quantity-->

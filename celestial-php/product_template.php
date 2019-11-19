@@ -72,7 +72,7 @@ if ($conn->connect_error) {
             <section class="col-md-6">
                 <!--1 row within text column for heading and dropdown forms-->
                 <section class="row">
-                    <article class="form-group text-center">
+                    <article class="h1-top-buffer text-center">
                         <h1><?php echo "$pname"; ?></h1>
                         <h2>&dollar;<?php echo "$price"; ?></h2>
                         <!-- form for size and quantity-->
@@ -97,7 +97,7 @@ if ($conn->connect_error) {
                                 <option value='9'>9</option>
                                 <option value='10'>10</option>
                             </select>
-                            <input class="cart-button" type="submit" form="cart-form" name="add_cart" value="Add To Cart"/>
+                            <input class="cart-button" type="submit" form="cart-form" name="add_cart" value="Add To Cart" />
                             <input type="hidden" name="product_id" value=<?php echo "$product_id"; ?>>
                         </form>
 
