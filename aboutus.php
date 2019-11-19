@@ -80,7 +80,6 @@
             </article>
         </section>
 
-        <!-- Google Map -->
         <section class="container-fluid">
             <article class="row">
                 <section class="col-sm-6">
@@ -102,6 +101,6 @@
                 </section>
             </article>
         </section>
-        <?php include 'footer.inc.php'; ?>  
     </main>
+    <?php include 'footer.inc.php'; ?>  
 </html>

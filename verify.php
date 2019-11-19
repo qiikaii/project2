@@ -1,3 +1,46 @@
+<?php
+
+function verifyFunc() {
+    $errorMsg = "";
+    $success = true;
+
+    if (!isset($_GET["verify_code"]) || !isset($_GET["email"])) {
+        $errorMsg .= "Invalid Verification.<br>";
+        $success = false;
+    } else {
+        $verify_code = $_GET["verify_code"];
+        $email = $_GET["email"];
+
+        include 'dbcon.inc.php';
+        $checkacc = ("SELECT * FROM account WHERE email = '$email' AND acc_verify_code = '$verify_code'");
+        $results = $conn->query($checkacc);
+
+        if ($results->num_rows == 1) {
+            $verifiedsuccess = 'Y';
+            $updateverification = ("UPDATE account SET acc_verified = '$verifiedsuccess' WHERE email = '$email' "
+                    . "AND acc_verify_code = '$verify_code'");
+            $conn->query($updateverification);
+        } else {
+            $errorMsg .= "Invalid Verification.<br>";
+            $success = false;
+        }
+        $results->free_result();
+        $conn->close();
+    }
+
+    if ($success) {
+        echo "<section class=\"middle\">";
+        echo "<h1>Email: " . $email . " has been verified!</h1>";
+        echo "</section>";
+    } else {
+        echo "<section class=\"middle\">";
+        echo "<h1>The following errors were detected:</h1>";
+        echo "<p>" . $errorMsg . "</p>";
+        echo "</section>";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -13,48 +56,19 @@
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/errorstyling.css">
     </head>
+
+    <body>
+        <main>
+            <?php
+            include 'header.inc.php';
+            verifyFunc();
+            include 'footer.inc.php';
+            ?>
+        </main>
+    </body>
 </html>
 
-<?php
-include 'header.inc.php';
-$errorMsg = "";
-$success = true;
 
-if (!isset($_GET["verify_code"]) || !isset($_GET["email"])) {
-    $errorMsg .= "Invalid Verification.<br>";
-    $success = false;
-} else {
-    $verify_code = $_GET["verify_code"];
-    $email = $_GET["email"];
 
-    include 'dbcon.inc.php';
-    $checkacc = ("SELECT * FROM account WHERE email = '$email' AND acc_verify_code = '$verify_code'");
-    $results = $conn->query($checkacc);
 
-    if ($results->num_rows == 1) {
-        $verifiedsuccess = 'Y';
-        $updateverification = ("UPDATE account SET acc_verified = '$verifiedsuccess' WHERE email = '$email' "
-                . "AND acc_verify_code = '$verify_code'");
-        $conn->query($updateverification);
-    } else {
-        $errorMsg .= "Invalid Verification.<br>";
-        $success = false;
-    }
-    $results->free_result();
-    $conn->close();
-}
-
-if ($success) {
-        echo "<section class=\"middle\">";
-        echo "<h4>Email: " . $email . " has been verified!</h4>";
-        echo "</section>";
-    } else {
-        echo "<section class=\"middle\">";
-        echo "<h4>The following errors were detected:</h4>";
-        echo "<p>" . $errorMsg . "</p>";
-        echo "</section>";
-    }
-
-include 'footer.inc.php';
-?>
 
