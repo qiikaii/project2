@@ -34,9 +34,9 @@
                 $checkcartsql = $conn->prepare("SELECT COUNT(*) as count FROM cart WHERE acc_id = ?");
                 $checkcartsql->bind_param('i', $acc_id);
                 $checkcartsql->execute();
-                $checkcartsql->bind_result($count);
+                $result = $checkcartsql->get_result();
                 $conn->close();
-                if ($count <= 0) {
+                if ($result->num_rows <= 0) {
                     $errorMsg = "There is no items in the cart.<br>";
                     $success = false;
                 } else {
@@ -56,6 +56,7 @@
                     </section>
                     <?php
                 }
+                $result->free_result();
             }
             if (!$success) {
                 echo "<section class=\"middle\">

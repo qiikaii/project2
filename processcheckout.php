@@ -83,7 +83,7 @@ function processCheckOutFunc() {
                             $checkpriceresults->free_result();
                             $current_time = date('Y-m-d H:i:s');
                             $orderinfosql = $conn->prepare("INSERT INTO order_info (order_id, acc_id, order_date, order_total_price, "
-                                    . "address, postal_code, paid, shipped) VALUES (?,?,?,?,?,?,?,?");
+                                    . "address, postal_code, paid, shipped) VALUES (?,?,?,?,?,?,?,?)");
                             $orderinfosql->bind_param("iisssiss", $order_id, $acc_id, $current_time, $totalprice, $address, $postal, $paid, $shipped);
                             $orderinfosql->execute();
 
