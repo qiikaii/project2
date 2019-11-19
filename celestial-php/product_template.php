@@ -76,7 +76,7 @@ if ($conn->connect_error) {
                         <h1><?php echo "$pname"; ?></h1>
                         <h2>&dollar;<?php echo "$price"; ?></h2>
                         <!-- form for size and quantity-->
-                        <form action="<?php echo htmlspecialchars('../process_cart.php') ?>" id="cart-form" name="cart-form" method="post" onsubmit="validateInput()">
+                        <form action="<?php echo htmlspecialchars('../process_cart.php') ?>" id="cart-form" name="cart-form" method="post" onsubmit="validateInput(event)">
                             <label class="top-buffer" for="size_options">SIZE</label>
                             <select name="size" class="size-form-control" id="size_options">
                                 <option value='S'>SMALL</option>
@@ -97,7 +97,7 @@ if ($conn->connect_error) {
                                 <option value='9'>9</option>
                                 <option value='10'>10</option>
                             </select>
-                            <input class="cart-button" type="submit" form="cart-form" name="add_cart" value="Add To Cart" />
+                            <input class="cart-button" type="submit" form="cart-form" name="add_cart" value="Add To Cart"/>
                             <input type="hidden" name="product_id" value=<?php echo "$product_id"; ?>>
                         </form>
 
