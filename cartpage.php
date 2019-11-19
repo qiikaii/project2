@@ -29,9 +29,10 @@ function cartPageFunc() {
             } else {
                 $item_id = 0;
                 $quantity = 0;
-
-                $cartsql = "SELECT * FROM cart WHERE acc_id = '$acc_id'";
-                $cartresult = $conn->query($cartsql);
+                $totalprice = 0;
+                $cartsql = $conn->prepare("SELECT * FROM cart WHERE acc_id = ?");
+                $cartsql->bind_param($acc_id);
+                $cartresult = $cartsql->get_result();
 
                 $rowitem = array();
                 $rowquan = array();
@@ -145,8 +146,8 @@ function cartPageFunc() {
                 </section>
                 </article>
                 </form>";
-                    $totalprice = $itemprice * $rowquan[$i];
-                    $i++;
+                $totalprice += $itemprice * $rowquan[$i];
+                $i++;
                 }
 
                 echo "<article class=\"row\">
