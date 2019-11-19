@@ -14,7 +14,8 @@ else if (isset($_SESSION['activity']) && (time() - $_SESSION['activity'] < 1800)
 }
 
 //echo session_id();
-
+print_r($_COOKIE);
+echo session_id();
 ?>
 
 <script>

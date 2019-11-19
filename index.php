@@ -21,15 +21,16 @@ and open the template in the editor.
     <link rel="stylesheet" href="css/index.css">
 </head>
 
-<body>
-    <?php
-    
-    if (session_status() == PHP_SESSION_NONE){
-        session_start();
-    }        
-    include 'header.inc.php';
-    ?>
+<body> 
     <main>
+        <?php
+
+        if (session_status() == PHP_SESSION_NONE){
+            session_start();
+        }        
+
+        include 'header.inc.php';
+        ?>
         <section id="carousel" class="carousel carousel-fade slide lastContent" data-ride="carousel" data-interval="2500">
 
             <!-- Wrapper for slides -->

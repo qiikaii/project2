@@ -15,6 +15,7 @@
         <script src="js/loginpage.js"></script>
     </head>
         <?php
+        
         include 'header.inc.php';
         ?>    
     <main>

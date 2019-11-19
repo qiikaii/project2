@@ -21,7 +21,7 @@
     </head>
 
     <body>
-        
+        <main>
     <?php
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -248,14 +248,14 @@
 
 
         <article class='container-fluid accountcontainer'>
-            <nav class="tab d-flex justify-content-center">
+            <nav class="tab d-flex justify-content-center" title="Navigate through tabs">
                 <button class="tablinks" id='accountinfo'><span class="glyphicon glyphicon-user"></span>  Account Info</button>
                 <button class="tablinks" id='orders'><span class="glyphicon glyphicon-shopping-cart"></span>  My Orders</button>
 <!--                <button class="tablinks" id='payment'><span class="glyphicon glyphicon-credit-card"></span>  Payment Methods</button>-->
             </nav>
 
             <figure id="default" class="defaulttab ">
-                <img class="accountbackground" id='accountbackground' src="background.jpeg" alt="accountpicture" >
+                <img class="accountbackground" id='accountbackground' src="background.jpeg" alt="" >
                 <figcaption> 
                     <h3 class='accountbackgroundfont'>Hello <?php getName($email) ?>, 
                         Welcome to Your Account</h3>
@@ -279,7 +279,6 @@
                         <button type="submit" name="updatepwd" id="updatepwd" class="btn1 btn-submit">Update Password</button>
                 </form>
                 
-                <div class="progress">
 
             </section>
 
@@ -440,7 +439,7 @@
             </section>-->
 
         </article>
-
+        </main>
         <?php include 'footer.inc.php';?>
     </body>
 
