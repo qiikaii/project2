@@ -101,7 +101,7 @@ function processRegisterFunc() {
                             $pwd = password_hash($pwd, PASSWORD_BCRYPT);
                             $sql = $conn->prepare("INSERT INTO account (acc_id, email, name, password, acc_verified, acc_verify_code) "
                                     . "VALUES (?, ?, ?, ?, ?, ?)");
-                            $sql->bind_param('dssssd', $acc_id, $email, $name, $pwd, $acc_verified, $acc_verify_code);
+                            $sql->bind_param('issssi', $acc_id, $email, $name, $pwd, $acc_verified, $acc_verify_code);
                             $sql->execute();
                             $conn->close();
 

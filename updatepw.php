@@ -137,7 +137,7 @@
         else {
             $cfmnewpwd = password_hash($cfmnewpwd, PASSWORD_BCRYPT);
             $sql = $conn->prepare("UPDATE account SET password = ? WHERE email = ? and acc_id = ? ");
-            $sql->bind_param('ssd', $cfmnewpwd, $email, $acc_id);
+            $sql->bind_param('ssi', $cfmnewpwd, $email, $acc_id);
             $sql->execute();
             $conn->close();
 
