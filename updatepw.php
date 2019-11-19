@@ -100,7 +100,6 @@
                             $success = false;
                         }
                         else {
-                            echo $cfmnewpwd;
                             updatepw($cfmnewpwd, $email, $acc_id, $success);    
                         }
 
