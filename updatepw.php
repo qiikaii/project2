@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/errorstyling.css">
 </html>
+    <?php     include 'header.inc.php'; ?>
+
     <main>
     <?php
     $errorMsg = "";
@@ -20,7 +22,6 @@
         session_start();
     }        
 
-    include 'header.inc.php';
 
     $session = $_SESSION['email']; // Email
     $acc_id = $_SESSION['acc_id']; // Account_ID
@@ -163,8 +164,8 @@
         </section>";
     }
 
-    include 'footer.inc.php';
 
     ?>
 
     </main>
+<?php     include 'footer.inc.php'; ?>
