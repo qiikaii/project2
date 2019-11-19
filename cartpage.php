@@ -92,7 +92,7 @@ function cartPageFunc() {
                     $imgsrc = $itemrow['img_source'];
                     $itemname = $itemrow['product_name'];
 
-                    echo "<form name=\"cartform\" action=\"htmlspecialchars(\"actioncart.php\")\" method=\"post\">
+                    echo "<form name=\"cartform\" action=\"actioncart.php\" method=\"post\">
                 <article class=\"row justify-content-center align-self-center\" id=\"cartreveal\">
                 <section class=\"col-sm-4\">
                 <article class=\"cartitempic\">
