@@ -31,12 +31,12 @@
             } else {
                 include 'dbcon.inc.php';
                 $acc_id = $_SESSION['acc_id'];
-                $checkcartsql = "SELECT COUNT(*) as count FROM cart WHERE acc_id = '$acc_id'";
-                $result = $conn->query($checkcartsql);
-                $row = $result->fetch_assoc();
-                $result->free_result();
+                $checkcartsql = $conn->prepare("SELECT COUNT(*) as count FROM cart WHERE acc_id = ?");
+                $checkcartsql->bind_param('i', $acc_id);
+                $checkcartsql->execute();
+                $checkcartsql->bind_result($count);
                 $conn->close();
-                if ($row['count'] <= 0) {
+                if ($count <= 0) {
                     $errorMsg = "There is no items in the cart.<br>";
                     $success = false;
                 } else {

@@ -12,14 +12,16 @@ function verifyFunc() {
         $email = $_GET["email"];
 
         include 'dbcon.inc.php';
-        $checkacc = ("SELECT * FROM account WHERE email = '$email' AND acc_verify_code = '$verify_code'");
-        $results = $conn->query($checkacc);
+        $checkacc = $conn->prepare("SELECT * FROM account WHERE email = ? AND acc_verify_code = ?");
+        $checkacc->bind_param('ss', $email, $acc_verify_code);
+        $checkacc->execute();
+        $results = $checkacc->get_result();
 
         if ($results->num_rows == 1) {
             $verifiedsuccess = 'Y';
-            $updateverification = ("UPDATE account SET acc_verified = '$verifiedsuccess' WHERE email = '$email' "
-                    . "AND acc_verify_code = '$verify_code'");
-            $conn->query($updateverification);
+            $updateverification = $conn->prepare("UPDATE account SET acc_verified = ? WHERE email = ? AND acc_verify_code = ?");
+            $updateverification->bind_param('sss', $verifiedsuccess, $email, $verify_code);
+            $updateverification->execute();
         } else {
             $errorMsg .= "Invalid Verification.<br>";
             $success = false;

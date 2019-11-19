@@ -41,14 +41,18 @@ function processCheckOutFunc() {
                 include 'dbcon.inc.php';
                 do {
                     $order_id = mt_rand(1000000, 99999999);
-                    $checkorder_id = ("SELECT order_id FROM order_info WHERE order_id = '$order_id'");
-                    $results = $conn->query($checkorder_id);
+                    $checkorder_id = $conn->prepare("SELECT order_id FROM order_info WHERE order_id = ?");
+                    $checkorder_id->bind_param('i', $order_id);
+                    $checkorder_id->execute();
+                    $results = $checkorder_id->get_result();
                     if ($results->num_rows == 1) {
                         $existorder_id = true;
                     } else {
                         $results->free_result();
-                        $cartsql = "SELECT * FROM cart WHERE acc_id = '$acc_id'";
-                        $cartresults = $conn->query($cartsql);
+                        $cartsql = $conn->prepare("SELECT * FROM cart WHERE acc_id = ?");
+                        $cartsql->bind_param("i", $acc_id);
+                        $cartsql->execute();
+                        $cartresults = $cartsql->get_result();
                         if ($cartresults->num_rows == 0) {
                             $errorMsg = "There is no items in the cart.<br>";
                             $success = false;
@@ -67,8 +71,10 @@ function processCheckOutFunc() {
                                 $quantity = $cartrow['quantity'];
                                 $rowitemid[] = $item_id;
                                 $rowquan[] = $quantity;
-                                $checkpricesql = "SELECT product_price FROM item WHERE item_id = '$item_id'";
-                                $checkpriceresults = $conn->query($checkpricesql);
+                                $checkpricesql = $conn->prepare("SELECT product_price FROM item WHERE item_id = ?");
+                                $checkpricesql->bind_param('i', $item_id);
+                                $checkpricesql->execute();
+                                $checkpriceresults = $checkpricesql->get_result();
                                 $checkpricerow = $checkpriceresults->fetch_assoc();
                                 $price = $checkpricerow['product_price'];
                                 $totalprice += ($price * $quantity);
@@ -76,17 +82,19 @@ function processCheckOutFunc() {
                             }
                             $checkpriceresults->free_result();
                             $current_time = date('Y-m-d H:i:s');
-                            $orderinfosql = "INSERT INTO order_info (order_id, acc_id, order_date, order_total_price, address, postal_code, paid, shipped)"
-                                    . " VALUES ('$order_id', '$acc_id', '$current_time', '$totalprice', '$address', '$postal', '$paid', '$shipped')";
-                            $conn->query($orderinfosql);
+                            $orderinfosql = $conn->prepare("INSERT INTO order_info (order_id, acc_id, order_date, order_total_price, "
+                                    . "address, postal_code, paid, shipped) VALUES (?,?,?,?,?,?,?,?");
+                            $orderinfosql->bind_param("iisssiss", $order_id, $acc_id, $current_time, $totalprice, $address, $postal, $paid, $shipped);
+                            $orderinfosql->execute();
 
                             while ($i < $count) {
                                 $orderitemsql = "INSERT INTO order_item (order_id, item_id, quantity) VALUES ('$order_id', '$rowitemid[$i]', '$rowquan[$i]')";
                                 $conn->query($orderitemsql);
                                 $i++;
                             }
-                            $deletecart = "DELETE FROM cart WHERE acc_id = '$acc_id'";
-                            $conn->query($deletecart);
+                            $deletecart = $conn->prepare("DELETE FROM cart WHERE acc_id = ?");
+                            $deletecart->bind_param('i', $acc_id);
+                            $deletecart->execute();
                             $conn->close();
                             $existorder_id = false;
                         }
