@@ -15,8 +15,10 @@ function cartPageFunc() {
             $errorMsg = "Connection failed: " . $conn->connect_error;
             $success = false;
         } else {
-            $sql = "SELECT COUNT(*) AS count FROM cart WHERE acc_id = '$acc_id'";
-            $result = $conn->query($sql);
+            $sql = $conn->prepare("SELECT COUNT(*) AS count FROM cart WHERE acc_id = ?");
+            $sql->bind_param('i', $acc_id);
+            $sql->execute();
+            $result = $sql->get_result();
             $row = $result->fetch_assoc();
             $result->free_result();
             $count = $row['count'];
@@ -76,8 +78,10 @@ function cartPageFunc() {
                 </article>";
 
                 while ($i != $count) {
-                    $itemsql = "SELECT * FROM item WHERE item_id = '$rowitem[$i]'";
-                    $itemresult = $conn->query($itemsql);
+                    $itemsql = $conn->prepare("SELECT * FROM item WHERE item_id = ?");
+                    $itemsql->bind_param('i', $rowitem[$i]);
+                    $itemsql->execute();
+                    $itemresult = $itemsql->get_result();
                     $itemrow = $itemresult->fetch_assoc();
                     $itemresult->free_result();
 

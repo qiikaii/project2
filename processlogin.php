@@ -44,7 +44,6 @@ function processLoginFunc() {
                     $errorMsg = "Connection failed: " . $conn->connect_error;
                     $success = false;
                 } else {
-
                     $sql = $conn->prepare("SELECT * FROM account WHERE email = ?");
                     $sql->bind_param('s', $email);
                     $sql->execute();

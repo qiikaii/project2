@@ -8,10 +8,6 @@ function sanitize_input($data) {
 }
 
 function actionCartFunc() {
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-    $acc_id = $_SESSION['acc_id'];
     $errorMsg = "";
     $success = true;
 
@@ -60,13 +56,15 @@ function actionCartFunc() {
                     $success = false;
                 } else if ($cartquantity >= 99) {
                     $cartquantity = 99;
-                    $sql = "UPDATE cart SET quantity = '$cartquantity' WHERE acc_id = '$acc_id' AND item_id = '$item_id'";
-                    $result = $conn->query($sql);
+                    $sql = $conn->prepare("UPDATE cart SET quantity = ? WHERE acc_id = ? AND item_id = ?");
+                    $sql->bind_param('iii', $cartquantity, $acc_id, $item_id);
+                    $sql->execute();
                     $conn->close();
                     header("location:cartpage.php");
                 } else {
-                    $sql = "UPDATE cart SET quantity = '$cartquantity' WHERE acc_id = '$acc_id' AND item_id = '$item_id'";
-                    $result = $conn->query($sql);
+                    $sql = $conn->prepare("UPDATE cart SET quantity = ? WHERE acc_id = ? AND item_id = ?");
+                    $sql->bind_param('iii', $cartquantity, $acc_id, $item_id);
+                    $sql->execute();
                     $conn->close();
                     header("location:cartpage.php");
                 }
@@ -74,7 +72,6 @@ function actionCartFunc() {
                 $conn->close();
             }
         }
-
 
         if (isset($_POST["deletecart"])) {
             include 'dbcon.inc.php';
@@ -87,8 +84,10 @@ function actionCartFunc() {
                     $errorMsg .= "Invalid item.<br>";
                     $success = false;
                 } else {
-                    $checkitem = "SELECT item_id FROM item WHERE item_id = '$item_id'";
-                    $result = $conn->query($checkitem);
+                    $checkitem = $conn->prepare("SELECT item_id FROM item WHERE item_id = ?");
+                    $checkitem->bind_param('i', $item_id);
+                    $checkitem->execute();
+                    $result = $checkitem->get_result();
                     if ($result->num_rows != 1) {
                         $errorMsg .= "Invalid item.<br>";
                         $success = false;
@@ -109,8 +108,9 @@ function actionCartFunc() {
             }
 
             if ($success == true) {
-                $sql = "DELETE FROM cart WHERE acc_id = '$acc_id' AND item_id = '$item_id'";
-                $conn->query($sql);
+                $sql = $conn->prepare("DELETE FROM cart WHERE acc_id = ? AND item_id = ?");
+                $sql->bind_param('ii', $acc_id, $item_id);
+                $sql->execute();
                 $conn->close();
                 header("location:cartpage.php");
             } else {
@@ -124,7 +124,7 @@ function actionCartFunc() {
 
     if (!$success) {
         echo "<section class=\"middle\">
-    <h4>The following input errors were detected:</h4>
+    <h1>The following input errors were detected:</h1>
     <p> $errorMsg </p>
     </section>";
     }
@@ -149,6 +149,10 @@ function actionCartFunc() {
 
     <body>
         <?php
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $acc_id = $_SESSION['acc_id'];
         include 'header.inc.php';
         ?>
         <main>
