@@ -48,7 +48,8 @@ else if (isset($_SESSION['activity']) && (time() - $_SESSION['activity'] < 1800)
                 </li>
                 <?php
                 if (isset($_SESSION['acc_id'])) {
-                    echo "<li class=\"nav-item\"><a href=\"cartpage.php\">CART</a></li>                    
+                    echo "<li class=\"nav-item\"><a href=\"cartpage.php\">CART</a></li>       
+                <li class=\"nav-item\"><a href=\"account.php\"><span class=\"glyphicon glyphicon-user\"></span> ACCOUNT</a></li>
                 <li class=\"nav-item\"><a href=\"logout.php\"><span class=\"glyphicon glyphicon-log-out\"></span> LOGOUT</a></li>";
                 } else {
                     echo "<li class=\"nav-item\"><a href=\"loginpage.php\"><span class=\"glyphicon glyphicon-log-in\"></span> LOGIN</a></li>";
