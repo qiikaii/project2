@@ -58,7 +58,7 @@
                             <label for="reginame" class="separator">Name:
                             <input class="separator" name="reginame" id="reginame" type="text" 
                                    placeholder="How do you want us to address you?" size="60" maxlength="100" autocomplete="off"
-                                    pattern="/^[a-zA-Z]+( [a-zA-Z]+)*$/" required></label>
+                                    pattern="^[a-zA-Z]+( [a-zA-Z]+)*$" required></label>
                             <label for="regiemail" class="separator">Email:
                             <input class="separator" name="regiemail" id="regiemail" type="email" 
                                    placeholder="Your email address." size="60" maxlength="100" autocomplete="off"

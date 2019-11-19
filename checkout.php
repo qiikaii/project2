@@ -47,7 +47,7 @@
                 <form name="checkoutform" action="<?php echo htmlspecialchars("processcheckout.php"); ?>" method="post">
                     <label for="address" class="separator">Shipping Address:
                         <input class="separator" name="address" id="address" type="text" placeholder="Where do you want us to ship to?" 
-                               size="60" maxlength="200" autocomplete="off" pattern="/^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$/" required></label>
+                               size="60" maxlength="200" autocomplete="off" pattern="^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$" required></label>
                     <label for="postal" class="separator">Postal Code: 
                         <input class="separator" name="postal" id="postal" type="text" placeholder="Deliver to Singapore only." 
                                size="60" maxlength="6" autocomplete="off" pattern="^[0-9]{6}$" required></label>
