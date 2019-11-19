@@ -13,7 +13,7 @@ function verifyFunc() {
 
         include 'dbcon.inc.php';
         $checkacc = $conn->prepare("SELECT * FROM account WHERE email = ? AND acc_verify_code = ?");
-        $checkacc->bind_param('ss', $email, $acc_verify_code);
+        $checkacc->bind_param('ss', $email, $verify_code);
         $checkacc->execute();
         $results = $checkacc->get_result();
 

@@ -8,6 +8,7 @@ function sanitize_input($data) {
 }
 
 function actionCartFunc() {
+    $acc_id = $_SESSION['acc_id'];
     $errorMsg = "";
     $success = true;
 
@@ -152,7 +153,6 @@ function actionCartFunc() {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        $acc_id = $_SESSION['acc_id'];
         include 'header.inc.php';
         ?>
         <main>

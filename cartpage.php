@@ -6,7 +6,7 @@ function cartPageFunc() {
     $cartsuccess = true;
 
     if (!isset($_SESSION['acc_id'])) {
-        $errorMsg = "Please login to add items to your cart";
+        $errorMsg = "Please login to add items to your cart.<br>";
         $cartsuccess = false;
     } else {
         $acc_id = $_SESSION['acc_id'];
@@ -181,8 +181,8 @@ function cartPageFunc() {
 
     if (!$cartsuccess) {
         echo "<section class=\"middle\">
-    <p>" . $errorMsg . "</p>
-    </section>";
+        <h1>" . $errorMsg . "</h1>
+        </section>";
     }
 }
 ?>
