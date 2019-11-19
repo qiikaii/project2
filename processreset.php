@@ -141,13 +141,18 @@ function processResetFunc() {
     </head>
 
     <body>
+        <?php
+        include 'header.inc.php';
+        ?>
         <main>
             <?php
-            include 'header.inc.php';
             processResetFunc();
-            include 'footer.inc.php';
             ?>
         </main>
+
+        <?php
+        include 'footer.inc.php';
+        ?>
     </body>
 </html>
 

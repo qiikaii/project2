@@ -182,13 +182,17 @@ function processRegisterFunc() {
         <link rel="stylesheet" href="css/errorstyling.css">
     </head>
     <body>
+        <?php
+        include 'header.inc.php';
+        ?>
         <main>
             <?php
-            include 'header.inc.php';
             processRegisterFunc();
-            include 'footer.inc.php';
             ?>
         </main>
+        <?php
+        include 'footer.inc.php';
+        ?>
     </body>
 </html> 
 
