@@ -57,7 +57,7 @@ document.getElementById('regiconpass').addEventListener('input', validateRegiCon
 
 function validateRegiName(event){
     var reginame = document.getElementById('reginame');
-    var r=/(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,}/;
+    var r=/^[a-zA-Z]+( [a-zA-Z]+)*$/;
     reginame.setCustomValidity('');
     if (reginame.value === "") {
         reginame.setCustomValidity("Name can't be blank.");
@@ -153,7 +153,7 @@ document.getElementById('resetemail').addEventListener('input', validateResetEma
 
 function validateResetName(event){
     var resetname = document.getElementById('resetname');
-    var r=/(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,}/;
+    var r=/^[a-zA-Z]+( [a-zA-Z]+)*$/;
     resetname.setCustomValidity('');
     if (resetname.value === "") {
         resetname.setCustomValidity("Name can't be blank.");
