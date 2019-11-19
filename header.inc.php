@@ -18,7 +18,7 @@ else if (isset($_SESSION['activity']) && (time() - $_SESSION['activity'] < 1800)
 ?>
 
 <script>
-    console.log("%zcSTOP", "color: red; font-size: 150px");
+    console.log("%cSTOP", "color: red; font-size: 150px");
     console.log("%cThis is a browser feature intended for developers. ", "color= black; font-size=25px");
     console.log("%cIf someone told you to copy-paste something here to enable features or 'hack' someone's account, it is a scam and will give them access to your account.", "color= black; font-size=25px");
     console.log("%cSee https://en.wikipedia.org/wiki/Self-XSS for more information. ", "color= black; font-size=25px");

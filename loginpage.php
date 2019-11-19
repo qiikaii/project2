@@ -57,7 +57,7 @@
                             <label for="reginame" class="separator">Name:
                             <input class="separator" name="reginame" id="reginame" type="text" 
                                    placeholder="How do you want us to address you?" size="60" maxlength="100" autocomplete="off"
-                                    pattern="(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,}" required></label>
+                                    pattern="/^[a-zA-Z]+( [a-zA-Z]+)*$/" required></label>
                             <label for="regiemail" class="separator">Email:
                             <input class="separator" name="regiemail" id="regiemail" type="email" 
                                    placeholder="Your email address." size="60" maxlength="100" autocomplete="off"
@@ -86,7 +86,7 @@
                             <label for="resetname" class="separator">Full Name:
                             <input class="separator" name="resetname" id="resetname" type="text" 
                                    placeholder="Enter Full Name" size="60" maxlength="70" autocomplete="off"
-                                   pattern="(?=^[A-Za-z]+\s?[A-Za-z]+$).{3,}" required</label>
+                                   pattern="^[a-zA-Z]+( [a-zA-Z]+)*$" required</label>
                             <label for="resetemail" class="separator">Email:
                             <input class="separator" name="resetemail" id="resetemail" type="email" 
                                    placeholder="Enter your Email Address" size="60" maxlength="100" autocomplete="off"

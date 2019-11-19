@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $success = false;
         } else {
             $address = sanitize_input($_POST["address"]);
-            if (!preg_match('/^(?=^[0-9A-Za-z]+\s?[0-9A-Za-z]+$).{3,}$/', $address)) {
+            if (!preg_match('/^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$/', $address)) {
                 $errorMsg .= "Invalid address format.<br>";
                 $success = false;
             }
