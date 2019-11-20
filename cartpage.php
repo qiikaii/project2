@@ -1,6 +1,7 @@
 <?php
 
-function cartPageFunc() {
+function cartPageFunc()
+{
     $errorMsg = "";
     $success = true;
     $cartsuccess = true;
@@ -147,8 +148,8 @@ function cartPageFunc() {
                 </section>
                 </article>
                 </form>";
-                $totalprice += $itemprice * $rowquan[$i];
-                $i++;
+                    $totalprice += $itemprice * $rowquan[$i];
+                    $i++;
                 }
 
                 echo "<article class=\"row\">
@@ -165,6 +166,7 @@ function cartPageFunc() {
             <section class=\"bottomcart\">
             <article class=\"col-sm-12\">
             <a href=\"checkout.php\"><button class=\"cartbutton\" value=\"checkout\"> Proceed to Check Out </button></a>
+            <a href=\"index.php\"><button class=\"cartbutton\" value=\"continue_shopping\"> Continue Shopping </button></a>
             </article>
             </section>
             </article>
@@ -191,36 +193,38 @@ function cartPageFunc() {
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>DELTA - CART</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Top 1 self-designed fashion in Singapore">
-        <meta name="keyword" content="fashion, designer platform, Singapore, self-designed clothes, self-designed fashion, trending fashion, trending design, trending in Singapore, Singapore fashion, Singapore home design fashion, online shopping fashion">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Varela&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/cartpage.css">
-        <link rel="stylesheet" href="css/errorstyling.css">
-        <script src="js/cartpage.js"></script>
-    </head>
 
-    <body>
+<head>
+    <title>DELTA - CART</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Top 1 self-designed fashion in Singapore">
+    <meta name="keyword" content="fashion, designer platform, Singapore, self-designed clothes, self-designed fashion, trending fashion, trending design, trending in Singapore, Singapore fashion, Singapore home design fashion, online shopping fashion">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Varela&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/cartpage.css">
+    <link rel="stylesheet" href="css/errorstyling.css">
+    <script src="js/cartpage.js"></script>
+</head>
+
+<body>
+    <?php
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    include 'header.inc.php';
+    ?>
+    <main>
         <?php
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
-        include 'header.inc.php';
+        cartPageFunc();
         ?>
-        <main>
-            <?php
-            cartPageFunc();
-            ?>
-        </main>
-        <?php
-        include 'footer.inc.php';
-        ?>
-    </body>
+    </main>
+    <?php
+    include 'footer.inc.php';
+    ?>
+</body>
+
 </html>
