@@ -24,7 +24,8 @@
     ?>
     <main>
         <section class="middle">
-            <h1>ERROR 404.</h1>
+            <h1>Oops, something went wrong.</h1>
+            <a href="index.php"><button type="button" class="home-button">Return Home</button></a>
         </section>
     </main>
     <?php
