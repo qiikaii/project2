@@ -1,4 +1,4 @@
 <?php 
 $product_id = 22;
 $col_name = 'celestial';
-include 'product_template.php';
+require 'product_template.php';

@@ -1,4 +1,4 @@
 <?php 
 $col_name = 'monochrome';
 $product_id = 43;
-include 'product_template.php';
+require 'product_template.php';
