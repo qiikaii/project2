@@ -1,4 +1,11 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+if (isset($_SESSION['acc_id'])) {
+    header("Location:index.php");
+    exit();
+}
 
 function sanitize_input($data) {
     $data = trim($data);
@@ -56,7 +63,7 @@ function processLoginFunc() {
                         if ($row["acc_verified"] != 'Y') {
                             $errorMsg = "Account not verified yet.<br>";
                             $success = false;
-                        } 
+                        }
                         if (password_verify($pwd, $row['password']) == false) {
                             $errorMsg = "Email not found or password doesn't match.<br>";
                             $attempts = $row['attempts'];
@@ -67,12 +74,12 @@ function processLoginFunc() {
                             $sql->execute();
                             $conn->close();
                             $success = false;
-                        } 
-                        if ($row['attempts'] >= 2){
+                        }
+                        if ($row['attempts'] >= 2) {
                             $errorMsg .= "Account locked out";
                             $current_time = date('Y-m-d H:i:s');
-                            
-                            $unlock_time = date('Y-m-d H:i:s', strtotime($current_time. '+ 1 days'));
+
+                            $unlock_time = date('Y-m-d H:i:s', strtotime($current_time . '+ 1 days'));
                             $attempts = 0;
                             $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
                             $sql = $conn->prepare("UPDATE account SET unlock_time = ?, attempts = ? where email = ?");
@@ -81,12 +88,10 @@ function processLoginFunc() {
                             $conn->close();
                             $success = false;
                         }
-                        if ($row['unlock_time'] > date('Y-m-d H:i:s')){
+                        if ($row['unlock_time'] > date('Y-m-d H:i:s')) {
                             $errorMsg .= "Account locked out";
                             $success = false;
-                        }
-                        else if (password_verify($pwd, $row['password']) == true && $row['unlock_time'] <= date('Y-m-d H:i:s')){
-                            session_start();
+                        } else if (password_verify($pwd, $row['password']) == true && $row['unlock_time'] <= date('Y-m-d H:i:s')) {
                             session_regenerate_id();
                             $_SESSION['auth'] = true;
                             $_SESSION['acc_id'] = $row['acc_id'];

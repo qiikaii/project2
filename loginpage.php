@@ -1,3 +1,13 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+if (isset($_SESSION['acc_id'])) {
+    header("Location:index.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -16,9 +26,9 @@
     </head>
 
     <body>
-        <?php
-        include 'header.inc.php';
-        ?>    
+<?php
+include 'header.inc.php';
+?>    
         <main>
             <section class="containrow">
                 <ul class="nav nav-tabs">
@@ -93,8 +103,8 @@
                 </article>
             </section>
         </main>
-        <?php
-        include 'footer.inc.php';
-        ?>
+<?php
+include 'footer.inc.php';
+?>
     </body>
 </html>
