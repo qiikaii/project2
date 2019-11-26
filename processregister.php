@@ -123,8 +123,8 @@ function processRegisterFunc() {
                             $mail->Host = "smtp.gmail.com";
                             $mail->Port = 587;
                             $mail->SMTPAuth = true;
-                            $mail->Username = "XbatbatX@gmail.com";
-                            $mail->Password = "P@5sword";
+                            $mail->Username = "DeltaatSIT@gmail.com";
+                            $mail->Password = "DeltaSIT1!";
 
                             $mail->From = "DeltaatSIT@gmail.com";
                             $mail->FromName = "Delta @ SIT";
