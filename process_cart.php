@@ -13,11 +13,18 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+function sanitize_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 
 //obtaining add to cart values
-$product_id = $_POST['product_id'];
-$quantity = $_POST['quantity'];
-$size = $_POST['size'];
+$product_id = sanitize_input($_POST['product_id']);
+$quantity = sanitize_input($_POST['quantity']);
+$size = sanitize_input($_POST['size']);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!isset($_POST['add_cart'])) {
