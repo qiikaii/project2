@@ -22,6 +22,8 @@ else {
     $ip = $_SERVER['REMOTE_ADDR'];
 }
 
+
+
 if (isset($_SESSION['acc_id'])){
     if ($_SESSION['ip'] !== $ip || $_SESSION['browser'] !== get_browser()){
         header("location:logout.php");

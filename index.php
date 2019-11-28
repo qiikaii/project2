@@ -26,7 +26,7 @@ and open the template in the editor.
         <?php
         ini_set('session.use_only_cookies', 1);
         ini_set('session.cookie_secure', 1);
-        ini.set('session.cookie_httponly', 1);
+        ini_set('session.cookie_httponly', 1);
         
         if (session_status() == PHP_SESSION_NONE){
             session_start();
