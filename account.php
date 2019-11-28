@@ -7,8 +7,7 @@ if (session_status() == PHP_SESSION_NONE){
     session_start();
 } 
 
-
-if (empty($_SESSION['email'])) {
+if (empty($_SESSION['acc_id'])) {
     header("location:loginpage.php");
 }
 

@@ -1,5 +1,11 @@
 <?php
+if (!isset($_SERVER['HTTPS']) || !$_SERVER['HTTPS']) { // if request is not secure, redirect to secure url
+    $url = 'https://' . $_SERVER['HTTP_HOST']
+                      . $_SERVER['REQUEST_URI'];
 
+    header('Location: ' . $url);
+    exit;
+}   
 // If theres session and last activity is 30 minutes ago, then logout
 if (isset($_SESSION['activity']) && (time() - $_SESSION['activity'] >= 1800)) {
     header("location:logout.php");
@@ -22,10 +28,8 @@ else {
     $ip = $_SERVER['REMOTE_ADDR'];
 }
 
-
-
 if (isset($_SESSION['acc_id'])){
-    if ($_SESSION['ip'] !== $ip || $_SESSION['browser'] !== get_browser()){
+    if ($_SESSION['ip'] != $ip || $_SESSION['browser'] != get_browser()){
         header("location:logout.php");
     }
 }

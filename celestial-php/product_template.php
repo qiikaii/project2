@@ -3,6 +3,14 @@ ini_set('session.use_only_cookies', 1);
 ini_set('session.cookie_secure', 1);
 ini_set('session.cookie_httponly', 1);
 
+if (!isset($_SERVER['HTTPS']) || !$_SERVER['HTTPS']) { // if request is not secure, redirect to secure url
+    $url = 'https://' . $_SERVER['HTTP_HOST']
+                      . $_SERVER['REQUEST_URI'];
+
+    header('Location: ' . $url);
+    exit;
+}
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }

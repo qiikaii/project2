@@ -3,9 +3,11 @@ ini_set('session.use_only_cookies', 1);
 ini_set('session.cookie_secure', 1);
 ini_set('session.cookie_httponly', 1);
 
+
 if (session_status() == PHP_SESSION_NONE){
     session_start();
 } 
+
 
 if (isset($_SESSION['acc_id'])) {
     header("Location:index.php");
@@ -136,6 +138,7 @@ function processLoginFunc() {
                                     
                                     // Get user agent for comparison
                                     $_SESSION['browser'] = get_browser();
+                                    
                                     header("location:account.php");
                                 }
                             }
