@@ -16,17 +16,8 @@ else if (isset($_SESSION['activity']) && (time() - $_SESSION['activity'] < 1800)
 }
 
 // Gets Client ip address, works also on proxies
- if(!empty($_SERVER['HTTP_CLIENT_IP'])){
-    $ip = $_SERVER['HTTP_CLIENT_IP'];
-}
+$ip = $_SERVER['REMOTE_ADDR'];
 
-else if(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
-    $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-}
-
-else {
-    $ip = $_SERVER['REMOTE_ADDR'];
-}
 
 if (isset($_SESSION['acc_id'])){
     if ($_SESSION['ip'] != $ip || $_SESSION['browser'] != get_browser()){

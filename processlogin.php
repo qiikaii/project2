@@ -123,19 +123,7 @@ function processLoginFunc() {
                                     
                                     
                                     // For Session Hijacking purposes
-                                    // Check for root of client ip address, even if client uses
-                                    if(!empty($_SERVER['HTTP_CLIENT_IP'])){
-                                        $_SESSION['ip'] = $_SERVER['HTTP_CLIENT_IP'];
-                                    }
-
-                                    else if(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
-                                        $_SESSION['ip'] = $_SERVER['HTTP_X_FORWARDED_FOR'];
-                                    }
-
-                                    else {
-                                        $_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
-                                    }
-                                    
+                                    $_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
                                     // Get user agent for comparison
                                     $_SESSION['browser'] = get_browser();
                                     
